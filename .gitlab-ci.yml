@@ -1,5 +1,11 @@
 heroku_deploy:
-  stage: deploy
+  type: deploy
+  stage: production
+  image: ruby:latest
   script:
-    - gem install faraday-net_http -v 2.1.0
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_PRODUCTION_KEY
+  only:
+    - master
