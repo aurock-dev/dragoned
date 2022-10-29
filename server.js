@@ -19,50 +19,40 @@ const io = socketio(server);
 var memberList = {}
 
 io.on('connection', socket => {
-  // memberList[socket.id] = '';
-  // socket.broadcast.emit('updateMemberListForClients', memberList);
-
-  socket.on('playerConnection', playerInfos => {
-    if (!memberList.hasOwnProperty(playerInfos.playerId)){
-      memberList[playerInfos.playerId] = playerInfos.playerName;
+  socket.on('playerConnection', playerName => {
+    if (!memberList.hasOwnProperty(socket.id)){
+      console.log('Player '+playerName+' connected.')
+      memberList[socket.id] = playerName;
     }
     console.log(memberList)
+    io.emit('updateMemberListForClients', memberList);
   });
 
-  socket.on('playerDisconnection', playerInfos => {
-    if (!memberList.hasOwnProperty(playerInfos.playerId)){
-      memberList[playerInfos.playerId] = playerInfos.playerName;
-    }
-    console.log(memberList)
+  socket.on('disconnect', () => {
+    console.log('Player '+memberList[socket.id]+' disconnected.')
+    delete memberList[socket.id]
   });
 
-  // socket.on('disconnect', () => {
-  //   delete memberList[socket.id];
-  //   io.emit('updateMemberListForClients', memberList);
-  // });
+  socket.on('updateMemberList', () => {
+    io.emit('updateMemberListForClients', memberList);
+  });
 
-  // socket.on('updateMemberList', () => {
-  //   io.emit('updateMemberListForClients', memberList);
-  // });
+  socket.on('updateClientName', playerName => {
+    memberList[socket.id] = playerName;
+    io.emit('updateMemberListForClients', memberList);
+  });
 
-  // socket.on('updateClientName', player => {
-  //   memberList[player.id] = player.playerName;
-  //   io.emit('updateMemberListForClients', memberList);
-  //   socket.to(player.id).emit('getclient', memberList);
-  // });
+  socket.on('callTarget', ids => {
+    let senderId =  ids.senderId;
+    let senderName = memberList[senderId];
+    let receiverId =  ids.receiverId;
+    socket.to(receiverId).emit('sendFightRequestToTarget', {
+      senderId:senderId, 
+      senderName:senderName
+    });
+  })
 
-  // socket.on('sendFight', ids => {
-  //   let senderId =  ids.senderId;
-  //   let senderName = memberList[senderId];
-  //   let receiverId =  ids.receiverId;
-  //   socket.to(receiverId).emit('sendFightRequest', {
-  //     senderId:senderId, 
-  //     receiverId:receiverId, 
-  //     senderName:senderName
-  //   });
-  // })
-
-  // socket.on('responseFightRequest', msg => {
-  //   socket.to(msg.playerId).emit('response', msg.text);
-  // })
+  socket.on('responseFightRequestToCaller', targetResponse => {
+    socket.to(targetResponse.playerId).emit('sendResponse', targetResponse.text);
+  })
 });
