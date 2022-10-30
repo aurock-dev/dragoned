@@ -80,6 +80,7 @@ select {
     --background-color: #ffecd1;
     --primary-color: #fdd190;
     --accent-color: #f8c374;
+    --secondary-color: #a690fd;
 }
 /* #endregion */
 
@@ -106,6 +107,11 @@ button:hover{
 
 button:active{
     transform: translateY(1px);
+}
+
+hr{
+    border: 1px solid var(--secondary-color);
+    border-radius: 20px;
 }
 
 .hidden{
