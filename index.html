@@ -15,7 +15,6 @@
     </head>
     <body>
         <div class="navbar">
-            <div id="connectionState"></div>
             <div class="navbarTitle" id="gameTitle">DRAGON'ED</div>
             <button id="showViewServer"><i class="fas fa-eye"></i> Connected Players</button>
             <button id="showViewOptions"><i class="fas fa-gear"></i> Options</button>
@@ -24,18 +23,15 @@
         <div class="viewGame" id="viewGame">
         </div>
         
-        <div class="viewOptions hidden" id="viewOptions">
-            <button id="showDialogChangeName">Change name</button>
-        
-            <dialog id="dialogNameChange">  
-                <div>Enter a name.</div>
-                <input type="text" id="inputChangeName">
-                <button id="validateChangeName">Change</button>
-                <button id="cancelChangeName">Cancel</button>
-            </dialog>
+        <div class="viewOptions hidden" id="viewOptions">      
+            <div>Server Statut: <span id="connectionState">Not Connected</span></div>
+            <div>Enter a name.</div>
+            <input type="text" id="inputChangeName">
+            <button id="validateChangeName">Change</button>
         </div>
 
         <div class="viewServer hidden" id="viewServer">
+            <div>Connected players:</div>
             <div id="memberList">
     
             </div>

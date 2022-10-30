@@ -26,6 +26,7 @@ io.on('connection', socket => {
     }
     console.log(memberList)
     io.emit('updateMemberListForClients', memberList);
+    io.emit('updateConnectionState', true);
   });
 
   socket.on('disconnect', () => {

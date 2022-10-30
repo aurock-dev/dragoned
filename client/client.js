@@ -22,6 +22,12 @@ socket.on('updateMemberListForClients', list => {
     }
 });
 
+socket.on('updateConnectionState', state => {
+    if (state){
+        document.querySelector('#connectionState').textContent = 'Connected';
+    }
+})
+
 socket.on('sendFightRequestToTarget', senderPlayer => {
     dialogFight.querySelector('#senderPlayerName').textContent = senderPlayer.senderName;
     dialogFight.show();
