@@ -25,6 +25,7 @@ $(document).on('click', '[name="targetPlayer"]', function() {
 })
 //#endregion
 
+//#region -- NAVBAR
 $(document).on('click', '#showViewOptions', function(){
     let viewOptionsClasslist = document.querySelector('#viewOptions').classList;
     viewOptionsClasslist.contains('hidden') ? viewOptionsClasslist.remove('hidden') : viewOptionsClasslist.add('hidden');
@@ -34,3 +35,4 @@ $(document).on('click', '#showViewServer', function(){
     let viewServerClasslist = document.querySelector('#viewServer').classList;
     viewServerClasslist.contains('hidden') ? viewServerClasslist.remove('hidden') : viewServerClasslist.add('hidden');
 })
+//#endregion
