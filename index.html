@@ -9,28 +9,41 @@
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
             crossorigin="anonymous">
         </script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <button id="showDialogChangeName">Changer de nom</button>
-        <div id="memberList">
-
+        <div class="viewGame" id="viewGame">
+            <button id="showViewOptions">Show Options</button>
+            <button id="showViewServer">Show Connected Members</button>
+        </div>
+        
+        <div class="viewOptions hidden" id="viewOptions">
+            <button id="showDialogChangeName">Change name</button>
+        
+            <dialog id="dialogNameChange">  
+                <div>Enter a name.</div>
+                <input type="text" id="inputChangeName">
+                <button id="validateChangeName">Change</button>
+                <button id="cancelChangeName">Cancel</button>
+            </dialog>
         </div>
 
-        <dialog id="dialogNameChange">  
-            <div>Entrer un nom.</div>
-            <input type="text" id="inputChangeName">
-            <button id="validateChangeName">Valider</button>
-            <button id="cancelChangeName">Annuler</button>
-        </dialog>
+        <div class="viewServer hidden" id="viewServer">
+            <div id="memberList">
+    
+            </div>
 
-        <dialog id="dialogFight">  
-            <div><span id="senderPlayerName"></span> veut se battre !</div>
-            <button id="acceptFight">Bagarre</button>
-            <button id="declineFight">C'est non</button>
-        </dialog>
+            <dialog id="dialogFight">  
+                <div><span id="senderPlayerName"></span> wants to fight!</div>
+                <button id="acceptFight">Accept fight</button>
+                <button id="declineFight">Decline fight</button>
+            </dialog>
+        </div>
         
         <script src="/socket.io/socket.io.js"></script>
         <script src="/client/localStorageManager.js"></script>
         <script src="/client/client.js"></script>
+        <script src="/client/interactions.js"></script>
+        <script src="/client/player.js"></script>
     </body>
 </html>

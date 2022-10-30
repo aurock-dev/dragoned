@@ -14,3 +14,27 @@ function firstConnection(socketId){
         dialogChangeName.close();
     })
 }
+
+function getLSPlayerForce(){
+    return localStorage.getItem('force')
+}
+
+function setLSPlayerForce(force){
+    localStorage.setItem('force', force)
+}
+
+function getLSPlayerForce(){
+    return localStorage.getItem('vigour')
+}
+
+function setLSPlayerForce(vigour){
+    localStorage.setItem('vigour', vigour)
+}
+
+function getLSPlayerForce(){
+    return localStorage.getItem('agility')
+}
+
+function setLSPlayerForce(agility){
+    localStorage.setItem('agility', agility)
+}
