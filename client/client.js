@@ -7,6 +7,8 @@ socket.on('connect', () => {
     else{
         socket.emit('playerConnection', getLSPlayerName());
     }
+    document.querySelector('#inputChangeName').value = getLSPlayerName();
+    document.querySelector('#currentPlayerName').textContent = getLSPlayerName();
 })
 
 socket.on('updateMemberListForClients', list => {

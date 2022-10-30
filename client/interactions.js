@@ -1,11 +1,10 @@
 //#region -- DIALOG CHANGE NAME
-let dialogChangeName = document.querySelector('#dialogNameChange');  
-
 $(document).on('click', '#validateChangeName', function(){
     let playerName = document.querySelector('#inputChangeName').value;
     setLSPlayerName(playerName)
     socket.emit('updateClientName', getLSPlayerName());
-    dialogChangeName.close();
+    document.querySelector('#inputChangeName').value = getLSPlayerName();
+    document.querySelector('#currentPlayerName').textContent = getLSPlayerName();
 })
 //#endregion
 
