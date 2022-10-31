@@ -115,6 +115,10 @@ hr{
 }
 
 .hidden{
+    visibility: hidden;
+}
+
+.none{
     display: none;
 }
 /* #endregion */
