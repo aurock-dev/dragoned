@@ -15,7 +15,7 @@ socket.on('updateMemberListForClients', list => {
     document.querySelector('#memberList').innerHTML = '';
     for (const [key, value] of Object.entries(list)) {
         if (socket.id !== key){
-            let memberButton = document.querySelector('button');
+            let memberButton = document.createElement('button');
             memberButton.setAttribute('playerId', key); 
             memberButton.textContent = value;
             memberButton.name = "targetPlayer";
