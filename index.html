@@ -27,28 +27,45 @@
         </dialog>
 
         <div class="viewGame" id="viewGame">
-            <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
-            <div>
-                <button>Train FORCE</button>
-                <button>Train VIGOUR</button>
-                <button>Train AGILITY</button>
-                <button>Train WISDOM</button>
+            <div class="viewGameHeader">
+                <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
+                <div class="viewTraining">
+                    <div>TRAINING ZONE</div>
+                    <div class="trainingButtons">
+                        <button id="trainForce">Train FORCE</button>
+                        <button id="trainVigour">Train VIGOUR</button>
+                        <button id="trainAgility">Train AGILITY</button>
+                        <button id="trainWisdom">Train WISDOM</button>
+                    </div>
+                </div>
             </div>
             <div class="statsList">
-                <div>HP: <span id="hpAmount">0</span></div>
-                <div>MP: <span id="mpAmount">0</span></div>
-                <div>FORCE: <span id="forceAmount">0</span></div>
-                <div>Attack: <span id="attackAmount">0</span></div>
-                <div>Critical Damages: <span id="criticalDamagesAmount">0</span></div>
-                <div>VIGOUR: <span id="vigourAmount">0</span></div>
-                <div>Defense: <span id="defenseAmount">0</span></div>
-                <div>HP Bonus: <span id="hpBonusAmount">0</span></div>
-                <div>AGILITY: <span id="agilityAmount">0</span></div>
-                <div>Attack Speed: <span id="attackSpeedAmount">0</span></div>
-                <div>Critical Chances: <span id="criticalChancesAmount">0</span></div>
-                <div>WISDOM: <span id="wisdomAmount">0</span></div>
-                <div>Training Speed: <span id="trainingSpeedAmount">0</span></div>
-                <div>MP Bonus: <span id="mpBonusAmount">0</span></div>
+                <div class="generalStats">
+                    <div>HP: <span id="hpAmount">0</span> / <span id="hpMaxAmount">0</span></div>
+                    <div>MP: <span id="mpAmount">0</span> / <span id="mpMaxAmount">0</span></div>
+                </div>
+                <div class="otherStats">
+                    <div class="forceStats">
+                        <div>FORCE: <span id="forceAmount">0</span></div>
+                        <div>Attack: <span id="attackAmount">0</span></div>
+                        <div>Critical Damages: <span id="criticalDamagesAmount">0</span></div>
+                    </div>
+                    <div class="vigourStats">
+                        <div>VIGOUR: <span id="vigourAmount">0</span></div>
+                        <div>Defense: <span id="defenseAmount">0</span></div>
+                        <div>HP Bonus: <span id="hpBonusAmount">0</span></div>
+                    </div>
+                    <div class="agilityStats">
+                        <div>AGILITY: <span id="agilityAmount">0</span></div>
+                        <div>Attack Speed: <span id="attackSpeedAmount">0</span></div>
+                        <div>Critical Chances: <span id="criticalChancesAmount">0</span></div>
+                    </div>
+                    <div class="wisdomStats">
+                        <div>WISDOM: <span id="wisdomAmount">0</span></div>
+                        <div>Training Speed: <span id="trainingSpeedAmount">0</span></div>
+                        <div>MP Bonus: <span id="mpBonusAmount">0</span></div>
+                    </div>
+                </div>
             </div>
         </div>
         
