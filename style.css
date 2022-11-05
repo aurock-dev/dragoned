@@ -83,7 +83,7 @@ select {
     --primary-color-transparent: #fdd19062;
     --accent-color: #f8c374;
     --accent-color-transparent: #eea02b62;
-    --secondary-color: #057094;
+    --secondary-color: #4badce;
 
     --text-color: #ffffff;
     --text-color-reverse: #000000;
@@ -128,7 +128,11 @@ button:hover{
 }
 
 button:active{
-    transform: translateY(1px);
+  background-color: var(--accent-color);
+  box-shadow: 
+    inset 0.2em 0.2em 0.1em 0 var(--down-border-shadow), 
+    inset -0.2em -0.2em 0.1em 0 var(--up-border-shadow),
+    1px 1px 3px 1px var(--shadow-color);
 }
 
 hr{
@@ -245,10 +249,11 @@ input:focus{
 .viewTraining{
   display: grid;
   grid-template-rows: max-content max-content;
-  row-gap: 1em;
+  row-gap: 0.5em;
   width: 100%;
   height: 100%;
   justify-items: center;
+  align-content: center;
   padding: 10px;
   background-color: var(--primary-color-transparent);
   backdrop-filter: blur(5px);
@@ -267,6 +272,32 @@ input:focus{
 
 .trainingButtons button{
   width: 15em;
+}
+
+.trainingExp{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1em;
+  justify-items: center;
+}
+
+.trainingExp button{
+  width: 15em;
+  background-color: var(--secondary-color);
+  color: var(--text-color-reverse);
+}
+
+.trainingExp button:hover{
+  cursor: default;
+  background-color: var(--secondary-color);
+}
+
+.trainingExp button:active{
+  cursor: default;
+  box-shadow: 
+    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow),
+    1px 1px 3px 1px var(--shadow-color);
 }
 
 .statsList{
