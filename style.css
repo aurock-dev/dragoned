@@ -78,18 +78,31 @@ select {
 /* #region -- VARIABLES */
 :root{
     --background-color: #ffecd1;
+
     --primary-color: #fdd190;
     --primary-color-transparent: #fdd19062;
     --accent-color: #f8c374;
+    --accent-color-transparent: #eea02b62;
     --secondary-color: #a690fd;
+
     --text-color: #ffffff;
+
+    --up-border-shadow: rgba(255, 255, 255, 0.4);
+    --down-border-shadow: rgba(0, 0, 0, 0.4);
+    --shadow-color: #000000bf;
 }
 /* #endregion */
 
 /* #region -- GENERAL */
+@font-face {
+  font-family: pixelFont;
+  src: url(assets/font/pixelmix.ttf);
+}
+
 body{
     color: var(--text-color);
-    font-family: 'Poppins';
+    font-family: pixelFont;
+    font-size: 0.9em;
     background-image: url(/assets/img/wall.jpg);
     background-repeat: repeat;
 }
@@ -98,11 +111,14 @@ button{
     width: max-content;
     height: max-content;
     font-size: 1em;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     border: none;
     background-color: var(--primary-color);
     padding: 5px 10px;
-    box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 75%);
+    box-shadow: 
+      inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+      inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+      0px 3px 5px 0px var(--shadow-color);
 }
 
 button:hover{
@@ -198,10 +214,12 @@ hr{
 .playerDragonImg{
   width: 120px;
   height: 100px;
-  border-radius: 20px;
   background-color: var(--primary-color-transparent);
   backdrop-filter: blur(5px);
-  box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 75%);
+  box-shadow: 
+    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+    0px 3px 5px 0px var(--shadow-color);
   padding: 5px;
 }
 
@@ -212,12 +230,13 @@ hr{
   width: 100%;
   height: 100%;
   justify-items: center;
-  border-radius: 20px;
-  border: none;
+  padding: 10px;
   background-color: var(--primary-color-transparent);
   backdrop-filter: blur(5px);
-  box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 75%);
-  padding: 10px;
+  box-shadow: 
+    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+    0px 3px 5px 0px var(--shadow-color);
 }
 
 .trainingButtons{
@@ -247,11 +266,13 @@ hr{
   height: 100px;
   justify-items: center;
   align-items: center;
-  border-radius: 20px;
   border: none;
   background-color: var(--primary-color-transparent);
   backdrop-filter: blur(5px);
-  box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 75%);
+  box-shadow: 
+    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+    0px 3px 5px 0px var(--shadow-color);
   padding: 10px;
 }
 
@@ -262,11 +283,13 @@ hr{
   width: 100%;
   height: 100%;
   justify-items: center;
-  border-radius: 20px;
   border: none;
   background-color: var(--primary-color-transparent);
   backdrop-filter: blur(5px);
-  box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 75%);
+  box-shadow: 
+    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+    0px 3px 5px 0px var(--shadow-color);
   padding: 10px;
 }
 
