@@ -9,28 +9,100 @@
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
             crossorigin="anonymous">
         </script>
+        <script src="https://kit.fontawesome.com/d4a44c73dc.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css">
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     </head>
-    <body>
-        <button id="showDialogChangeName">Changer de nom</button>
-        <div id="memberList">
-
+    <body>       
+        <div class="navbar">
+            <div class="navbarTitle" id="gameTitle">DRAGON'ED</div>
+            <button id="showViewServer"><i class="fas fa-eye"></i> Connected Players</button>
+            <button id="showViewOptions"><i class="fas fa-gear"></i> Options</button>
         </div>
 
-        <dialog id="dialogNameChange">  
-            <div>Entrer un nom.</div>
-            <input type="text" id="inputChangeName">
-            <button id="validateChangeName">Valider</button>
-            <button id="cancelChangeName">Annuler</button>
+        <dialog id="dialogChangeName">  
+            <div>Choose a name.</div>
+            <input type="text" id="inputFirstName">
+            <button id="validateFirstName">Validate name</button>
         </dialog>
 
-        <dialog id="dialogFight">  
-            <div><span id="senderPlayerName"></span> veut se battre !</div>
-            <button id="acceptFight">Bagarre</button>
-            <button id="declineFight">C'est non</button>
-        </dialog>
+        <div class="viewGame" id="viewGame">
+            <div class="viewGameHeader">
+                <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
+                <div class="viewTraining">
+                    <div class="trainingButtons">
+                        <button id="trainForce">Train FORCE</button>
+                        <button id="trainVigour">Train VIGOUR</button>
+                        <button id="trainAgility">Train AGILITY</button>
+                        <button id="trainWisdom">Train WISDOM</button>
+                    </div>
+                    <div class="trainingExp">
+                        <button id="expForce"><span id="currentExpForce">0</span> / 100</button>
+                        <button id="expVigour"><span id="currentExpVigour">0</span> / 100</button>
+                        <button id="expAgility"><span id="currentExpAgility">0</span> / 100</button>
+                        <button id="expWisdom"><span id="currentExpWisdom">0</span> / 100</button>
+                    </div>
+                </div>
+            </div>
+            <div class="statsList">
+                <div class="generalStats">
+                    <div>HP: <span id="hpAmount">0</span> / <span id="hpMaxAmount">0</span></div>
+                    <div>MP: <span id="mpAmount">0</span> / <span id="mpMaxAmount">0</span></div>
+                </div>
+                <div class="otherStats">
+                    <div class="forceStats">
+                        <div>FORCE: <span id="forceAmount">0</span></div>
+                        <div>Attack: <span id="attackAmount">0</span></div>
+                        <div>Critical Damages: <span id="criticalDamagesAmount">0</span></div>
+                    </div>
+                    <div class="vigourStats">
+                        <div>VIGOUR: <span id="vigourAmount">0</span></div>
+                        <div>Defense: <span id="defenseAmount">0</span></div>
+                        <div>HP Bonus: <span id="hpBonusAmount">0</span></div>
+                    </div>
+                    <div class="agilityStats">
+                        <div>AGILITY: <span id="agilityAmount">0</span></div>
+                        <div>Attack Speed: <span id="attackSpeedAmount">0</span></div>
+                        <div>Critical Chances: <span id="criticalChancesAmount">0</span></div>
+                    </div>
+                    <div class="wisdomStats">
+                        <div>WISDOM: <span id="wisdomAmount">0</span></div>
+                        <div>Training Speed: <span id="trainingSpeedAmount">0</span></div>
+                        <div>MP Bonus: <span id="mpBonusAmount">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="viewOptions hidden" id="viewOptions">      
+            <div>Server Statut: <span id="connectionState">Not Connected</span></div>
+            <hr>
+            <div>Change name <span class="currentPlayerName">(Current: <span id="currentPlayerName"></span>)</span></div>
+            <input type="text" id="inputChangeName">
+            <button id="validateChangeName">Change</button>
+        </div>
+
+        <div class="viewServer hidden" id="viewServer">
+            <div>Connected players:</div>
+            <div id="memberList">
+    
+            </div>
+
+            <dialog id="dialogFight">  
+                <div><span id="senderPlayerName"></span> wants to fight!</div>
+                <button id="acceptFight">Accept fight</button>
+                <button id="declineFight">Decline fight</button>
+            </dialog>
+        </div>
+
+        <div class="none" id="templates">
+            <button playerid="" name="targetPlayer">Fight</button>
+        </div>
         
         <script src="/socket.io/socket.io.js"></script>
         <script src="/client/localStorageManager.js"></script>
         <script src="/client/client.js"></script>
+        <script src="/client/interactions.js"></script>
+        <script src="/client/player.js"></script>
     </body>
 </html>
