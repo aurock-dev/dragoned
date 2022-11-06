@@ -15,7 +15,9 @@
     </head>
     <body>       
         <div class="navbar">
-            <div class="navbarTitle" id="gameTitle">DRAGON'ED</div>
+            <div class="navbarTitle" id="gameTitle">
+                DRAGON'ED | v0.1
+            </div>
             <button id="showViewServer"><i class="fas fa-eye"></i> Connected Players</button>
             <button id="showViewOptions"><i class="fas fa-gear"></i> Options</button>
         </div>
@@ -77,14 +79,26 @@
         <div class="viewOptions hidden" id="viewOptions">      
             <div>Server Statut: <span id="connectionState">Not Connected</span></div>
             <hr>
-            <div>Change name <span class="currentPlayerName">(Current: <span id="currentPlayerName"></span>)</span></div>
-            <input type="text" id="inputChangeName">
-            <button id="validateChangeName">Change</button>
+            <div class="optionName">
+                <div>Change name <span class="currentPlayerName">(Current: <span id="currentPlayerName"></span>)</span></div>
+                <input type="text" id="inputChangeName">
+                <button id="validateChangeName">Change</button>
+            </div>
+            <hr>
+            <button id="resetLocalStorage">Reset LocalStorage</button>
+            <hr>
+            <div class="optionInfos">
+                <div>Made with a ton of 🐛 by <a href="https://aurock.me/" target="_blank">Aurock</a> </div>
+                <div><a href="https://www.notion.so/aurockfr/Patch-Note-1015707621ff4cd9aced68f212545061" target="_blank">Game Version</a> : v0.1</div>
+                <div><a href="https://www.notion.so/aurockfr/Wiki-8890f5ca9dfc4f17a346c7109d75b782" target="_blank">Wiki and Dev follow-up</a></div>
+            </div>
+    
+
         </div>
 
         <div class="viewServer hidden" id="viewServer">
             <div>Connected players:</div>
-            <div id="memberList">
+            <div id="memberList" class="memberList">
     
             </div>
 
