@@ -19,13 +19,14 @@ const io = socketio(server);
 var connectedPlayerList = {}
 
 io.on('connection', socket => {
-  socket.on('playerConnection', playerName => {
+  socket.on('playerConnection', player => {
     if (!connectedPlayerList.hasOwnProperty(socket.id)){
-      console.log('Player '+playerName+' connected.')
-      connectedPlayerList[socket.id] = playerName;
+      console.log('Player '+player.name+' connected.')
+      console.log('Player '+player.name+' iLvl : '+player.ilvl)
+      connectedPlayerList[socket.id] = player.name;
     }
     console.log(connectedPlayerList)
-    io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
+    io.emit('updateConnectedPlayerListForClients', {connectedPlayerList: connectedPlayerList, playerIlvl: player.ilvl});
     io.emit('updateConnectionState', true);
   });
 

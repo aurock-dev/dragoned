@@ -6,7 +6,8 @@ socket.on('connect', () => {
     }
     else{
         player = getLSPlayer();
-        socket.emit('playerConnection', player.name);
+        console.log(player)
+        socket.emit('playerConnection', player);
         updatePlayerInformations();
         updateGameInformations();
     }
@@ -14,11 +15,11 @@ socket.on('connect', () => {
 
 socket.on('updateConnectedPlayerListForClients', list => {
     document.querySelector('#connectedPlayerList').innerHTML = '';
-    for (const [key, value] of Object.entries(list)) {
+    for (const [key, value] of Object.entries(list.connectedPlayerList)) {
         if (socket.id !== key){
             let memberButton = document.createElement('button');
             memberButton.setAttribute('playerId', key); 
-            memberButton.textContent = value;
+            memberButton.textContent = value + ' | iLvl : ' + list.playerIlvl;
             memberButton.name = "targetPlayer";
             document.querySelector('#connectedPlayerList').appendChild(memberButton);
         }
