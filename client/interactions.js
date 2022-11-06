@@ -33,49 +33,74 @@ $(document).on('click', '#showViewServer', function(){
 //#region -- OPTIONS
 $(document).on('click', '#resetLocalStorage', function(){
     resetLocalStorage();
+    window.location.reload();
 })
 //#endregion
 
 $(document).on('click', '#trainForce', () => {
-    game.currentExpForce++;
-    if (game.currentExpForce >= 100){
+    game.currentExpForce += (1+player.expBonus);
+    if (game.currentExpForce >= game.neededExpForce){
         game.currentExpForce = 0;
+        calcExpNeededForce();
+        updateGameInformations();
+
         player.force++;
-        updatePlayerInformations();
+        calcForceStats();
+        calcPlayerIlvl();
+        
         setLSPlayer(player);
+        updatePlayerInformations();
     }
     document.querySelector('#currentExpForce').textContent =  game.currentExpForce;
 })
 
 $(document).on('click', '#trainVigour', () => {
-    game.currentExpVigour++;
-    if (game.currentExpVigour >= 100){
+    game.currentExpVigour += (1+player.expBonus);
+    if (game.currentExpVigour >= game.neededExpVigour){
         game.currentExpVigour = 0;
+        calcExpNeededVigour();
+        updateGameInformations();
+
         player.vigour++;
-        updatePlayerInformations();
+        calcVigourStats();
+        calcPlayerIlvl();
+
         setLSPlayer(player);
+        updatePlayerInformations();
     }
     document.querySelector('#currentExpVigour').textContent =  game.currentExpVigour;
 })
 
 $(document).on('click', '#trainAgility', () => {
-    game.currentExpAgility++;
-    if (game.currentExpAgility >= 100){
+    game.currentExpAgility += (1+player.expBonus);
+    if (game.currentExpAgility >= game.neededExpAgility){
         game.currentExpAgility = 0;
+        calcExpNeededAgility();
+        updateGameInformations();
+
         player.agility++;
-        updatePlayerInformations();
+        calcAgilityStats();
+        calcPlayerIlvl();
+
         setLSPlayer(player);
+        updatePlayerInformations();
     }
     document.querySelector('#currentExpAgility').textContent =  game.currentExpAgility;
 })
 
 $(document).on('click', '#trainWisdom', () => {
-    game.currentExpWisdom++;
-    if (game.currentExpWisdom >= 100){
+    game.currentExpWisdom += (1+player.expBonus);
+    if (game.currentExpWisdom >= game.neededExpWisdom){
         game.currentExpWisdom = 0;
+        calcExpNeededWisdom();
+        updateGameInformations();
+
         player.wisdom++;
-        updatePlayerInformations();
+        calcWisdomStats();
+        calcPlayerIlvl();
+
         setLSPlayer(player);
+        updatePlayerInformations();
     }
     document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom;
 })

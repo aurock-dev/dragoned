@@ -8,6 +8,7 @@ socket.on('connect', () => {
         player = getLSPlayer();
         socket.emit('playerConnection', player.name);
         updatePlayerInformations();
+        updateGameInformations();
     }
 })
 

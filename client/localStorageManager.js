@@ -9,6 +9,7 @@ function firstConnection(){
         player.name = playerName;
         setLSPlayer(player);
         dialogChangeName.close();
+        window.location.reload();
     })
 }
 

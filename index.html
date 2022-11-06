@@ -31,7 +31,10 @@
 
         <div class="viewGame" id="viewGame">
             <div class="viewGameHeader">
-                <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
+                <div class="playerDragon">
+                    <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
+                    <div>iLvl : <span id="playerIlvl">0</span></div>
+                </div>
                 <div class="viewTraining">
                     <div class="trainingButtons">
                         <button id="trainForce">Train FORCE</button>
@@ -40,10 +43,10 @@
                         <button id="trainWisdom">Train WISDOM</button>
                     </div>
                     <div class="trainingExp">
-                        <button id="expForce"><span id="currentExpForce">0</span> / 100</button>
-                        <button id="expVigour"><span id="currentExpVigour">0</span> / 100</button>
-                        <button id="expAgility"><span id="currentExpAgility">0</span> / 100</button>
-                        <button id="expWisdom"><span id="currentExpWisdom">0</span> / 100</button>
+                        <button id="expForce"><span id="currentExpForce">0</span> / <span id="neededExpForce">0</span> </button>
+                        <button id="expVigour"><span id="currentExpVigour">0</span> / <span id="neededExpVigour">0</span> </button>
+                        <button id="expAgility"><span id="currentExpAgility">0</span> / <span id="neededExpAgility">0</span> </button>
+                        <button id="expWisdom"><span id="currentExpWisdom">0</span> / <span id="neededExpWisdom">0</span> </button>
                     </div>
                 </div>
             </div>
