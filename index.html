@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dragoned</title>
+        <link rel="icon" type="image/png" href="assets/img/uglydragon.png" />
         <script
             src="https://code.jquery.com/jquery-3.6.1.js"
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
@@ -15,7 +16,9 @@
     </head>
     <body>       
         <div class="navbar">
-            <div class="navbarTitle" id="gameTitle">DRAGON'ED</div>
+            <div class="navbarTitle" id="gameTitle">
+                DRAGON'ED | v0.1
+            </div>
             <button id="showViewServer"><i class="fas fa-eye"></i> Connected Players</button>
             <button id="showViewOptions"><i class="fas fa-gear"></i> Options</button>
         </div>
@@ -28,7 +31,10 @@
 
         <div class="viewGame" id="viewGame">
             <div class="viewGameHeader">
-                <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
+                <div class="playerDragon">
+                    <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
+                    <div>iLvl : <span id="playerIlvl">0</span></div>
+                </div>
                 <div class="viewTraining">
                     <div class="trainingButtons">
                         <button id="trainForce">Train FORCE</button>
@@ -37,17 +43,19 @@
                         <button id="trainWisdom">Train WISDOM</button>
                     </div>
                     <div class="trainingExp">
-                        <button id="expForce"><span id="currentExpForce">0</span> / 100</button>
-                        <button id="expVigour"><span id="currentExpVigour">0</span> / 100</button>
-                        <button id="expAgility"><span id="currentExpAgility">0</span> / 100</button>
-                        <button id="expWisdom"><span id="currentExpWisdom">0</span> / 100</button>
+                        <button id="expForce"><span id="currentExpForce">0</span> / <span id="neededExpForce">0</span> </button>
+                        <button id="expVigour"><span id="currentExpVigour">0</span> / <span id="neededExpVigour">0</span> </button>
+                        <button id="expAgility"><span id="currentExpAgility">0</span> / <span id="neededExpAgility">0</span> </button>
+                        <button id="expWisdom"><span id="currentExpWisdom">0</span> / <span id="neededExpWisdom">0</span> </button>
                     </div>
                 </div>
             </div>
             <div class="statsList">
                 <div class="generalStats">
-                    <div>HP: <span id="hpAmount">0</span> / <span id="hpMaxAmount">0</span></div>
-                    <div>MP: <span id="mpAmount">0</span> / <span id="mpMaxAmount">0</span></div>
+                    <div>HP: </div>
+                    <div><span id="hpAmount">0</span>/<span id="hpMaxAmount">0</span></div>
+                    <div>MP:</div> 
+                    <div><span id="mpAmount">0</span>/<span id="mpMaxAmount">0</span></div>
                 </div>
                 <div class="otherStats">
                     <div class="forceStats">
@@ -67,7 +75,7 @@
                     </div>
                     <div class="wisdomStats">
                         <div>WISDOM: <span id="wisdomAmount">0</span></div>
-                        <div>Training Speed: <span id="trainingSpeedAmount">0</span></div>
+                        <div>Exp Bonus: <span id="expBonusAmount">0</span></div>
                         <div>MP Bonus: <span id="mpBonusAmount">0</span></div>
                     </div>
                 </div>
@@ -77,14 +85,24 @@
         <div class="viewOptions hidden" id="viewOptions">      
             <div>Server Statut: <span id="connectionState">Not Connected</span></div>
             <hr>
-            <div>Change name <span class="currentPlayerName">(Current: <span id="currentPlayerName"></span>)</span></div>
-            <input type="text" id="inputChangeName">
-            <button id="validateChangeName">Change</button>
+            <div class="optionName">
+                <div>Change name <span class="currentPlayerName">(Current: <span id="currentPlayerName"></span>)</span></div>
+                <input type="text" id="inputChangeName">
+                <button id="validateChangeName">Change</button>
+            </div>
+            <hr>
+            <button id="resetLocalStorage">Reset LocalStorage</button>
+            <hr>
+            <div class="optionInfos">
+                <div><a href="https://www.notion.so/aurockfr/Patch-Note-1015707621ff4cd9aced68f212545061" target="_blank">Game Version</a> : v0.1</div>
+                <div><a href="https://www.notion.so/aurockfr/Wiki-8890f5ca9dfc4f17a346c7109d75b782" target="_blank">Wiki and Dev follow-up</a></div>
+                <div>Made with a ton of 🐛 by <a href="https://aurock.me/" target="_blank">Aurock</a> </div>
+            </div>
         </div>
 
         <div class="viewServer hidden" id="viewServer">
             <div>Connected players:</div>
-            <div id="memberList">
+            <div id="connectedPlayerList" class="connectedPlayerList">
     
             </div>
 
@@ -102,6 +120,7 @@
         <script src="/socket.io/socket.io.js"></script>
         <script src="/client/localStorageManager.js"></script>
         <script src="/client/client.js"></script>
+        <script src="/client/updatePlayerManager.js"></script>
         <script src="/client/interactions.js"></script>
         <script src="/client/player.js"></script>
     </body>
