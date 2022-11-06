@@ -16,36 +16,36 @@ const server = app.listen(PORT, () => {
 });
 
 const io = socketio(server);
-var memberList = {}
+var connectedPlayerList = {}
 
 io.on('connection', socket => {
   socket.on('playerConnection', playerName => {
-    if (!memberList.hasOwnProperty(socket.id)){
+    if (!connectedPlayerList.hasOwnProperty(socket.id)){
       console.log('Player '+playerName+' connected.')
-      memberList[socket.id] = playerName;
+      connectedPlayerList[socket.id] = playerName;
     }
-    console.log(memberList)
-    io.emit('updateMemberListForClients', memberList);
+    console.log(connectedPlayerList)
+    io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
     io.emit('updateConnectionState', true);
   });
 
   socket.on('disconnect', () => {
-    console.log('Player '+memberList[socket.id]+' disconnected.')
-    delete memberList[socket.id]
+    console.log('Player '+connectedPlayerList[socket.id]+' disconnected.')
+    delete connectedPlayerList[socket.id]
   });
 
-  socket.on('updateMemberList', () => {
-    io.emit('updateMemberListForClients', memberList);
+  socket.on('updateConnectedPlayerList', () => {
+    io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
   });
 
   socket.on('updateClientName', playerName => {
-    memberList[socket.id] = playerName;
-    io.emit('updateMemberListForClients', memberList);
+    connectedPlayerList[socket.id] = playerName;
+    io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
   });
 
   socket.on('callTarget', ids => {
     let senderId =  ids.senderId;
-    let senderName = memberList[senderId];
+    let senderName = connectedPlayerList[senderId];
     let receiverId =  ids.receiverId;
     socket.to(receiverId).emit('sendFightRequestToTarget', {
       senderId:senderId, 

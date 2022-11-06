@@ -15,15 +15,15 @@ socket.on('connect', () => {
     }
 })
 
-socket.on('updateMemberListForClients', list => {
-    document.querySelector('#memberList').innerHTML = '';
+socket.on('updateConnectedPlayerListForClients', list => {
+    document.querySelector('#connectedPlayerList').innerHTML = '';
     for (const [key, value] of Object.entries(list)) {
         if (socket.id !== key){
             let memberButton = document.createElement('button');
             memberButton.setAttribute('playerId', key); 
             memberButton.textContent = value;
             memberButton.name = "targetPlayer";
-            document.querySelector('#memberList').appendChild(memberButton);
+            document.querySelector('#connectedPlayerList').appendChild(memberButton);
         }
     }
 });

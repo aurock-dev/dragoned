@@ -233,7 +233,7 @@ input:focus{
       0px 3px 5px 0px var(--shadow-color);
 }
 
-.memberList{
+.connectedPlayerList{
   display: grid;
   grid-auto-rows: max-content;
   row-gap: 5px;
