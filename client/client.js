@@ -2,11 +2,12 @@ const socket = io();
 
 socket.on('connect', () => {
     if(!getLSPlayer()){
-        firstConnection()
+        firstConnection();
     }
     else{
-        socket.emit('playerConnection', getLSPlayer().name);
-        document.querySelector('#inputChangeName').value = getLSPlayer().name;
+        player = getLSPlayer();
+        socket.emit('playerConnection', player.name);
+        updatePlayerInformations();
     }
 })
 
