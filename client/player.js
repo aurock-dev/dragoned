@@ -18,3 +18,10 @@ var player = {
     criticalDamage: 100,
     expBonus: 0,
 }
+
+var game = {
+    currentExpForce: 0,
+    currentExpVigour: 0,
+    currentExpAgility: 0,
+    currentExpWisdom: 0,
+}

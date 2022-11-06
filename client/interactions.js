@@ -37,49 +37,45 @@ $(document).on('click', '#resetLocalStorage', function(){
 //#endregion
 
 $(document).on('click', '#trainForce', () => {
-    let exp = parseInt(document.querySelector('#currentExpForce').textContent);
-    let force = parseInt(document.querySelector('#forceAmount').textContent);
-    exp++;
-    if (exp >= 100){
-        exp = 0;
-        force++;
-        document.querySelector('#forceAmount').textContent = force;
+    game.currentExpForce++;
+    if (game.currentExpForce >= 100){
+        game.currentExpForce = 0;
+        player.force++;
+        updatePlayerInformations();
+        setLSPlayer(player);
     }
-    document.querySelector('#currentExpForce').textContent = exp;
+    document.querySelector('#currentExpForce').textContent =  game.currentExpForce;
 })
 
 $(document).on('click', '#trainVigour', () => {
-    let exp = parseInt(document.querySelector('#currentExpVigour').textContent);
-    let vigour = parseInt(document.querySelector('#vigourAmount').textContent);
-    exp++;
-    if (exp >= 100){
-        exp = 0;
-        vigour++;
-        document.querySelector('#vigourAmount').textContent = vigour;
+    game.currentExpVigour++;
+    if (game.currentExpVigour >= 100){
+        game.currentExpVigour = 0;
+        player.vigour++;
+        updatePlayerInformations();
+        setLSPlayer(player);
     }
-    document.querySelector('#currentExpVigour').textContent = exp;
+    document.querySelector('#currentExpVigour').textContent =  game.currentExpVigour;
 })
 
 $(document).on('click', '#trainAgility', () => {
-    let exp = parseInt(document.querySelector('#currentExpAgility').textContent);
-    let agility = parseInt(document.querySelector('#agilityAmount').textContent);
-    exp++;
-    if (exp >= 100){
-        exp = 0;
-        agility++;
-        document.querySelector('#agilityAmount').textContent = agility;
+    game.currentExpAgility++;
+    if (game.currentExpAgility >= 100){
+        game.currentExpAgility = 0;
+        player.agility++;
+        updatePlayerInformations();
+        setLSPlayer(player);
     }
-    document.querySelector('#currentExpAgility').textContent = exp;
+    document.querySelector('#currentExpAgility').textContent =  game.currentExpAgility;
 })
 
 $(document).on('click', '#trainWisdom', () => {
-    let exp = parseInt(document.querySelector('#currentExpWisdom').textContent);
-    let wisdom = parseInt(document.querySelector('#wisdomAmount').textContent);
-    exp++;
-    if (exp >= 100){
-        exp = 0;
-        wisdom++;
-        document.querySelector('#wisdomAmount').textContent = wisdom;
+    game.currentExpWisdom++;
+    if (game.currentExpWisdom >= 100){
+        game.currentExpWisdom = 0;
+        player.wisdom++;
+        updatePlayerInformations();
+        setLSPlayer(player);
     }
-    document.querySelector('#currentExpWisdom').textContent = exp;
+    document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom;
 })
