@@ -1,17 +1,12 @@
 const socket = io();
 
 socket.on('connect', () => {
-    if(!getLSPlayerName()){
+    if(!getLSPlayer()){
         firstConnection()
     }
     else{
-        socket.emit('playerConnection', getLSPlayerName());
-        document.querySelector('#inputChangeName').value = getLSPlayerName();
-        document.querySelector('#currentPlayerName').textContent = getLSPlayerName();
-        document.querySelector('#forceAmount').textContent = getLSPlayerForce();
-        document.querySelector('#vigourAmount').textContent = getLSPlayerVigour();
-        document.querySelector('#agilityAmount').textContent = getLSPlayerAgility();
-        document.querySelector('#wisdomAmount').textContent = getLSPlayerWisdom();
+        socket.emit('playerConnection', getLSPlayer().name);
+        document.querySelector('#inputChangeName').value = getLSPlayer().name;
     }
 })
 

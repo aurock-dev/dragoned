@@ -30,6 +30,12 @@ $(document).on('click', '#showViewServer', function(){
 })
 //#endregion
 
+//#region -- OPTIONS
+$(document).on('click', '#resetLocalStorage', function(){
+    resetLocalStorage();
+})
+//#endregion
+
 $(document).on('click', '#trainForce', () => {
     let exp = parseInt(document.querySelector('#currentExpForce').textContent);
     let force = parseInt(document.querySelector('#forceAmount').textContent);
