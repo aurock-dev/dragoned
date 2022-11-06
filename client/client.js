@@ -1,29 +1,27 @@
 const socket = io();
 
 socket.on('connect', () => {
-    if(!getLSPlayerName()){
-        firstConnection()
+    if(!getLSPlayer()){
+        firstConnection();
     }
     else{
-        socket.emit('playerConnection', getLSPlayerName());
-        document.querySelector('#inputChangeName').value = getLSPlayerName();
-        document.querySelector('#currentPlayerName').textContent = getLSPlayerName();
-        document.querySelector('#forceAmount').textContent = getLSPlayerForce();
-        document.querySelector('#vigourAmount').textContent = getLSPlayerVigour();
-        document.querySelector('#agilityAmount').textContent = getLSPlayerAgility();
-        document.querySelector('#wisdomAmount').textContent = getLSPlayerWisdom();
+        player = getLSPlayer();
+        console.log(player)
+        socket.emit('playerConnection', player);
+        updatePlayerInformations();
+        updateGameInformations();
     }
 })
 
-socket.on('updateMemberListForClients', list => {
-    document.querySelector('#memberList').innerHTML = '';
-    for (const [key, value] of Object.entries(list)) {
+socket.on('updateConnectedPlayerListForClients', list => {
+    document.querySelector('#connectedPlayerList').innerHTML = '';
+    for (const [key, value] of Object.entries(list.connectedPlayerList)) {
         if (socket.id !== key){
             let memberButton = document.createElement('button');
             memberButton.setAttribute('playerId', key); 
-            memberButton.textContent = value;
+            memberButton.textContent = value + ' | iLvl : ' + list.playerIlvl;
             memberButton.name = "targetPlayer";
-            document.querySelector('#memberList').appendChild(memberButton);
+            document.querySelector('#connectedPlayerList').appendChild(memberButton);
         }
     }
 });
