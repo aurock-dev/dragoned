@@ -27,6 +27,7 @@
             <div>Choose a name.</div>
             <input type="text" id="inputFirstName">
             <button id="validateFirstName">Validate name</button>
+            <div id="errorMessage" class="hidden">Input can contains 3 to 15 letters only!</div>
         </dialog>
 
         <div class="viewGame" id="viewGame">
@@ -118,6 +119,7 @@
         </div>
         
         <script src="/socket.io/socket.io.js"></script>
+        <script src="/client/inputsManager.js"></script>
         <script src="/client/localStorageManager.js"></script>
         <script src="/client/client.js"></script>
         <script src="/client/updatePlayerManager.js"></script>
