@@ -6,7 +6,6 @@ socket.on('connect', () => {
     }
     else{
         player = getLSPlayer();
-        console.log(player)
         socket.emit('playerConnection', player);
         updatePlayerInformations();
         updateGameInformations();
