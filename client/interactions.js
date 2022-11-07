@@ -1,10 +1,16 @@
 //#region -- DIALOG CHANGE NAME
 $(document).on('click', '#validateChangeName', function(){
     let playerName = document.querySelector('#inputChangeName').value;
-    setLSPlayerName(playerName)
-    socket.emit('updateClientName', getLSPlayerName());
-    document.querySelector('#inputChangeName').value = getLSPlayerName();
-    document.querySelector('#currentPlayerName').textContent = getLSPlayerName();
+    if (checkInput(playerName)){        
+        player.name = playerName;
+        setLSPlayer(player);
+        socket.emit('updateClientName', player.name);
+        document.querySelector('#inputChangeName').value = player.name;
+        document.querySelector('#currentPlayerName').textContent = player.name;
+    }
+    else{
+        document.querySelector('#optionErrorMessage').classList.remove('hidden');
+    }
 })
 //#endregion
 

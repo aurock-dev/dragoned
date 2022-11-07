@@ -6,11 +6,22 @@ function firstConnection(){
     dialogChangeName.show();
     $(document).on('click', '#validateFirstName', function(){
         let playerName = document.querySelector('#inputFirstName').value;
-        player.name = playerName;
-        setLSPlayer(player);
-        dialogChangeName.close();
-        window.location.reload();
+        if (checkInput(playerName)){
+            player.name = playerName;
+            setLSPlayer(player);
+            dialogChangeName.close();
+            window.location.reload();
+        }
+        else{
+            document.querySelector('#errorMessage').classList.remove('hidden');
+        }
     })
+}
+
+function jsEscape(str){
+    return String(str).replace(/[^\w. ]/gi, function(c){
+        return '\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4);
+    });
 }
 
 /**

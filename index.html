@@ -27,6 +27,7 @@
             <div>Choose a name.</div>
             <input type="text" id="inputFirstName">
             <button id="validateFirstName">Validate name</button>
+            <div id="errorMessage" class="hidden">Input can contains 3 to 15 letters only!</div>
         </dialog>
 
         <div class="viewGame" id="viewGame">
@@ -89,6 +90,7 @@
                 <div>Change name <span class="currentPlayerName">(Current: <span id="currentPlayerName"></span>)</span></div>
                 <input type="text" id="inputChangeName">
                 <button id="validateChangeName">Change</button>
+                <div id="optionErrorMessage" class="hidden">Input can contains 3 to 15 letters only!</div>
             </div>
             <hr>
             <button id="resetLocalStorage">Reset LocalStorage</button>
@@ -118,6 +120,7 @@
         </div>
         
         <script src="/socket.io/socket.io.js"></script>
+        <script src="/client/inputsManager.js"></script>
         <script src="/client/localStorageManager.js"></script>
         <script src="/client/client.js"></script>
         <script src="/client/updatePlayerManager.js"></script>
