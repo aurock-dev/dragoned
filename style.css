@@ -162,6 +162,19 @@ input:focus{
 .none{
     display: none;
 }
+
+.noButton{
+  width: max-content;
+  height: max-content;
+  font-size: 1em;
+  border: none;
+  background-color: var(--secondary-color);
+  padding: 5px 10px;
+  box-shadow: 
+    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow),
+    1px 1px 3px 1px var(--shadow-color);
+}
 /* #endregion */
 
 /* #region -- NAVBAR */

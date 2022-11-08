@@ -26,7 +26,11 @@ io.on('connection', socket => {
       connectedPlayerList[socket.id] = player.name;
     }
     console.log(connectedPlayerList)
-    io.emit('updateConnectedPlayerListForClients', {connectedPlayerList: connectedPlayerList, playerIlvl: player.ilvl});
+    io.emit('updateConnectedPlayerListForClients', {
+      connectedPlayerList: connectedPlayerList, 
+      playerIlvl: player.ilvl,
+      numberOfPlayer: Object.keys(connectedPlayerList).length
+    });
     io.emit('updateConnectionState', true);
   });
 

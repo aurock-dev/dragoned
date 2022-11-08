@@ -12,13 +12,20 @@ socket.on('connect', () => {
     }
 })
 
-socket.on('updateConnectedPlayerListForClients', list => {
+socket.on('updateConnectedPlayerListForClients', infos => {
     document.querySelector('#connectedPlayerList').innerHTML = '';
-    for (const [key, value] of Object.entries(list.connectedPlayerList)) {
+    document.querySelector('#numberOfPlayer').textContent = infos.numberOfPlayer;
+
+    let playerDiv = document.createElement('div');
+    playerDiv.classList.add('noButton');
+    playerDiv.textContent = infos.connectedPlayerList[socket.id] + ' | iLvl : ' + infos.playerIlvl;
+    document.querySelector('#connectedPlayerList').appendChild(playerDiv);
+
+    for (const [key, value] of Object.entries(infos.connectedPlayerList)) {
         if (socket.id !== key){
             let memberButton = document.createElement('button');
             memberButton.setAttribute('playerId', key); 
-            memberButton.textContent = value + ' | iLvl : ' + list.playerIlvl;
+            memberButton.textContent = value + ' | iLvl : ' + infos.playerIlvl;
             memberButton.name = "targetPlayer";
             document.querySelector('#connectedPlayerList').appendChild(memberButton);
         }
