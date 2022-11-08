@@ -34,7 +34,6 @@ io.on('connection', socket => {
   });
 
   socket.on('disconnect', () => {
-    console.log('Player '+connectedPlayerList[socket.id]+' disconnected.');
     delete connectedPlayerList[socket.id];
     io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
   });
@@ -60,5 +59,10 @@ io.on('connection', socket => {
 
   socket.on('responseFightRequestToCaller', targetResponse => {
     socket.to(targetResponse.playerId).emit('sendResponse', targetResponse.text);
+  })
+
+  socket.on('ilvlUpdate', ilvl =>{
+    connectedPlayerList[socket.id].ilvl = ilvl;
+    io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
   })
 });
