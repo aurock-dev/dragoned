@@ -164,6 +164,8 @@ input:focus{
 }
 
 .noButton{
+  display: inline-block;
+  text-align: center;
   width: max-content;
   height: max-content;
   font-size: 1em;
@@ -319,23 +321,9 @@ input:focus{
   justify-items: center;
 }
 
-.trainingExp button{
+.trainingExp div{
   width: 15em;
-  background-color: var(--secondary-color);
   color: var(--text-color-reverse);
-}
-
-.trainingExp button:hover{
-  cursor: default;
-  background-color: var(--secondary-color);
-}
-
-.trainingExp button:active{
-  cursor: default;
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow),
-    1px 1px 3px 1px var(--shadow-color);
 }
 
 .statsList{
