@@ -12,20 +12,20 @@ socket.on('connect', () => {
     }
 })
 
-socket.on('updateConnectedPlayerListForClients', infos => {
+socket.on('updateConnectedPlayerListForClients', playerList => {
     document.querySelector('#connectedPlayerList').innerHTML = '';
-    document.querySelector('#numberOfPlayer').textContent = infos.numberOfPlayer;
+    document.querySelector('#numberOfPlayer').textContent = Object.keys(playerList).length;
 
     let playerDiv = document.createElement('div');
     playerDiv.classList.add('noButton');
-    playerDiv.textContent = infos.connectedPlayerList[socket.id] + ' | iLvl : ' + infos.playerIlvl;
+    playerDiv.textContent = playerList[socket.id].name + ' | iLvl : ' + playerList[socket.id].ilvl;
     document.querySelector('#connectedPlayerList').appendChild(playerDiv);
 
-    for (const [key, value] of Object.entries(infos.connectedPlayerList)) {
+    for (const [key, value] of Object.entries(playerList)) {
         if (socket.id !== key){
             let memberButton = document.createElement('button');
             memberButton.setAttribute('playerId', key); 
-            memberButton.textContent = value + ' | iLvl : ' + infos.playerIlvl;
+            memberButton.textContent = value.name + ' | iLvl : ' + value.ilvl;
             memberButton.name = "targetPlayer";
             document.querySelector('#connectedPlayerList').appendChild(memberButton);
         }
@@ -35,6 +35,9 @@ socket.on('updateConnectedPlayerListForClients', infos => {
 socket.on('updateConnectionState', state => {
     if (state){
         document.querySelector('#connectionState').textContent = 'Connected';
+    }
+    else{
+        document.querySelector('#connectionState').textContent = 'Not Connected';
     }
 })
 
