@@ -34,8 +34,9 @@ io.on('connection', socket => {
   });
 
   socket.on('disconnect', () => {
-    console.log('Player '+connectedPlayerList[socket.id]+' disconnected.')
-    delete connectedPlayerList[socket.id]
+    console.log('Player '+connectedPlayerList[socket.id]+' disconnected.');
+    delete connectedPlayerList[socket.id];
+    io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
   });
 
   socket.on('updateConnectedPlayerList', () => {
