@@ -20,19 +20,22 @@ var connectedPlayerList = {}
 
 io.on('connection', socket => {
   socket.on('playerConnection', player => {
-    if (!connectedPlayerList.hasOwnProperty(socket.id)){
-      console.log('Player '+player.name+' connected.')
-      console.log('Player '+player.name+' iLvl : '+player.ilvl)
-      connectedPlayerList[socket.id] = player.name;
+    if (typeof player.name === 'string' && typeof player.ilvl === 'number'){
+      if (!connectedPlayerList.hasOwnProperty(socket.id)){
+        connectedPlayerList[socket.id] = player;
+      }
+  
+      io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
+      io.emit('updateConnectionState', true);
     }
-    console.log(connectedPlayerList)
-    io.emit('updateConnectedPlayerListForClients', {connectedPlayerList: connectedPlayerList, playerIlvl: player.ilvl});
-    io.emit('updateConnectionState', true);
+    else{
+      io.emit('updateConnectionState', false);
+    }
   });
 
   socket.on('disconnect', () => {
-    console.log('Player '+connectedPlayerList[socket.id]+' disconnected.')
-    delete connectedPlayerList[socket.id]
+    delete connectedPlayerList[socket.id];
+    io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
   });
 
   socket.on('updateConnectedPlayerList', () => {
@@ -56,5 +59,10 @@ io.on('connection', socket => {
 
   socket.on('responseFightRequestToCaller', targetResponse => {
     socket.to(targetResponse.playerId).emit('sendResponse', targetResponse.text);
+  })
+
+  socket.on('ilvlUpdate', ilvl =>{
+    connectedPlayerList[socket.id].ilvl = ilvl;
+    io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
   })
 });
