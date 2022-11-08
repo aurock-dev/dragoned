@@ -47,22 +47,25 @@ io.on('connection', socket => {
     io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
   });
 
-  socket.on('callTarget', ids => {
-    let senderId =  ids.senderId;
-    let senderName = connectedPlayerList[senderId];
-    let receiverId =  ids.receiverId;
-    socket.to(receiverId).emit('sendFightRequestToTarget', {
-      senderId:senderId, 
-      senderName:senderName
-    });
-  })
-
-  socket.on('responseFightRequestToCaller', targetResponse => {
-    socket.to(targetResponse.playerId).emit('sendResponse', targetResponse.text);
-  })
-
   socket.on('ilvlUpdate', ilvl =>{
     connectedPlayerList[socket.id].ilvl = ilvl;
     io.emit('updateConnectedPlayerListForClients', connectedPlayerList);
+  })
+
+  socket.on('callTarget', targetId => {
+    socket.to(targetId).emit('fightRequest', {
+      playerName: connectedPlayerList[socket.id].name,
+      playerId: socket.id
+    });
+  })
+
+  socket.on('fightResponse', targetResponse => {
+    if (targetResponse.response){
+      console.log('oui')
+    }
+    else{
+      console.log('non')
+      socket.to(targetResponse.callerId).emit('sendFightResponse', 'non');
+    }
   })
 });

@@ -42,20 +42,28 @@ socket.on('updateConnectionState', state => {
     }
 })
 
-socket.on('sendFightRequestToTarget', senderPlayer => {
-    dialogFight.querySelector('#senderPlayerName').textContent = senderPlayer.senderName;
+socket.on('fightRequest', caller => {
+    let dialogFight = document.querySelector('#dialogFight');  
+
+    dialogFight.querySelector('#callerPlayerName').textContent = caller.playerName;
     dialogFight.show();
 
-    $(document).on('click', '#acceptFight', function() {
+    $(document).off().on('click', '#acceptFight', function() {
         dialogFight.close();
-        socket.emit('responseFightRequestToCaller', {playerId : senderPlayer.senderId, text : 'oui'});
+        socket.emit('fightResponse', {
+            callerId: caller.playerId,
+            response: true
+        });
     })
-    $(document).on('click', '#declineFight', function() {
+    $(document).off().on('click', '#declineFight', function() {
         dialogFight.close();
-        socket.emit('responseFightRequestToCaller', {playerId : senderPlayer.senderId, text : 'non'});
+        socket.emit('fightResponse', {
+            callerId: caller.playerId,
+            response: false
+        });
     })
 })
 
-socket.on('sendResponse', response => {
+socket.on('sendFightResponse', response => {
     alert(response)
 })

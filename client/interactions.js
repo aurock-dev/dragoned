@@ -15,12 +15,9 @@ $(document).on('click', '#validateChangeName', function(){
 //#endregion
 
 //#region -- MEMBERS LIST
-let dialogFight = document.querySelector('#dialogFight');  
-
 $(document).on('click', '[name="targetPlayer"]', function() {
-    let senderId = socket.id;
-    let receiverId = this.getAttribute('playerId');
-    socket.emit('callTarget', {senderId:senderId, receiverId:receiverId});
+    let targetId = this.getAttribute('playerId');
+    socket.emit('callTarget', targetId);
 })
 //#endregion
 
