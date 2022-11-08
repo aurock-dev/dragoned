@@ -55,7 +55,9 @@ $(document).on('click', '#trainForce', () => {
         calcPlayerIlvl();
         
         setLSPlayer(player);
+        setLSGame(game);
         updatePlayerInformations();
+        updateGameInformations();
     }
     document.querySelector('#currentExpForce').textContent =  game.currentExpForce;
 })
@@ -72,7 +74,9 @@ $(document).on('click', '#trainVigour', () => {
         calcPlayerIlvl();
 
         setLSPlayer(player);
+        setLSGame(game);
         updatePlayerInformations();
+        updateGameInformations();
     }
     document.querySelector('#currentExpVigour').textContent =  game.currentExpVigour;
 })
@@ -89,7 +93,9 @@ $(document).on('click', '#trainAgility', () => {
         calcPlayerIlvl();
 
         setLSPlayer(player);
+        setLSGame(game);
         updatePlayerInformations();
+        updateGameInformations();
     }
     document.querySelector('#currentExpAgility').textContent =  game.currentExpAgility;
 })
@@ -106,7 +112,9 @@ $(document).on('click', '#trainWisdom', () => {
         calcPlayerIlvl();
 
         setLSPlayer(player);
+        setLSGame(game);
         updatePlayerInformations();
+        updateGameInformations();
     }
     document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom;
 })
