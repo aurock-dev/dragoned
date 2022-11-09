@@ -62,6 +62,7 @@ io.on('connection', socket => {
   socket.on('fightResponse', targetResponse => {
     if (targetResponse.response){
       console.log('oui')
+      launchFight(connectedPlayerList[targetResponse.callerId], connectedPlayerList[socket.id]);
     }
     else{
       console.log('non')
@@ -69,3 +70,26 @@ io.on('connection', socket => {
     }
   })
 });
+
+function launchFight(caller, target){
+
+    console.log(caller.name + ' VS ' + target.name);
+
+    let first = caller.agility >= target.agility ? caller : target;
+    console.log('first :' + first.name)
+
+    while (true){
+      target.hp = target.hp - (caller.attack - target.defense);
+      console.log(target.hp)
+      if (target.hp < 0){
+        console.log('caller win')
+        break;
+      }
+      caller.hp = caller.hp - (target.attack - caller.defense);
+      console.log(caller.hp)
+      if (caller.hp < 0){
+        console.log('target win')
+        break;
+      }
+    }
+}
