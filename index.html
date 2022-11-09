@@ -27,7 +27,7 @@
             <div>Choose a name.</div>
             <input type="text" id="inputFirstName">
             <button id="validateFirstName">Validate name</button>
-            <div id="errorMessage" class="hidden">Input can contains 3 to 15 letters only!</div>
+            <div id="errorMessage" class="hidden">Input can contains 3 to 12 letters only!</div>
         </dialog>
 
         <dialog id="dialogFight">  
@@ -39,6 +39,7 @@
         <div class="viewGame" id="viewGame">
             <div class="viewGameHeader">
                 <div class="playerDragon">
+                    <div><span id="currentPlayerName"></span></div>
                     <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
                     <div>iLvl : <span id="playerIlvl">0</span></div>
                 </div>
@@ -93,10 +94,10 @@
             <div>Server Statut: <span id="connectionState">Not Connected</span></div>
             <hr>
             <div class="optionName">
-                <div>Change name <span class="currentPlayerName">(Current: <span id="currentPlayerName"></span>)</span></div>
+                <div>Change name</div>
                 <input type="text" id="inputChangeName">
                 <button id="validateChangeName">Change</button>
-                <div id="optionErrorMessage" class="hidden">Input can contains 3 to 15 letters only!</div>
+                <div id="optionErrorMessage" class="hidden">Input can contains 3 to 12 letters only!</div>
             </div>
             <hr>
             <button id="resetLocalStorage">Reset LocalStorage</button>
