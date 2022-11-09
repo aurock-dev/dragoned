@@ -115,3 +115,9 @@ $(document).on('click', '#trainWisdom', () => {
     }
     document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom;
 })
+
+function resetDialogWindow(){
+    dialogFight.close();
+    $(document).off('click', '#acceptFight');
+    $(document).off('click', '#declineFight');
+}

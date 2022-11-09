@@ -48,19 +48,20 @@ socket.on('fightRequest', caller => {
     dialogFight.querySelector('#callerPlayerName').textContent = caller.playerName;
     dialogFight.show();
 
-    $(document).off().on('click', '#acceptFight', function() {
-        dialogFight.close();
+    $(document).on('click', '#acceptFight', function() {
         socket.emit('fightResponse', {
             callerId: caller.playerId,
             response: true
         });
+        resetDialogWindow();
     })
-    $(document).off().on('click', '#declineFight', function() {
-        dialogFight.close();
+
+    $(document).on('click', '#declineFight', function() {
         socket.emit('fightResponse', {
             callerId: caller.playerId,
             response: false
         });
+        resetDialogWindow();
     })
 })
 
