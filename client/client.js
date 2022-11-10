@@ -49,22 +49,33 @@ socket.on('fightRequest', caller => {
     dialogFight.show();
 
     $(document).on('click', '#acceptFight', function() {
-        socket.emit('fightResponse', {
-            callerId: caller.playerId,
-            response: true
-        });
+        socket.emit('fightResponseTrue', caller.playerId);
         resetDialogWindow();
     })
 
     $(document).on('click', '#declineFight', function() {
-        socket.emit('fightResponse', {
-            callerId: caller.playerId,
-            response: false
-        });
+        socket.emit('fightResponseFalse', caller.playerId);
         resetDialogWindow();
     })
 })
 
-socket.on('sendFightResponse', response => {
-    alert(response)
+socket.on('sendFightResponseFalse', targetName => {
+    document.querySelector('#fightTarget').textContent = targetName;
+    document.querySelector('#refuse').classList.remove('hidden');
+    document.querySelector('#dialogFightResponses').show();
+    $('#ok').off().on('click', function() {
+        document.querySelector('#dialogFightResponses').close();
+        document.querySelector('#refuse').classList.add('hidden');
+    })
+})
+
+socket.on('sendFightResponseTrue', winner => {
+    document.querySelector('#winnerName').textContent = winner;
+    document.querySelector('#winner').classList.remove('hidden');
+
+    document.querySelector('#dialogFightResponses').show();
+    $('#ok').off().on('click', function() {
+        document.querySelector('#dialogFightResponses').close();
+        document.querySelector('#winner').classList.add('hidden');
+    })
 })
