@@ -45,7 +45,7 @@ socket.on('updateConnectionState', state => {
 socket.on('fightRequest', caller => {
     let dialogFight = document.querySelector('#dialogFight');  
 
-    dialogFight.querySelector('#callerPlayerName').textContent = caller.playerName;
+    dialogFight.querySelector('#callerPlayerName').textContent = caller.player.name;
     dialogFight.show();
 
     $(document).on('click', '#acceptFight', function() {

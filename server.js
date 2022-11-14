@@ -46,24 +46,24 @@ io.on("connection", (socket) => {
         io.emit("updateConnectedPlayerListForClients", connectedPlayerList);
     });
 
-    socket.on("ilvlUpdate", (ilvl) => {
-        connectedPlayerList[socket.id].ilvl = ilvl;
+    socket.on("playerUpdate", (player) => {
+        connectedPlayerList[socket.id] = player;
         io.emit("updateConnectedPlayerListForClients", connectedPlayerList);
     });
 
     socket.on("callTarget", (targetId) => {
         socket.to(targetId).emit("fightRequest", {
-            playerName: connectedPlayerList[socket.id].name,
+            player: connectedPlayerList[socket.id],
             playerId: socket.id,
         });
     });
 
-    socket.on("fightResponseTrue", (callerId) => {
-        let winner = launchFight(connectedPlayerList[callerId], connectedPlayerList[socket.id]);
+    socket.on("fightResponseTrue", (caller) => {
+        let winner = launchFight(connectedPlayerList[caller], connectedPlayerList[socket.id]);
         console.log("Winner is " + winner);
 
         socket.emit("sendFightResponseTrue", winner);
-        socket.to(callerId).emit("sendFightResponseTrue", winner);
+        socket.to(caller).emit("sendFightResponseTrue", winner);
     });
 
     socket.on("fightResponseFalse", (caller) => {
@@ -77,16 +77,30 @@ function launchFight(caller, target) {
 
     console.log(copyCaller.name + " VS " + copyTarget.name);
 
-    let first = copyCaller.agility >= copyTarget.agility ? copyCaller : copyTarget;
+    let first = copyCaller.initiative >= copyTarget.initiative ? copyCaller : copyTarget;
 
-    while (true) {
-        copyTarget.hp = copyTarget.hp - (copyCaller.attack - copyTarget.defense);
-        if (copyTarget.hp < 0) {
-            return copyCaller.name;
-        }
-        copyCaller.hp = copyCaller.hp - (copyTarget.attack - copyCaller.defense);
-        if (copyCaller.hp < 0) {
-            return copyTarget.name;
+    if (first === copyCaller){
+        while (true){
+            if (hitTarget(copyTarget, copyCaller) < 0) { 
+                return copyCaller.name;
+            }
         }
     }
+    else{
+        while (true){
+            if (hitCaller(copyTarget, copyCaller) < 0) {
+                return copyTarget.name;
+            }
+        }
+    }
+}
+
+function hitTarget(copyTarget, copyCaller){
+    copyTarget.hp = copyTarget.hp - (copyCaller.attack - copyTarget.defense);
+    return copyTarget.hp;
+}
+
+function hitCaller(copyTarget, copyCaller){
+    copyCaller.hp = copyCaller.hp - (copyTarget.attack - copyCaller.defense);
+    return copyCaller.hp;
 }

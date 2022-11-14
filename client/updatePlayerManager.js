@@ -78,5 +78,5 @@ function calcExpNeededWisdom(){
 
 function calcPlayerIlvl(){
     player.ilvl = player.force + player.vigour + player.agility + player.wisdom;
-    socket.emit('ilvlUpdate', player.ilvl);
+    socket.emit('playerUpdate', player);
 }
