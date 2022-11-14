@@ -16,8 +16,10 @@ $(document).on('click', '#validateChangeName', function(){
 
 //#region -- MEMBERS LIST
 $(document).on('click', '[name="targetPlayer"]', function() {
-    let targetId = this.getAttribute('playerId');
-    socket.emit('callTarget', targetId);
+    if (game.stateFightRequests === 'Yes'){
+        let targetId = this.getAttribute('playerId');
+        socket.emit('callTarget', targetId);
+    }
 })
 //#endregion
 
@@ -42,9 +44,15 @@ $(document).on('click', '#resetLocalStorage', function(){
 $(document).on('click', '#switchFightRequests', () => {
     if  (game.stateFightRequests === 'Yes'){
         game.stateFightRequests = 'No';
+        document.querySelectorAll('#connectedPlayerList button').forEach( (button) => {
+            button.disabled = true;
+        })
     }
     else{
         game.stateFightRequests = 'Yes';
+        document.querySelectorAll('#connectedPlayerList button').forEach( (button) => {
+            button.disabled = false;
+        })
     }
     updateGameInformations();
 })
