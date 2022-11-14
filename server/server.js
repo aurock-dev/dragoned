@@ -69,6 +69,14 @@ io.on("connection", (socket) => {
     socket.on("fightResponseFalse", (caller) => {
         socket.to(caller).emit("sendFightResponseFalse", connectedPlayerList[socket.id].name);
     });
+
+    socket.on("disableFight", () => {
+        io.emit("disableFightForClients", socket.id);
+    })
+
+    socket.on("enableFight", () => {
+        io.emit("enableFightForClients", socket.id);
+    })
 });
 
 function launchFight(caller, target) {

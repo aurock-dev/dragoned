@@ -48,15 +48,19 @@ socket.on('fightRequest', caller => {
     
         dialogFight.querySelector('#callerPlayerName').textContent = caller.player.name;
         dialogFight.show();
+
+        socket.emit('disableFight');
     
         $(document).on('click', '#acceptFight', function() {
             socket.emit('fightResponseTrue', caller.playerId);
             resetDialogWindow();
+            socket.emit('enableFight');
         })
     
         $(document).on('click', '#declineFight', function() {
             socket.emit('fightResponseFalse', caller.playerId);
             resetDialogWindow();
+            socket.emit('enableFight');
         })
     }
 })
@@ -80,4 +84,12 @@ socket.on('sendFightResponseTrue', winner => {
         document.querySelector('#dialogFightResponses').close();
         document.querySelector('#winner').classList.add('hidden');
     })
+})
+
+socket.on('disableFightForClients', playerId => {
+    document.querySelector('[playerid="'+playerId+'"]').disabled = true;
+})
+
+socket.on('enableFightForClients', playerId => {
+    document.querySelector('[playerid="'+playerId+'"]').disabled = false;
 })
