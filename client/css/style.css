@@ -97,7 +97,7 @@ select {
 /* #region -- GENERAL */
 @font-face {
   font-family: pixelFont;
-  src: url(assets/font/pixelmix.ttf);
+  src: url(../../assets/font/pixelmix.ttf);
 }
 
 body{
@@ -105,7 +105,7 @@ body{
     color: var(--text-color);
     font-family: pixelFont;
     font-size: 0.9em;
-    background-image: url(/assets/img/wall.jpg);
+    background-image: url(../../assets/img/wall.jpg);
     background-repeat: repeat;
 }
 

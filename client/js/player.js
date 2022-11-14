@@ -30,4 +30,5 @@ var game = {
     neededExpAgility: 100,
     neededExpWisdom: 100,
     stateFightRequests: 'Yes',
+    inFight: true,
 }
