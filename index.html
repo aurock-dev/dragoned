@@ -11,8 +11,7 @@
             crossorigin="anonymous">
         </script>
         <script src="https://kit.fontawesome.com/d4a44c73dc.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="style.css">
-        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <link rel="stylesheet" href="client/css/style.css">
     </head>
     <body>       
         <div class="navbar">
@@ -28,6 +27,18 @@
             <input type="text" id="inputFirstName">
             <button id="validateFirstName">Validate name</button>
             <div id="errorMessage" class="hidden">Input can contains 3 to 12 letters only!</div>
+        </dialog>
+
+        <dialog id="dialogFight">  
+            <div><span id="callerPlayerName"></span> wants to fight!</div>
+            <button id="acceptFight">Accept fight</button>
+            <button id="declineFight">Decline fight</button>
+        </dialog>
+
+        <dialog id="dialogFightResponses">  
+            <div id="winner" class="hidden"><span id="winnerName"></span> wins the fight!</div>
+            <div id="refuse" class="hidden"><span id="fightTarget"></span> refuses to fight...</div>
+            <button id="ok">OK</button>
         </dialog>
 
         <div class="viewGame" id="viewGame">
@@ -72,7 +83,7 @@
                     </div>
                     <div class="agilityStats">
                         <div>AGILITY: <span id="agilityAmount">0</span></div>
-                        <div>Attack Speed: <span id="attackSpeedAmount">0</span></div>
+                        <div>Initiative: <span id="initiativeAmount">0</span></div>
                         <div>Critical Chances: <span id="criticalChancesAmount">0</span></div>
                     </div>
                     <div class="wisdomStats">
@@ -86,6 +97,7 @@
         
         <div class="viewOptions hidden" id="viewOptions">      
             <div>Server Statut: <span id="connectionState">Not Connected</span></div>
+            <button id="switchFightRequests">Allow Fights: <span id="stateFightRequests"> Yes</span></button>
             <hr>
             <div class="optionName">
                 <div>Change name</div>
@@ -108,12 +120,6 @@
             <div id="connectedPlayerList" class="connectedPlayerList">
     
             </div>
-
-            <dialog id="dialogFight">  
-                <div><span id="senderPlayerName"></span> wants to fight!</div>
-                <button id="acceptFight">Accept fight</button>
-                <button id="declineFight">Decline fight</button>
-            </dialog>
         </div>
 
         <div class="none" id="templates">
@@ -121,11 +127,11 @@
         </div>
         
         <script src="/socket.io/socket.io.js"></script>
-        <script src="/client/inputsManager.js"></script>
-        <script src="/client/localStorageManager.js"></script>
-        <script src="/client/client.js"></script>
-        <script src="/client/updatePlayerManager.js"></script>
-        <script src="/client/interactions.js"></script>
-        <script src="/client/player.js"></script>
+        <script src="/client/js/inputsManager.js"></script>
+        <script src="/client/js/localStorageManager.js"></script>
+        <script src="/client/js/client.js"></script>
+        <script src="/client/js/updatePlayerManager.js"></script>
+        <script src="/client/js/interactions.js"></script>
+        <script src="/client/js/player.js"></script>
     </body>
 </html>

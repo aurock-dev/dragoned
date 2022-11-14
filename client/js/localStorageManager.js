@@ -9,6 +9,7 @@ function firstConnection(){
         if (checkInput(playerName)){
             player.name = playerName;
             setLSPlayer(player);
+            setLSGame(game);
             dialogChangeName.close();
             window.location.reload();
         }
