@@ -15,7 +15,7 @@ function updatePlayerInformations(){
     document.querySelector('#defenseAmount').textContent = player.defense;
     document.querySelector('#hpBonusAmount').textContent = '+' + player.HPBonus;
     document.querySelector('#agilityAmount').textContent = player.agility;
-    document.querySelector('#attackSpeedAmount').textContent = player.attackSpeed + '%';
+    document.querySelector('#initiativeAmount').textContent = player.initiative;
     document.querySelector('#criticalChancesAmount').textContent = player.criticalChance + '%';
     document.querySelector('#wisdomAmount').textContent = player.wisdom;
     document.querySelector('#expBonusAmount').textContent = '+' + player.expBonus;
@@ -49,7 +49,7 @@ function calcVigourStats(){
 }
 
 function calcAgilityStats(){
-    player.attackSpeed = 100 + (player.agility);
+    player.initiative = 1 + (player.agility*1);
     player.criticalChance = 5 + (player.agility/2);
 }
 

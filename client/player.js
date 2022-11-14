@@ -14,7 +14,7 @@ var player = {
     defense: 50,
     HPBonus: 0,
     MPBonus: 0,
-    attackSpeed: 100,
+    initiative: 1,
     criticalChance: 5,
     criticalDamage: 100,
     expBonus: 0,
