@@ -78,29 +78,58 @@ function launchFight(caller, target) {
     console.log(copyCaller.name + " VS " + copyTarget.name);
 
     let first = copyCaller.initiative >= copyTarget.initiative ? copyCaller : copyTarget;
+    console.log('first:', first.name)
 
     if (first === copyCaller){
-        while (true){
-            if (hitTarget(copyTarget, copyCaller) < 0) { 
-                return copyCaller.name;
-            }
-        }
+        return fightWithCallerFirst(copyCaller, copyTarget);
     }
     else{
-        while (true){
-            if (hitCaller(copyTarget, copyCaller) < 0) {
-                return copyTarget.name;
-            }
+        return fightWithTargetFirst(copyTarget, copyCaller);
+    }
+}
+
+function fightWithTargetFirst(copyTarget, copyCaller){
+    while (true){
+        copyTarget.hp = hitTarget(copyTarget, copyCaller);
+        if (copyTarget.hp  <= 0) { 
+            return copyTarget.name;
+        }
+        copyCaller.hp = hitCaller(copyCaller, copyTarget);
+        if (copyCaller.hp <= 0) { 
+            return copyCaller.name;
+        }
+    }
+}
+
+function fightWithCallerFirst(copyCaller, copyTarget){
+    while (true){
+        copyCaller.hp = hitCaller(copyCaller, copyTarget);
+        if (copyCaller.hp <= 0) { 
+            return copyCaller.name;
+        }
+        copyTarget.hp = hitTarget(copyTarget, copyCaller);
+        if (copyTarget.hp <= 0) { 
+            return copyTarget.name;
         }
     }
 }
 
 function hitTarget(copyTarget, copyCaller){
-    copyTarget.hp = copyTarget.hp - (copyCaller.attack - copyTarget.defense);
-    return copyTarget.hp;
+    let HPTarget = copyTarget.hp - (copyCaller.attack - copyTarget.defense);
+    if (randHundred() <= copyCaller.criticalChance);{
+        HPTarget = copyTarget.hp - ((copyCaller.attack *  copyCaller.criticalDamage)- copyTarget.defense)
+    }
+    return HPTarget;
 }
 
-function hitCaller(copyTarget, copyCaller){
-    copyCaller.hp = copyCaller.hp - (copyTarget.attack - copyCaller.defense);
-    return copyCaller.hp;
+function hitCaller(copyCaller, copyTarget){
+    let HPCaller = copyCaller.hp - (copyTarget.attack - copyCaller.defense);
+    if (randHundred() <= copyCaller.criticalChance);{
+        HPCaller = copyCaller.hp - ((copyTarget.attack *  copyTarget.criticalDamage)- copyCaller.defense)
+    }
+    return HPCaller;
+}
+
+function randHundred(){
+    return Math.floor(Math.random() * 100);
 }

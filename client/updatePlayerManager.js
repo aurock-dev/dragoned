@@ -10,7 +10,7 @@ function updatePlayerInformations(){
     document.querySelector('#mpMaxAmount').textContent = player.mpMax;
     document.querySelector('#forceAmount').textContent = player.force;
     document.querySelector('#attackAmount').textContent = player.attack;
-    document.querySelector('#criticalDamagesAmount').textContent = player.criticalDamage + '%';
+    document.querySelector('#criticalDamagesAmount').textContent = 'x' + player.criticalDamage;
     document.querySelector('#vigourAmount').textContent = player.vigour;
     document.querySelector('#defenseAmount').textContent = player.defense;
     document.querySelector('#hpBonusAmount').textContent = '+' + player.HPBonus;
@@ -38,7 +38,7 @@ function updateAllStats(){
 
 function calcForceStats(){
     player.attack = 150 + (player.force*15);
-    player.criticalDamage = 100 + (player.force);
+    player.criticalDamage = 2 + (player.force/10);
 }
 
 function calcVigourStats(){

@@ -16,7 +16,7 @@ var player = {
     MPBonus: 0,
     initiative: 1,
     criticalChance: 5,
-    criticalDamage: 100,
+    criticalDamage: 2,
     expBonus: 0,
 }
 
