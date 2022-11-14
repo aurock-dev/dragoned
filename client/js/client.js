@@ -87,9 +87,13 @@ socket.on('sendFightResponseTrue', winner => {
 })
 
 socket.on('disableFightForClients', playerId => {
-    document.querySelector('[playerid="'+playerId+'"]').disabled = true;
+    if (document.querySelector('[playerid="'+playerId+'"]')){
+        document.querySelector('[playerid="'+playerId+'"]').disabled = true;
+    }
 })
 
 socket.on('enableFightForClients', playerId => {
-    document.querySelector('[playerid="'+playerId+'"]').disabled = false;
+    if (document.querySelector('[playerid="'+playerId+'"]')){
+        document.querySelector('[playerid="'+playerId+'"]').disabled = false;
+    }
 })

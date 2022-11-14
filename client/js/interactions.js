@@ -47,12 +47,14 @@ $(document).on('click', '#switchFightRequests', () => {
         document.querySelectorAll('#connectedPlayerList button').forEach( (button) => {
             button.disabled = true;
         })
+        socket.emit('disableFight');
     }
     else{
         game.stateFightRequests = 'Yes';
         document.querySelectorAll('#connectedPlayerList button').forEach( (button) => {
             button.disabled = false;
         })
+        socket.emit('enableFight');
     }
     updateGameInformations();
 })
