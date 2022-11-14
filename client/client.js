@@ -43,20 +43,22 @@ socket.on('updateConnectionState', state => {
 })
 
 socket.on('fightRequest', caller => {
-    let dialogFight = document.querySelector('#dialogFight');  
-
-    dialogFight.querySelector('#callerPlayerName').textContent = caller.player.name;
-    dialogFight.show();
-
-    $(document).on('click', '#acceptFight', function() {
-        socket.emit('fightResponseTrue', caller.playerId);
-        resetDialogWindow();
-    })
-
-    $(document).on('click', '#declineFight', function() {
-        socket.emit('fightResponseFalse', caller.playerId);
-        resetDialogWindow();
-    })
+    if (game.stateFightRequests === 'Yes'){
+        let dialogFight = document.querySelector('#dialogFight');  
+    
+        dialogFight.querySelector('#callerPlayerName').textContent = caller.player.name;
+        dialogFight.show();
+    
+        $(document).on('click', '#acceptFight', function() {
+            socket.emit('fightResponseTrue', caller.playerId);
+            resetDialogWindow();
+        })
+    
+        $(document).on('click', '#declineFight', function() {
+            socket.emit('fightResponseFalse', caller.playerId);
+            resetDialogWindow();
+        })
+    }
 })
 
 socket.on('sendFightResponseFalse', targetName => {
