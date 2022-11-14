@@ -121,3 +121,13 @@ function resetDialogWindow(){
     $(document).off('click', '#acceptFight');
     $(document).off('click', '#declineFight');
 }
+
+$(document).on('click', '#switchFightRequests', () => {
+    if  (game.stateFightRequests === 'Yes'){
+        game.stateFightRequests = 'No';
+    }
+    else{
+        game.stateFightRequests = 'Yes';
+    }
+    updateGameInformations();
+})

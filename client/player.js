@@ -29,4 +29,5 @@ var game = {
     neededExpVigour: 100,
     neededExpAgility: 100,
     neededExpWisdom: 100,
+    stateFightRequests: 'Yes',
 }

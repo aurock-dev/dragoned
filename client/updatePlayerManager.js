@@ -27,6 +27,8 @@ function updateGameInformations(){
     document.querySelector('#neededExpVigour').textContent = game.neededExpVigour;
     document.querySelector('#neededExpAgility').textContent = game.neededExpAgility;
     document.querySelector('#neededExpWisdom').textContent = game.neededExpWisdom;
+
+    document.querySelector('#stateFightRequests').textContent = game.stateFightRequests;
 }
 
 function updateAllStats(){
