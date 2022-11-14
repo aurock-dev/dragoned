@@ -9,6 +9,7 @@ function firstConnection(){
         if (checkInput(playerName)){
             player.name = playerName;
             setLSPlayer(player);
+            setLSGame(game);
             dialogChangeName.close();
             window.location.reload();
         }
@@ -16,12 +17,6 @@ function firstConnection(){
             document.querySelector('#errorMessage').classList.remove('hidden');
         }
     })
-}
-
-function jsEscape(str){
-    return String(str).replace(/[^\w. ]/gi, function(c){
-        return '\\u'+('0000'+c.charCodeAt(0).toString(16)).slice(-4);
-    });
 }
 
 /**
@@ -40,6 +35,24 @@ function setLSPlayer(player){
  */
 function getLSPlayer(){
     return JSON.parse(localStorage.getItem('player'));
+}
+
+/**
+ * Store game object in local storage
+ *
+ * @param {*} game object
+ */
+function setLSGame(game){
+    localStorage.setItem('game', JSON.stringify(game));
+}
+
+/**
+ * Return game object from local storage
+ *
+ * 
+ */
+function getLSGame(){
+    return JSON.parse(localStorage.getItem('game'));
 }
 
 /**

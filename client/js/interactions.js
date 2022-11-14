@@ -15,12 +15,11 @@ $(document).on('click', '#validateChangeName', function(){
 //#endregion
 
 //#region -- MEMBERS LIST
-let dialogFight = document.querySelector('#dialogFight');  
-
 $(document).on('click', '[name="targetPlayer"]', function() {
-    let senderId = socket.id;
-    let receiverId = this.getAttribute('playerId');
-    socket.emit('callTarget', {senderId:senderId, receiverId:receiverId});
+    if (game.stateFightRequests === 'Yes'){
+        let targetId = this.getAttribute('playerId');
+        socket.emit('callTarget', targetId);
+    }
 })
 //#endregion
 
@@ -41,6 +40,24 @@ $(document).on('click', '#resetLocalStorage', function(){
     resetLocalStorage();
     window.location.reload();
 })
+
+$(document).on('click', '#switchFightRequests', () => {
+    if  (game.stateFightRequests === 'Yes'){
+        game.stateFightRequests = 'No';
+        document.querySelectorAll('#connectedPlayerList button').forEach( (button) => {
+            button.disabled = true;
+        })
+        socket.emit('disableFight');
+    }
+    else{
+        game.stateFightRequests = 'Yes';
+        document.querySelectorAll('#connectedPlayerList button').forEach( (button) => {
+            button.disabled = false;
+        })
+        socket.emit('enableFight');
+    }
+    updateGameInformations();
+})
 //#endregion
 
 $(document).on('click', '#trainForce', () => {
@@ -55,7 +72,9 @@ $(document).on('click', '#trainForce', () => {
         calcPlayerIlvl();
         
         setLSPlayer(player);
+        setLSGame(game);
         updatePlayerInformations();
+        updateGameInformations();
     }
     document.querySelector('#currentExpForce').textContent =  game.currentExpForce;
 })
@@ -72,7 +91,9 @@ $(document).on('click', '#trainVigour', () => {
         calcPlayerIlvl();
 
         setLSPlayer(player);
+        setLSGame(game);
         updatePlayerInformations();
+        updateGameInformations();
     }
     document.querySelector('#currentExpVigour').textContent =  game.currentExpVigour;
 })
@@ -89,7 +110,9 @@ $(document).on('click', '#trainAgility', () => {
         calcPlayerIlvl();
 
         setLSPlayer(player);
+        setLSGame(game);
         updatePlayerInformations();
+        updateGameInformations();
     }
     document.querySelector('#currentExpAgility').textContent =  game.currentExpAgility;
 })
@@ -106,7 +129,15 @@ $(document).on('click', '#trainWisdom', () => {
         calcPlayerIlvl();
 
         setLSPlayer(player);
+        setLSGame(game);
         updatePlayerInformations();
+        updateGameInformations();
     }
     document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom;
 })
+
+function resetDialogWindow(){
+    dialogFight.close();
+    $(document).off('click', '#acceptFight');
+    $(document).off('click', '#declineFight');
+}

@@ -84,6 +84,7 @@ select {
     --accent-color: #f8c374;
     --accent-color-transparent: #eea02b62;
     --secondary-color: #4badce;
+    --disabled-color: #686868;
 
     --text-color: #ffffff;
     --text-color-reverse: #000000;
@@ -97,7 +98,7 @@ select {
 /* #region -- GENERAL */
 @font-face {
   font-family: pixelFont;
-  src: url(assets/font/pixelmix.ttf);
+  src: url(../../assets/font/pixelmix.ttf);
 }
 
 body{
@@ -105,7 +106,7 @@ body{
     color: var(--text-color);
     font-family: pixelFont;
     font-size: 0.9em;
-    background-image: url(/assets/img/wall.jpg);
+    background-image: url(../../assets/img/wall.jpg);
     background-repeat: repeat;
 }
 
@@ -122,16 +123,24 @@ button{
       1px 1px 3px 1px var(--shadow-color);
 }
 
-button:hover{
+button:hover:enabled{
     cursor: pointer;
     background-color: var(--accent-color);
 }
 
-button:active{
+button:active:enabled{
   background-color: var(--accent-color);
   box-shadow: 
     inset 0.2em 0.2em 0.1em 0 var(--down-border-shadow), 
     inset -0.2em -0.2em 0.1em 0 var(--up-border-shadow),
+    1px 1px 3px 1px var(--shadow-color);
+}
+
+button:disabled{
+  background-color: var(--disabled-color);
+  box-shadow: 
+    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow),
     1px 1px 3px 1px var(--shadow-color);
 }
 
@@ -161,6 +170,21 @@ input:focus{
 
 .none{
     display: none;
+}
+
+.noButton{
+  display: inline-block;
+  text-align: center;
+  width: max-content;
+  height: max-content;
+  font-size: 1em;
+  border: none;
+  background-color: var(--secondary-color);
+  padding: 5px 10px;
+  box-shadow: 
+    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow),
+    1px 1px 3px 1px var(--shadow-color);
 }
 /* #endregion */
 
@@ -263,12 +287,12 @@ input:focus{
     inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
     inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
     0px 3px 5px 0px var(--shadow-color);
-  padding: 10px;
+  padding: 3px;
 }
 
 .playerDragonImg{
-  width: 80px;
-  height: 70px;
+  width: 75px;
+  height: 65px;
 }
 
 .viewTraining{
@@ -306,23 +330,9 @@ input:focus{
   justify-items: center;
 }
 
-.trainingExp button{
+.trainingExp div{
   width: 15em;
-  background-color: var(--secondary-color);
   color: var(--text-color-reverse);
-}
-
-.trainingExp button:hover{
-  cursor: default;
-  background-color: var(--secondary-color);
-}
-
-.trainingExp button:active{
-  cursor: default;
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow),
-    1px 1px 3px 1px var(--shadow-color);
 }
 
 .statsList{

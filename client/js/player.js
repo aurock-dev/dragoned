@@ -14,9 +14,9 @@ var player = {
     defense: 50,
     HPBonus: 0,
     MPBonus: 0,
-    attackSpeed: 100,
+    initiative: 1,
     criticalChance: 5,
-    criticalDamage: 100,
+    criticalDamage: 2,
     expBonus: 0,
 }
 
@@ -29,4 +29,5 @@ var game = {
     neededExpVigour: 100,
     neededExpAgility: 100,
     neededExpWisdom: 100,
+    stateFightRequests: 'Yes',
 }

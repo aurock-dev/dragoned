@@ -11,15 +11,14 @@
             crossorigin="anonymous">
         </script>
         <script src="https://kit.fontawesome.com/d4a44c73dc.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="style.css">
-        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <link rel="stylesheet" href="client/css/style.css">
     </head>
     <body>       
         <div class="navbar">
             <div class="navbarTitle" id="gameTitle">
                 DRAGON'ED | v0.1
             </div>
-            <button id="showViewServer"><i class="fas fa-eye"></i> Connected Players</button>
+            <button id="showViewServer"><i class="fas fa-eye"></i> Connected Players: <span id="numberOfPlayer"></span></button>
             <button id="showViewOptions"><i class="fas fa-gear"></i> Options</button>
         </div>
 
@@ -27,12 +26,25 @@
             <div>Choose a name.</div>
             <input type="text" id="inputFirstName">
             <button id="validateFirstName">Validate name</button>
-            <div id="errorMessage" class="hidden">Input can contains 3 to 15 letters only!</div>
+            <div id="errorMessage" class="hidden">Input can contains 3 to 12 letters only!</div>
+        </dialog>
+
+        <dialog id="dialogFight">  
+            <div><span id="callerPlayerName"></span> wants to fight!</div>
+            <button id="acceptFight">Accept fight</button>
+            <button id="declineFight">Decline fight</button>
+        </dialog>
+
+        <dialog id="dialogFightResponses">  
+            <div id="winner" class="hidden"><span id="winnerName"></span> wins the fight!</div>
+            <div id="refuse" class="hidden"><span id="fightTarget"></span> refuses to fight...</div>
+            <button id="ok">OK</button>
         </dialog>
 
         <div class="viewGame" id="viewGame">
             <div class="viewGameHeader">
                 <div class="playerDragon">
+                    <div><span id="currentPlayerName"></span></div>
                     <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
                     <div>iLvl : <span id="playerIlvl">0</span></div>
                 </div>
@@ -44,10 +56,10 @@
                         <button id="trainWisdom">Train WISDOM</button>
                     </div>
                     <div class="trainingExp">
-                        <button id="expForce"><span id="currentExpForce">0</span> / <span id="neededExpForce">0</span> </button>
-                        <button id="expVigour"><span id="currentExpVigour">0</span> / <span id="neededExpVigour">0</span> </button>
-                        <button id="expAgility"><span id="currentExpAgility">0</span> / <span id="neededExpAgility">0</span> </button>
-                        <button id="expWisdom"><span id="currentExpWisdom">0</span> / <span id="neededExpWisdom">0</span> </button>
+                        <div class="noButton" id="expForce"><span id="currentExpForce">0</span> / <span id="neededExpForce">0</span></div>
+                        <div class="noButton" id="expVigour"><span id="currentExpVigour">0</span> / <span id="neededExpVigour">0</span></div>
+                        <div class="noButton" id="expAgility"><span id="currentExpAgility">0</span> / <span id="neededExpAgility">0</span></div>
+                        <div class="noButton" id="expWisdom"><span id="currentExpWisdom">0</span> / <span id="neededExpWisdom">0</span></div>
                     </div>
                 </div>
             </div>
@@ -71,7 +83,7 @@
                     </div>
                     <div class="agilityStats">
                         <div>AGILITY: <span id="agilityAmount">0</span></div>
-                        <div>Attack Speed: <span id="attackSpeedAmount">0</span></div>
+                        <div>Initiative: <span id="initiativeAmount">0</span></div>
                         <div>Critical Chances: <span id="criticalChancesAmount">0</span></div>
                     </div>
                     <div class="wisdomStats">
@@ -85,12 +97,13 @@
         
         <div class="viewOptions hidden" id="viewOptions">      
             <div>Server Statut: <span id="connectionState">Not Connected</span></div>
+            <button id="switchFightRequests">Allow Fights: <span id="stateFightRequests"> Yes</span></button>
             <hr>
             <div class="optionName">
-                <div>Change name <span class="currentPlayerName">(Current: <span id="currentPlayerName"></span>)</span></div>
+                <div>Change name</div>
                 <input type="text" id="inputChangeName">
                 <button id="validateChangeName">Change</button>
-                <div id="optionErrorMessage" class="hidden">Input can contains 3 to 15 letters only!</div>
+                <div id="optionErrorMessage" class="hidden">Input can contains 3 to 12 letters only!</div>
             </div>
             <hr>
             <button id="resetLocalStorage">Reset LocalStorage</button>
@@ -107,12 +120,6 @@
             <div id="connectedPlayerList" class="connectedPlayerList">
     
             </div>
-
-            <dialog id="dialogFight">  
-                <div><span id="senderPlayerName"></span> wants to fight!</div>
-                <button id="acceptFight">Accept fight</button>
-                <button id="declineFight">Decline fight</button>
-            </dialog>
         </div>
 
         <div class="none" id="templates">
@@ -120,11 +127,11 @@
         </div>
         
         <script src="/socket.io/socket.io.js"></script>
-        <script src="/client/inputsManager.js"></script>
-        <script src="/client/localStorageManager.js"></script>
-        <script src="/client/client.js"></script>
-        <script src="/client/updatePlayerManager.js"></script>
-        <script src="/client/interactions.js"></script>
-        <script src="/client/player.js"></script>
+        <script src="/client/js/inputsManager.js"></script>
+        <script src="/client/js/localStorageManager.js"></script>
+        <script src="/client/js/client.js"></script>
+        <script src="/client/js/updatePlayerManager.js"></script>
+        <script src="/client/js/interactions.js"></script>
+        <script src="/client/js/player.js"></script>
     </body>
 </html>
