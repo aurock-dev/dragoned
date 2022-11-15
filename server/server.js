@@ -89,53 +89,50 @@ function launchFight(caller, target) {
     console.log('first:', first.name)
 
     if (first === copyCaller){
-        return fightWithCallerFirst(copyCaller, copyTarget);
+        // return fightWithCallerFirst(copyCaller, copyTarget);
+        return fight(copyCaller, copyTarget);
     }
     else{
-        return fightWithTargetFirst(copyTarget, copyCaller);
+        // return fightWithTargetFirst(copyTarget, copyCaller);
+        return fight(copyTarget, copyCaller);
     }
 }
-
-function fightWithTargetFirst(copyTarget, copyCaller){
+function fight(playerA, playerB){
     while (true){
-        copyTarget.hp = hitTarget(copyTarget, copyCaller);
-        if (copyTarget.hp  <= 0) { 
-            return copyTarget.name;
-        }
-        copyCaller.hp = hitCaller(copyCaller, copyTarget);
-        if (copyCaller.hp <= 0) { 
-            return copyCaller.name;
-        }
-    }
-}
+        // console.log('==========================')
 
-function fightWithCallerFirst(copyCaller, copyTarget){
-    while (true){
-        copyCaller.hp = hitCaller(copyCaller, copyTarget);
-        if (copyCaller.hp <= 0) { 
-            return copyCaller.name;
+        // console.log(playerA.name + ' attacks!')
+        if (randHundred() <= playerA.criticalChance){
+            playerB.hp = playerB.hp - ((playerA.attack *  playerA.criticalDamage) - playerB.defense)
+            // console.log(playerA.name + ' critics!!')
+            // console.log(playerA.name + ' does ' + ((playerA.attack *  playerA.criticalDamage) - playerB.defense) + ' damages')
         }
-        copyTarget.hp = hitTarget(copyTarget, copyCaller);
-        if (copyTarget.hp <= 0) { 
-            return copyTarget.name;
+        else{
+            playerB.hp = playerB.hp - (playerA.attack - playerB.defense);
+            // console.log(playerA.name + ' does ' + (playerA.attack - playerB.defense) + ' damages')
+        }
+        // console.log(playerB.name + ' HP left: ' + playerB.hp)
+        if (playerB.hp <= 0) { 
+            return playerA.name;
+        }
+
+        // console.log('-----------')
+
+        // console.log(playerB.name + ' attacks!')
+        if (randHundred() <= playerB.criticalChance){
+            // console.log(playerB.name + ' critics!!')
+            // console.log(playerB.name + ' does ' + ((playerB.attack *  playerB.criticalDamage) - playerA.defense) + ' damages')
+            playerA.hp = playerA.hp - ((playerB.attack *  playerB.criticalDamage) - playerA.defense)
+        }
+        else{
+            playerA.hp = playerA.hp - (playerB.attack - playerA.defense);
+            // console.log(playerB.name + ' does ' + (playerB.attack - playerA.defense) + ' damages')
+        }
+        // console.log(playerA.name + ' HP left: ' + playerA.hp)
+        if (playerA.hp <= 0) { 
+            return playerB.name;
         }
     }
-}
-
-function hitTarget(copyTarget, copyCaller){
-    let HPTarget = copyTarget.hp - (copyCaller.attack - copyTarget.defense);
-    if (randHundred() <= copyCaller.criticalChance);{
-        HPTarget = copyTarget.hp - ((copyCaller.attack *  copyCaller.criticalDamage)- copyTarget.defense)
-    }
-    return HPTarget;
-}
-
-function hitCaller(copyCaller, copyTarget){
-    let HPCaller = copyCaller.hp - (copyTarget.attack - copyCaller.defense);
-    if (randHundred() <= copyCaller.criticalChance);{
-        HPCaller = copyCaller.hp - ((copyTarget.attack *  copyTarget.criticalDamage)- copyCaller.defense)
-    }
-    return HPCaller;
 }
 
 function randHundred(){
