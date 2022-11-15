@@ -19,7 +19,7 @@ socket.on('updateConnectedPlayerListForClients', playerList => {
 
     let playerDiv = document.createElement('div');
     playerDiv.classList.add('noButton');
-    playerDiv.textContent = playerList[socket.id].name + ' | iLvl : ' + playerList[socket.id].ilvl;
+    playerDiv.textContent = 'You | iLvl : ' + playerList[socket.id].ilvl;
     document.querySelector('#connectedPlayerList').appendChild(playerDiv);
 
     for (const [key, value] of Object.entries(playerList)) {

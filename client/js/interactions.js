@@ -164,13 +164,15 @@ $(document).mouseup(function(e)
 {
     var viewOption = $("#viewOptions");
     var viewServer = $("#viewServer");
-    
-    if (!viewOption.is(e.target) && viewOption.has(e.target).length === 0) 
+    var buttonOption = $('#showViewOptions');
+    var buttonServer = $('#showViewServer');
+
+    if (!viewOption.is(e.target) && !viewServer.is(e.target)) 
     {
-        viewOption.addClass('hidden');
-    }
-    if (!viewServer.is(e.target) && viewServer.has(e.target).length === 0) 
-    {
-        viewServer.addClass('hidden');
+        if (!buttonOption.is(e.target) && !buttonServer.is(e.target)) 
+        {
+            viewOption.addClass('hidden');
+            viewServer.addClass('hidden');
+        }
     }
 });
