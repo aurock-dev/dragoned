@@ -159,3 +159,18 @@ function resetDialogWindow(){
     $(document).off('click', '#acceptFight');
     $(document).off('click', '#declineFight');
 }
+
+$(document).mouseup(function(e) 
+{
+    var viewOption = $("#viewOptions");
+    var viewServer = $("#viewServer");
+    
+    if (!viewOption.is(e.target) && viewOption.has(e.target).length === 0) 
+    {
+        viewOption.addClass('hidden');
+    }
+    if (!viewServer.is(e.target) && viewServer.has(e.target).length === 0) 
+    {
+        viewServer.addClass('hidden');
+    }
+});
