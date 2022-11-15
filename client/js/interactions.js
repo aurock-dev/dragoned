@@ -26,12 +26,30 @@ $(document).on('click', '[name="targetPlayer"]', function() {
 //#region -- NAVBAR
 $(document).on('click', '#showViewOptions', function(){
     let viewOptionsClasslist = document.querySelector('#viewOptions').classList;
-    viewOptionsClasslist.contains('hidden') ? viewOptionsClasslist.remove('hidden') : viewOptionsClasslist.add('hidden');
+    let viewServerClasslist = document.querySelector('#viewServer').classList;
+    if (viewOptionsClasslist.contains('hidden')){
+        if (!viewServerClasslist.contains('hidden')){
+            viewServerClasslist.add('hidden');
+        }
+        viewOptionsClasslist.remove('hidden');
+    }
+    else{
+        viewOptionsClasslist.add('hidden');
+    }
 })
 
 $(document).on('click', '#showViewServer', function(){
+    let viewOptionsClasslist = document.querySelector('#viewOptions').classList;
     let viewServerClasslist = document.querySelector('#viewServer').classList;
-    viewServerClasslist.contains('hidden') ? viewServerClasslist.remove('hidden') : viewServerClasslist.add('hidden');
+    if (viewServerClasslist.contains('hidden')){
+        if (!viewOptionsClasslist.contains('hidden')){
+            viewOptionsClasslist.add('hidden');
+        }
+        viewServerClasslist.remove('hidden');
+    }
+    else{
+        viewServerClasslist.add('hidden');
+    }
 })
 //#endregion
 
