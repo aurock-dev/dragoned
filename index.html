@@ -96,24 +96,30 @@
         </div>
         
         <div class="viewOptions hidden" id="viewOptions">      
-            <div>Server Statut: <span id="connectionState">Not Connected</span></div>
-            <button id="switchFightRequests">Allow Fights: <span id="stateFightRequests"> Yes</span></button>
+            <div>
+                Server Statut: <span id="connectionState">Not Connected</span>
+            </div>
+            <div>
+                <button id="switchFightRequests">Allow Fights: <span id="stateFightRequests"> Yes</span></button>
+            </div>
             <hr>
             <div class="optionName">
                 <div>Change name</div>
                 <input type="text" id="inputChangeName">
                 <button id="validateChangeName">Change</button>
-                <div id="optionErrorMessage" class="hidden">Input can contains 3 to 12 letters only!</div>
+                <div id="optionErrorMessage" class="none">Input can contains 3 to 12 letters only!</div>
             </div>
             <hr>
-            <button id="resetLocalStorage">Reset LocalStorage</button>
+            <div>
+                <button id="resetLocalStorage">Reset LocalStorage</button>
+            </div>
             <hr>
             <div class="optionInfos">
                 <div>
                     <a href="https://www.notion.so/aurockfr/Patch-Note-1015707621ff4cd9aced68f212545061" target="_blank">Game Version</a> |
-                    <a href="https://www.notion.so/aurockfr/Wiki-8890f5ca9dfc4f17a346c7109d75b782" target="_blank">Wiki and Dev follow-up</a> | 
-                    <a href="https://gitlab.com/aurock/dragoned" target="_blank">Git</a>
+                    <a href="https://www.notion.so/aurockfr/Wiki-8890f5ca9dfc4f17a346c7109d75b782" target="_blank">Wiki and Dev follow-up</a> 
                 </div>
+                <div>If you encounter a wild bug: <a href="https://gitlab.com/aurock/dragoned/-/issues" target="_blank">Git</a></div>
                 <div>Made with a ton of 🐛 by <a href="https://aurock.me/" target="_blank">Aurock</a> </div>
             </div>
         </div>
@@ -129,6 +135,8 @@
             <button id="memberButton" class="tooltip" playerid="" name="targetPlayer">
                 <div id="memberInfosShort"></div>
                 <div class="tooltipMemberInfos">
+                    <span>Player Stats:</span>
+                    <hr>
                     <span name="memberHP"></span>
                     <span name="memberMP"></span>
                     <span name="memberForce"></span>

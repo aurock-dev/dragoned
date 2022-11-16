@@ -167,9 +167,9 @@ $(document).mouseup(function(e)
     var buttonOption = $('#showViewOptions');
     var buttonServer = $('#showViewServer');
 
-    if (!viewOption.is(e.target) && !viewServer.is(e.target)) 
+    if (!buttonOption.is(e.target) && !buttonServer.is(e.target)) 
     {
-        if (!buttonOption.is(e.target) && !buttonServer.is(e.target)) 
+        if (!viewOption.is(e.target) && !viewServer.is(e.target)) 
         {
             viewOption.addClass('hidden');
             viewServer.addClass('hidden');
