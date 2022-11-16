@@ -95,6 +95,7 @@ $(document).on('click', '#trainForce', () => {
         updateGameInformations();
     }
     document.querySelector('#currentExpForce').textContent =  game.currentExpForce;
+    $('.progressExpForce').width(calcPercentage(game.currentExpForce, game.neededExpForce)+'%');
 })
 
 $(document).on('click', '#trainVigour', () => {
@@ -114,6 +115,7 @@ $(document).on('click', '#trainVigour', () => {
         updateGameInformations();
     }
     document.querySelector('#currentExpVigour').textContent =  game.currentExpVigour;
+    $('.progressExpVigour').width(calcPercentage(game.currentExpVigour, game.neededExpVigour)+'%');
 })
 
 $(document).on('click', '#trainAgility', () => {
@@ -133,6 +135,7 @@ $(document).on('click', '#trainAgility', () => {
         updateGameInformations();
     }
     document.querySelector('#currentExpAgility').textContent =  game.currentExpAgility;
+    $('.progressExpAgility').width(calcPercentage(game.currentExpAgility, game.neededExpAgility)+'%');
 })
 
 $(document).on('click', '#trainWisdom', () => {
@@ -152,6 +155,7 @@ $(document).on('click', '#trainWisdom', () => {
         updateGameInformations();
     }
     document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom;
+    $('.progressExpWisdom').width(calcPercentage(game.currentExpWisdom, game.neededExpWisdom)+'%');
 })
 
 function resetDialogWindow(){
@@ -181,3 +185,7 @@ $(document).mouseup(function(e)
         }
     }
 });
+
+function calcPercentage(remainValue, maxValue){
+    return (remainValue*100)/maxValue;
+}

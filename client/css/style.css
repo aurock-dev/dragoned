@@ -446,7 +446,6 @@ input:focus{
 .progressExpAgility,
 .progressExpWisdom
  {
-    transition: 0.3s width linear;
     background-color: #f85273; 
     box-shadow: 
         inset 0em 0.2em 0.1em 0 var(--up-border-shadow), 
