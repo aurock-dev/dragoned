@@ -28,11 +28,6 @@ $(document).on('click', '#showViewOptions', function(){
     let viewOptionsClasslist = document.querySelector('#viewOptions').classList;
     viewOptionsClasslist.contains('hidden') ? viewOptionsClasslist.remove('hidden') : viewOptionsClasslist.add('hidden');
 })
-
-$(document).on('click', '#showViewServer', function(){
-    let viewServerClasslist = document.querySelector('#viewServer').classList;
-    viewServerClasslist.contains('hidden') ? viewServerClasslist.remove('hidden') : viewServerClasslist.add('hidden');
-})
 //#endregion
 
 //#region -- OPTIONS
@@ -77,6 +72,7 @@ $(document).on('click', '#trainForce', () => {
         updateGameInformations();
     }
     document.querySelector('#currentExpForce').textContent =  game.currentExpForce;
+    $('.progressExpForce').width(calcPercentage(game.currentExpForce, game.neededExpForce)+'%');
 })
 
 $(document).on('click', '#trainVigour', () => {
@@ -96,6 +92,7 @@ $(document).on('click', '#trainVigour', () => {
         updateGameInformations();
     }
     document.querySelector('#currentExpVigour').textContent =  game.currentExpVigour;
+    $('.progressExpVigour').width(calcPercentage(game.currentExpVigour, game.neededExpVigour)+'%');
 })
 
 $(document).on('click', '#trainAgility', () => {
@@ -115,6 +112,7 @@ $(document).on('click', '#trainAgility', () => {
         updateGameInformations();
     }
     document.querySelector('#currentExpAgility').textContent =  game.currentExpAgility;
+    $('.progressExpAgility').width(calcPercentage(game.currentExpAgility, game.neededExpAgility)+'%');
 })
 
 $(document).on('click', '#trainWisdom', () => {
@@ -134,10 +132,30 @@ $(document).on('click', '#trainWisdom', () => {
         updateGameInformations();
     }
     document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom;
+    $('.progressExpWisdom').width(calcPercentage(game.currentExpWisdom, game.neededExpWisdom)+'%');
 })
 
 function resetDialogWindow(){
     dialogFight.close();
     $(document).off('click', '#acceptFight');
     $(document).off('click', '#declineFight');
+}
+
+$(document).mouseup(function(e) 
+{
+    let viewOption = $("#viewOptions");
+    let buttonOption = $('#showViewOptions');
+    let viewOptionButtons = $("#viewOptions button");
+    let viewOptionInputs = $("#viewOptions input");
+
+    if (!viewOption.is(e.target) && 
+    !buttonOption.is(e.target) &&
+    !viewOptionButtons.is(e.target) &&
+    !viewOptionInputs.is(e.target)) {
+        viewOption.addClass('hidden');
+    }
+});
+
+function calcPercentage(remainValue, maxValue){
+    return (remainValue*100)/maxValue;
 }
