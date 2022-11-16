@@ -26,30 +26,7 @@ $(document).on('click', '[name="targetPlayer"]', function() {
 //#region -- NAVBAR
 $(document).on('click', '#showViewOptions', function(){
     let viewOptionsClasslist = document.querySelector('#viewOptions').classList;
-    let viewServerClasslist = document.querySelector('#viewServer').classList;
-    if (viewOptionsClasslist.contains('hidden')){
-        if (!viewServerClasslist.contains('hidden')){
-            viewServerClasslist.add('hidden');
-        }
-        viewOptionsClasslist.remove('hidden');
-    }
-    else{
-        viewOptionsClasslist.add('hidden');
-    }
-})
-
-$(document).on('click', '#showViewServer', function(){
-    let viewOptionsClasslist = document.querySelector('#viewOptions').classList;
-    let viewServerClasslist = document.querySelector('#viewServer').classList;
-    if (viewServerClasslist.contains('hidden')){
-        if (!viewOptionsClasslist.contains('hidden')){
-            viewOptionsClasslist.add('hidden');
-        }
-        viewServerClasslist.remove('hidden');
-    }
-    else{
-        viewServerClasslist.add('hidden');
-    }
+    viewOptionsClasslist.contains('hidden') ? viewOptionsClasslist.remove('hidden') : viewOptionsClasslist.add('hidden');
 })
 //#endregion
 
@@ -167,22 +144,15 @@ function resetDialogWindow(){
 $(document).mouseup(function(e) 
 {
     let viewOption = $("#viewOptions");
-    let viewServer = $("#viewServer");
     let buttonOption = $('#showViewOptions');
-    let buttonServer = $('#showViewServer');
     let viewOptionButtons = $("#viewOptions button");
-    let viewServerButtons = $("#viewServer button");
+    let viewOptionInputs = $("#viewOptions input");
 
-    if (!buttonOption.is(e.target) && !buttonServer.is(e.target)) 
-    {
-        if (!viewOption.is(e.target) && !viewServer.is(e.target)) 
-        {
-            if (!viewOptionButtons.is(e.target) && !viewServerButtons.is(e.target)) 
-            {
-                viewOption.addClass('hidden');
-                viewServer.addClass('hidden');
-            }
-        }
+    if (!viewOption.is(e.target) && 
+    !buttonOption.is(e.target) &&
+    !viewOptionButtons.is(e.target) &&
+    !viewOptionInputs.is(e.target)) {
+        viewOption.addClass('hidden');
     }
 });
 
