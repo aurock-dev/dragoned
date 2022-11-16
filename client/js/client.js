@@ -14,20 +14,26 @@ socket.on('connect', () => {
 })
 
 socket.on('updateConnectedPlayerListForClients', playerList => {
-    document.querySelector('#connectedPlayerList').innerHTML = '';
     document.querySelector('#numberOfPlayer').textContent = Object.keys(playerList).length;
 
-    let playerDiv = document.createElement('div');
-    playerDiv.classList.add('noButton');
+    let playerDiv = document.querySelector('#playerButton');
     playerDiv.textContent = 'You | iLvl : ' + playerList[socket.id].ilvl;
-    document.querySelector('#connectedPlayerList').appendChild(playerDiv);
 
-    for (const [key, value] of Object.entries(playerList)) {
+    document.querySelectorAll('#connectedPlayerList button').forEach((button) => {
+        button.remove();
+    });
+
+    for (const [key, member] of Object.entries(playerList)) {
         if (socket.id !== key){
-            let memberButton = document.createElement('button');
-            memberButton.setAttribute('playerId', key); 
-            memberButton.textContent = value.name + ' | iLvl : ' + value.ilvl;
-            memberButton.name = "targetPlayer";
+            let memberButton = document.querySelector('#memberButton').cloneNode(true);
+            memberButton.setAttribute('playerId', key);
+            memberButton.querySelector('#memberInfosShort').textContent = member.name + ' | iLvl : ' + member.ilvl;
+            memberButton.querySelector('[name="memberHP"]').textContent = 'HP: ' + member.hpMax;
+            memberButton.querySelector('[name="memberMP"]').textContent = 'MP: ' + member.mpMax;
+            memberButton.querySelector('[name="memberForce"]').textContent = 'Force: ' + member.force;
+            memberButton.querySelector('[name="memberVigour"]').textContent = 'Vigour: ' + member.vigour;
+            memberButton.querySelector('[name="memberAgility"]').textContent = 'Agility: ' + member.agility;
+            memberButton.querySelector('[name="memberWisdom"]').textContent = 'Wisdom: ' + member.wisdom;
             document.querySelector('#connectedPlayerList').appendChild(memberButton);
         }
     }
