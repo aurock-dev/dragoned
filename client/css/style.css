@@ -84,6 +84,8 @@ select {
     --accent-color: #f8c374;
     --accent-color-transparent: #eea02b62;
     --secondary-color: #4badce;
+    --secondary-color-transparent: #4badce62;
+    --secondary-accent-color: #F45B69;
     --disabled-color: #686868;
 
     --text-color: #ffffff;
@@ -111,7 +113,7 @@ body{
 }
 
 button{
-    width: max-content;
+    width: 100%;
     height: max-content;
     font-size: 1em;
     border: none;
@@ -175,7 +177,7 @@ input:focus{
 .noButton{
   display: inline-block;
   text-align: center;
-  width: max-content;
+  width: 100%;
   height: max-content;
   font-size: 1em;
   border: none;
@@ -191,7 +193,7 @@ input:focus{
 /* #region -- NAVBAR */
 .navbar{
     display: grid;
-    grid-template-columns: 1fr max-content max-content;
+    grid-template-columns: 1fr max-content;
     column-gap: 0.4em;
     padding: 0em 0.5em;
     height: 3em;
@@ -201,8 +203,8 @@ input:focus{
     box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 75%);
 }
 
-.navbarTitle{
-    font-size: 1.3em;
+.navbarTitle button{
+    width: max-content;
 }
 /* #endregion */
 
@@ -210,7 +212,7 @@ input:focus{
 .viewOptions{
     position: absolute;
     top: 3.5em;
-    right: 0.5em;
+    left: 0.5em;
     display: grid;
     grid-auto-rows: max-content;
     row-gap: 10px;
@@ -227,6 +229,10 @@ input:focus{
       0px 3px 5px 0px var(--shadow-color);
 }
 
+.viewOptions button{
+    width: max-content;
+}
+
 .currentPlayerName{
     font-style: italic;
 }
@@ -239,12 +245,9 @@ input:focus{
 
 /* #region -- SERVER */
 .viewServer{
-    position: absolute;
-    top: 3.5em;
-    right: 0.5em;
     display: grid;
     grid-auto-rows: max-content;
-    width: max-content;
+    width: 260px;
     height: max-content;
     padding: 10px;
     border: none;
@@ -265,14 +268,26 @@ input:focus{
 /* #endregion */
 
 /* #region -- GAME */
+.viewGame{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 10px;
+}
+
+.viewGameAndServer{
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    column-gap: 10px;
+    padding: 10px;
+}
+
 .viewGameHeader{
   display: grid;
   grid-template-columns: 150px 1fr;
   column-gap: 10px;
-  height: 140px;
+  height: 100%;
   justify-items: center;
   align-items: center;
-  padding: 10px;
 }
 
 .playerDragon{
@@ -280,7 +295,7 @@ input:focus{
   justify-items: center;
   align-items: center;
   width: 150px;
-  height: 120px;
+  height: 100%;
   background-color: var(--primary-color-transparent);
   backdrop-filter: blur(5px);
   box-shadow: 
@@ -316,22 +331,19 @@ input:focus{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 1em;
+  width: 100%;
   justify-items: center;
-}
-
-.trainingButtons button{
-  width: 15em;
 }
 
 .trainingExp{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  width: 100%;
   column-gap: 1em;
   justify-items: center;
 }
 
 .trainingExp div{
-  width: 15em;
   color: var(--text-color-reverse);
 }
 
@@ -339,16 +351,15 @@ input:focus{
   display: grid;
   grid-template-columns: 150px 1fr;
   column-gap: 10px;
-  height: 140px;
+  height: 100%;
   justify-items: center;
   align-items: center;
-  padding: 10px;
 }
 
 .generalStats{
   display: grid;
   width: 150px;
-  height: 120px;
+  height: 100%;
   justify-items: center;
   align-items: center;
   border: none;
@@ -380,7 +391,87 @@ input:focus{
 
 .forceStats, .vigourStats, .agilityStats, .wisdomStats{
   display: grid;
-  width: 15em;
+  width: 100%;
   justify-items: center;
+}
+/* #endregion */
+
+/* #region -- TOOLTIPS */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+.tooltip .tooltipMemberInfos {
+    visibility: hidden;
+    display: grid;
+    width: max-content;
+    border: none;
+    background-color: var(--primary-color);
+    backdrop-filter: blur(5px);
+    box-shadow: 
+      inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+      inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+      0px 3px 5px 0px var(--shadow-color);
+    padding: 10px 15px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    right: 100%;
+}
+  
+.tooltip:hover .tooltipMemberInfos {
+    visibility: visible;
+}
+/* #endregion */
+
+/* #region -- PROGRESSBAR */
+.progressExpWrapper {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    height: max-content;
+    font-size: 1em;
+    border: none;
+    background-color: transparent;
+    box-shadow: 
+      inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+      inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow),
+      1px 1px 3px 1px var(--shadow-color);
+}
+  
+.progressExpForce,
+.progressExpVigour,
+.progressExpAgility,
+.progressExpWisdom
+ {
+    background-color: #f85273; 
+    box-shadow: 
+        inset 0em 0.2em 0.1em 0 var(--up-border-shadow), 
+        inset 0.2em 0em 0.1em 0 var(--up-border-shadow), 
+        inset 0em -0.2em 0.1em 0 var(--down-border-shadow),
+        inset -0.2em 0em 0.1em 0 #00000000;
+    height: 30px;
+    width: 0%;
+}
+
+.progressText {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/* #endregion */
+
+/* #region -- MEDIA */
+@media (max-width: 1000px){
+    body {
+        font-size: 0.6em;
+    }
 }
 /* #endregion */
