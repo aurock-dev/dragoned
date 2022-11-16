@@ -162,17 +162,22 @@ function resetDialogWindow(){
 
 $(document).mouseup(function(e) 
 {
-    var viewOption = $("#viewOptions");
-    var viewServer = $("#viewServer");
-    var buttonOption = $('#showViewOptions');
-    var buttonServer = $('#showViewServer');
+    let viewOption = $("#viewOptions");
+    let viewServer = $("#viewServer");
+    let buttonOption = $('#showViewOptions');
+    let buttonServer = $('#showViewServer');
+    let viewOptionButtons = $("#viewOptions button");
+    let viewServerButtons = $("#viewServer button");
 
     if (!buttonOption.is(e.target) && !buttonServer.is(e.target)) 
     {
         if (!viewOption.is(e.target) && !viewServer.is(e.target)) 
         {
-            viewOption.addClass('hidden');
-            viewServer.addClass('hidden');
+            if (!viewOptionButtons.is(e.target) && !viewServerButtons.is(e.target)) 
+            {
+                viewOption.addClass('hidden');
+                viewServer.addClass('hidden');
+            }
         }
     }
 });
