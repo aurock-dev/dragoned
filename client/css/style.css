@@ -111,7 +111,7 @@ body{
 }
 
 button{
-    width: max-content;
+    width: 100%;
     height: max-content;
     font-size: 1em;
     border: none;
@@ -175,7 +175,7 @@ input:focus{
 .noButton{
   display: inline-block;
   text-align: center;
-  width: max-content;
+  width: 100%;
   height: max-content;
   font-size: 1em;
   border: none;
@@ -316,22 +316,19 @@ input:focus{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 1em;
+  width: 100%;
   justify-items: center;
-}
-
-.trainingButtons button{
-  width: 15em;
 }
 
 .trainingExp{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  width: 100%;
   column-gap: 1em;
   justify-items: center;
 }
 
 .trainingExp div{
-  width: 15em;
   color: var(--text-color-reverse);
 }
 
@@ -380,10 +377,15 @@ input:focus{
 
 .forceStats, .vigourStats, .agilityStats, .wisdomStats{
   display: grid;
-  width: 15em;
+  width: 100%;
   justify-items: center;
 }
 /* #endregion */
+@media (max-width: 1000px){
+    body {
+        font-size: 0.6em;
+    }
+}
 
 .tooltip {
     text-decoration:none;
