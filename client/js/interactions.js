@@ -66,10 +66,10 @@ $(document).on('click', '#trainForce', () => {
         calcPlayerIlvl();
         
         setLSPlayer(player);
-        setLSGame(game);
         updatePlayerInformations();
     }
     updateGameInformations();
+    setLSGame(game);
 })
 
 $(document).on('click', '#trainVigour', () => {
@@ -83,10 +83,10 @@ $(document).on('click', '#trainVigour', () => {
         calcPlayerIlvl();
 
         setLSPlayer(player);
-        setLSGame(game);
         updatePlayerInformations();
     }
     updateGameInformations();
+    setLSGame(game);
 })
 
 $(document).on('click', '#trainAgility', () => {
@@ -100,10 +100,10 @@ $(document).on('click', '#trainAgility', () => {
         calcPlayerIlvl();
 
         setLSPlayer(player);
-        setLSGame(game);
         updatePlayerInformations();
     }
     updateGameInformations();
+    setLSGame(game);
 })
 
 $(document).on('click', '#trainWisdom', () => {
@@ -117,10 +117,10 @@ $(document).on('click', '#trainWisdom', () => {
         calcPlayerIlvl();
 
         setLSPlayer(player);
-        setLSGame(game);
         updatePlayerInformations();
     }
     updateGameInformations();
+    setLSGame(game);
 })
 
 function resetDialogWindow(){
