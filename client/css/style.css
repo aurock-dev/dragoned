@@ -88,6 +88,8 @@ select {
     --secondary-accent-color: #F45B69;
     --disabled-color: #686868;
 
+    --alert-color: #ff4949;
+
     --text-color: #ffffff;
     --text-color-reverse: #000000;
 
@@ -193,7 +195,7 @@ input:focus{
 /* #region -- NAVBAR */
 .navbar{
     display: grid;
-    grid-template-columns: 1fr max-content;
+    grid-template-columns: max-content 1fr;
     column-gap: 0.4em;
     padding: 0em 0.5em;
     height: 3em;
@@ -203,9 +205,14 @@ input:focus{
     box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 75%);
 }
 
-.navbarTitle button{
-    width: max-content;
+.toaster{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+    font-size: 1.2em;
 }
+
 /* #endregion */
 
 /* #region -- OPTIONS */
@@ -247,7 +254,7 @@ input:focus{
 .viewServer{
     display: grid;
     grid-auto-rows: max-content;
-    width: 260px;
+    width: 100%;
     height: max-content;
     padding: 10px;
     border: none;
@@ -268,17 +275,18 @@ input:focus{
 /* #endregion */
 
 /* #region -- GAME */
+.viewGameAndServer{
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    column-gap: 10px;
+    padding: 10px;
+}
+
 .viewGame{
     display: grid;
     grid-template-rows: 1fr 1fr;
     row-gap: 10px;
-}
-
-.viewGameAndServer{
-    display: grid;
-    grid-template-columns: 1fr max-content;
-    column-gap: 10px;
-    padding: 10px;
+    height: 300px;
 }
 
 .viewGameHeader{
@@ -468,10 +476,26 @@ input:focus{
 }
 /* #endregion */
 
+/* #region -- TOASTER */
+.toasterAlert{
+    color: var(--alert-color);
+    text-shadow: 
+        -1px -1px 0 var(--text-color-reverse), 
+        1px -1px 0 var(--text-color-reverse),
+        -1px 1px 0 var(--text-color-reverse), 
+        1px 1px 0 var(--text-color-reverse);
+}
+/* #endregion */
+
 /* #region -- MEDIA */
 @media (max-width: 1000px){
     body {
         font-size: 0.6em;
     }
+
+    .viewGameAndServer{
+        grid-template-columns: 1fr 220px;
+    }
+
 }
 /* #endregion */

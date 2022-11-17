@@ -24,9 +24,20 @@ function updatePlayerInformations(){
 
 function updateGameInformations(){
     document.querySelector('#neededExpForce').textContent = game.neededExpForce;
+    document.querySelector('#currentExpForce').textContent =  game.currentExpForce.toFixed(1);
+    $('.progressExpForce').width(calcPercentage(game.currentExpForce, game.neededExpForce)+'%');
+    
     document.querySelector('#neededExpVigour').textContent = game.neededExpVigour;
+    document.querySelector('#currentExpVigour').textContent =  game.currentExpVigour.toFixed(1);
+    $('.progressExpVigour').width(calcPercentage(game.currentExpVigour, game.neededExpVigour)+'%');
+    
     document.querySelector('#neededExpAgility').textContent = game.neededExpAgility;
+    document.querySelector('#currentExpAgility').textContent =  game.currentExpAgility.toFixed(1);
+    $('.progressExpAgility').width(calcPercentage(game.currentExpAgility, game.neededExpAgility)+'%');
+    
     document.querySelector('#neededExpWisdom').textContent = game.neededExpWisdom;
+    document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom.toFixed(1);
+    $('.progressExpWisdom').width(calcPercentage(game.currentExpWisdom, game.neededExpWisdom)+'%');
 
     document.querySelector('#stateFightRequests').textContent = game.stateFightRequests;
 }
