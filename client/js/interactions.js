@@ -60,7 +60,6 @@ $(document).on('click', '#trainForce', () => {
     if (game.currentExpForce >= game.neededExpForce){
         game.currentExpForce = 0;
         calcExpNeededForce();
-        updateGameInformations();
 
         player.force++;
         calcForceStats();
@@ -69,10 +68,8 @@ $(document).on('click', '#trainForce', () => {
         setLSPlayer(player);
         setLSGame(game);
         updatePlayerInformations();
-        updateGameInformations();
     }
-    document.querySelector('#currentExpForce').textContent =  game.currentExpForce;
-    $('.progressExpForce').width(calcPercentage(game.currentExpForce, game.neededExpForce)+'%');
+    updateGameInformations();
 })
 
 $(document).on('click', '#trainVigour', () => {
@@ -80,7 +77,6 @@ $(document).on('click', '#trainVigour', () => {
     if (game.currentExpVigour >= game.neededExpVigour){
         game.currentExpVigour = 0;
         calcExpNeededVigour();
-        updateGameInformations();
 
         player.vigour++;
         calcVigourStats();
@@ -89,10 +85,8 @@ $(document).on('click', '#trainVigour', () => {
         setLSPlayer(player);
         setLSGame(game);
         updatePlayerInformations();
-        updateGameInformations();
     }
-    document.querySelector('#currentExpVigour').textContent =  game.currentExpVigour;
-    $('.progressExpVigour').width(calcPercentage(game.currentExpVigour, game.neededExpVigour)+'%');
+    updateGameInformations();
 })
 
 $(document).on('click', '#trainAgility', () => {
@@ -100,7 +94,6 @@ $(document).on('click', '#trainAgility', () => {
     if (game.currentExpAgility >= game.neededExpAgility){
         game.currentExpAgility = 0;
         calcExpNeededAgility();
-        updateGameInformations();
 
         player.agility++;
         calcAgilityStats();
@@ -109,10 +102,8 @@ $(document).on('click', '#trainAgility', () => {
         setLSPlayer(player);
         setLSGame(game);
         updatePlayerInformations();
-        updateGameInformations();
     }
-    document.querySelector('#currentExpAgility').textContent =  game.currentExpAgility;
-    $('.progressExpAgility').width(calcPercentage(game.currentExpAgility, game.neededExpAgility)+'%');
+    updateGameInformations();
 })
 
 $(document).on('click', '#trainWisdom', () => {
@@ -120,7 +111,6 @@ $(document).on('click', '#trainWisdom', () => {
     if (game.currentExpWisdom >= game.neededExpWisdom){
         game.currentExpWisdom = 0;
         calcExpNeededWisdom();
-        updateGameInformations();
 
         player.wisdom++;
         calcWisdomStats();
@@ -129,10 +119,8 @@ $(document).on('click', '#trainWisdom', () => {
         setLSPlayer(player);
         setLSGame(game);
         updatePlayerInformations();
-        updateGameInformations();
     }
-    document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom;
-    $('.progressExpWisdom').width(calcPercentage(game.currentExpWisdom, game.neededExpWisdom)+'%');
+    updateGameInformations();
 })
 
 function resetDialogWindow(){
