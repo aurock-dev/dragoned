@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("updateClientName", (playerName) => {
-        connectedPlayerList[socket.id] = playerName;
+        connectedPlayerList[socket.id].playerName = playerName;
         io.emit("updateConnectedPlayerListForClients", connectedPlayerList);
     });
 
