@@ -42,70 +42,88 @@
 
         <div class="viewGameAndServer">
             <div class="viewGame" id="viewGame">
-                <div class="viewGameHeader">
-                    <div class="playerDragon">
+                <div class="viewPlayer">
+                    <div class="viewPlayerDragon">
                         <div><span id="currentPlayerName"></span></div>
                         <div>iLvl : <span id="playerIlvl">0</span></div>
                         <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
                     </div>
-                    <div class="viewTraining">
-                        <div class="trainingButtons">
-                            <button id="trainForce">Train FORCE</button>
-                            <button id="trainVigour">Train VIGOUR</button>
-                            <button id="trainAgility">Train AGILITY</button>
-                            <button id="trainWisdom">Train WISDOM</button>
+                    <div class="viewPlayerColumn">
+                        <button id="trainForce">Train FORCE</button>
+                        <div class="progressExpWrapper" id="expForce">
+                            <div class="progressText"><span id="currentExpForce">0</span> / <span id="neededExpForce">0</span></div>
+                            <div class="progressExpForce">
+                            </div>
                         </div>
-                        <div class="trainingExp">
-                            <div class="progressExpWrapper" id="expForce">
-                                <div class="progressText"><span id="currentExpForce">0</span> / <span id="neededExpForce">0</span></div>
-                                <div class="progressExpForce">
-                                </div>
+                    </div>
+                    <div class="viewPlayerColumn">
+                        <button id="trainVigour">Train VIGOUR</button>
+                        <div class="progressExpWrapper" id="expVigour">
+                            <div class="progressText"><span id="currentExpVigour">0</span> / <span id="neededExpVigour">0</span></div>
+                            <div class="progressExpVigour">
                             </div>
-                            <div class="progressExpWrapper" id="expVigour">
-                                <div class="progressText"><span id="currentExpVigour">0</span> / <span id="neededExpVigour">0</span></div>
-                                <div class="progressExpVigour">
-                                </div>
+                        </div>
+                    </div>
+                    <div class="viewPlayerColumn">
+                        <button id="trainAgility">Train AGILITY</button>
+                        <div class="progressExpWrapper" id="expAgility">
+                            <div class="progressText"><span id="currentExpAgility">0</span> / <span id="neededExpAgility">0</span></div>
+                            <div class="progressExpAgility">
                             </div>
-                            <div class="progressExpWrapper" id="expAgility">
-                                <div class="progressText"><span id="currentExpAgility">0</span> / <span id="neededExpAgility">0</span></div>
-                                <div class="progressExpAgility">
-                                </div>
-                            </div>
-                            <div class="progressExpWrapper" id="expWisdom">
-                                <div class="progressText"><span id="currentExpWisdom">0</span> / <span id="neededExpWisdom">0</span></div>
-                                <div class="progressExpWisdom">
-                                </div>
+                        </div>
+                    </div>
+                    <div class="viewPlayerColumn">
+                        <button id="trainWisdom">Train WISDOM</button>
+                        <div class="progressExpWrapper" id="expWisdom">
+                            <div class="progressText"><span id="currentExpWisdom">0</span> / <span id="neededExpWisdom">0</span></div>
+                            <div class="progressExpWisdom">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="statsList">
-                    <div class="generalStats">
+                    <div class="playerStatsColumn">
                         <div>HP: </div>
                         <div><span id="hpAmount">0</span>/<span id="hpMaxAmount">0</span></div>
                         <div>MP:</div>
                         <div><span id="mpAmount">0</span>/<span id="mpMaxAmount">0</span></div>
                     </div>
-                    <div class="otherStats">
-                        <div class="forceStats">
-                            <div>FORCE: <span id="forceAmount">0</span></div>
-                            <div>Attack: <span id="attackAmount">0</span></div>
-                            <div>Critical Damages: <span id="criticalDamagesAmount">0</span></div>
+                    <div class="playerStatsColumn">
+                        <div>FORCE: <span id="forceAmount">0</span></div>
+                        <div>Attack: <span id="attackAmount">0</span></div>
+                        <div>Critical Damages: <span id="criticalDamagesAmount">0</span></div>
+                    </div>
+                    <div class="playerStatsColumn">
+                        <div>VIGOUR: <span id="vigourAmount">0</span></div>
+                        <div>Defense: <span id="defenseAmount">0</span></div>
+                        <div>HP Bonus: <span id="hpBonusAmount">0</span></div>
+                    </div>
+                    <div class="playerStatsColumn">
+                        <div>AGILITY: <span id="agilityAmount">0</span></div>
+                        <div>Initiative: <span id="initiativeAmount">0</span></div>
+                        <div>Critical Chances: <span id="criticalChancesAmount">0</span></div>
+                    </div>
+                    <div class="playerStatsColumn">
+                        <div>WISDOM: <span id="wisdomAmount">0</span></div>
+                        <div>Exp Bonus: <span id="expBonusAmount">0</span></div>
+                        <div>MP Bonus: <span id="mpBonusAmount">0</span></div>
+                    </div>
+                </div>
+                <div class="viewJobs">
+                    <div class="viewJobsColumn">
+                        <button id="woodcutting">WOODCUTTING</button>
+                        <div class="progressJobWrapper" id="expWoodcutting">
+                            <div class="progressText"><span id="currentJobWoodcutting">0</span> / <span id="neededJobWoodcutting">0</span></div>
+                            <div class="progressJob woodcutting">
+                            </div>
                         </div>
-                        <div class="vigourStats">
-                            <div>VIGOUR: <span id="vigourAmount">0</span></div>
-                            <div>Defense: <span id="defenseAmount">0</span></div>
-                            <div>HP Bonus: <span id="hpBonusAmount">0</span></div>
-                        </div>
-                        <div class="agilityStats">
-                            <div>AGILITY: <span id="agilityAmount">0</span></div>
-                            <div>Initiative: <span id="initiativeAmount">0</span></div>
-                            <div>Critical Chances: <span id="criticalChancesAmount">0</span></div>
-                        </div>
-                        <div class="wisdomStats">
-                            <div>WISDOM: <span id="wisdomAmount">0</span></div>
-                            <div>Exp Bonus: <span id="expBonusAmount">0</span></div>
-                            <div>MP Bonus: <span id="mpBonusAmount">0</span></div>
+                    </div>
+                    <div class="viewJobsColumn">
+                        <button id="mining">MINING</button>
+                        <div class="progressJobWrapper" id="expMining">
+                            <div class="progressText"><span id="currentJobMining">0</span> / <span id="neededJobMining">0</span></div>
+                            <div class="progressJob mining">
+                            </div>
                         </div>
                     </div>
                 </div>

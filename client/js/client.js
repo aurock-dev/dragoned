@@ -10,6 +10,7 @@ socket.on('connect', () => {
         socket.emit('playerConnection', player);
         updatePlayerInformations();
         updateGameInformations();
+        updateJobsInformations();
     }
 })
 

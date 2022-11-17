@@ -137,6 +137,22 @@ $(document).on('click', '#trainWisdom', () => {
     setLSGame(game);
 })
 
+$(document).on('click', '#woodcutting', () => {
+    jobs.currentJobWoodcutting += 1;
+    if (jobs.currentJobWoodcutting >= jobs.neededJobWoodcutting){
+        jobs.currentJobWoodcutting = 0;
+    }
+    updateJobsInformations();
+})
+
+$(document).on('click', '#mining', () => {
+    jobs.currentJobMining += 1;
+    if (jobs.currentJobMining >= jobs.neededJobMining){
+        jobs.currentJobMining = 0;
+    }
+    updateJobsInformations();
+})
+
 function resetDialogWindow(){
     dialogFight.close();
     $(document).off('click', '#acceptFight');

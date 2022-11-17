@@ -42,6 +42,16 @@ function updateGameInformations(){
     document.querySelector('#stateFightRequests').textContent = game.stateFightRequests;
 }
 
+function updateJobsInformations(){
+    document.querySelector('#neededJobWoodcutting').textContent = jobs.neededJobWoodcutting;
+    document.querySelector('#currentJobWoodcutting').textContent =  jobs.currentJobWoodcutting.toFixed(1);
+    $('.woodcutting').width(calcPercentage(jobs.currentJobWoodcutting, jobs.neededJobWoodcutting)+'%');
+
+    document.querySelector('#neededJobMining').textContent = jobs.neededJobMining;
+    document.querySelector('#currentJobMining').textContent =  jobs.currentJobMining.toFixed(1);
+    $('.mining').width(calcPercentage(jobs.currentJobMining, jobs.neededJobMining)+'%');
+}
+
 function updateAllStats(){
     calcForceStats();
     calcVigourStats();

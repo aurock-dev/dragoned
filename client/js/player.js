@@ -31,3 +31,10 @@ var game = {
     neededExpWisdom: 100,
     stateFightRequests: 'Yes',
 }
+
+var jobs = {
+    currentJobWoodcutting: 0,
+    currentJobMining: 0,
+    neededJobWoodcutting: 100,
+    neededJobMining: 100,
+}

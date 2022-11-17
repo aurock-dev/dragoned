@@ -284,92 +284,55 @@ input:focus{
 
 .viewGame{
     display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 10px;
+    /* height: 300px; */
+}
+
+.viewPlayer{
+    display: grid;
+    grid-template-columns: 150px repeat(4, 1fr);
+    column-gap: 10px;
+    height: 100%;
+    justify-items: center;
+    align-items: center;
+    border: none;
+    background-color: var(--primary-color-transparent);
+    backdrop-filter: blur(5px);
+    box-shadow: 
+      inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+      inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+      0px 3px 5px 0px var(--shadow-color);
+    padding: 15px;
+}
+
+.viewPlayerDragon{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+}
+  
+.playerDragonImg{
+    width: 75px;
+    height: 65px;
+}
+
+.viewPlayerColumn{
+    display: grid;
     grid-template-rows: 1fr 1fr;
     row-gap: 10px;
-    height: 300px;
-}
-
-.viewGameHeader{
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  column-gap: 10px;
-  height: 100%;
-  justify-items: center;
-  align-items: center;
-}
-
-.playerDragon{
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  width: 150px;
-  height: 100%;
-  background-color: var(--primary-color-transparent);
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-    0px 3px 5px 0px var(--shadow-color);
-  padding: 3px;
-}
-
-.playerDragonImg{
-  width: 75px;
-  height: 65px;
-}
-
-.viewTraining{
-  display: grid;
-  grid-template-rows: max-content max-content;
-  row-gap: 0.5em;
-  width: 100%;
-  height: 100%;
-  justify-items: center;
-  align-content: center;
-  padding: 10px;
-  background-color: var(--primary-color-transparent);
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-    0px 3px 5px 0px var(--shadow-color);
-}
-
-.trainingButtons{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 1em;
-  width: 100%;
-  justify-items: center;
-}
-
-.trainingExp{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  width: 100%;
-  column-gap: 1em;
-  justify-items: center;
-}
-
-.trainingExp div{
-  color: var(--text-color-reverse);
+    width: 100%;
 }
 
 .statsList{
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 150px repeat(4, 1fr);
   column-gap: 10px;
   height: 100%;
   justify-items: center;
   align-items: center;
-}
-
-.generalStats{
-  display: grid;
-  width: 150px;
-  height: 100%;
-  justify-items: center;
-  align-items: center;
   border: none;
   background-color: var(--primary-color-transparent);
   backdrop-filter: blur(5px);
@@ -377,30 +340,37 @@ input:focus{
     inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
     inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
     0px 3px 5px 0px var(--shadow-color);
-  padding: 10px;
+  padding: 15px;
 }
 
-.otherStats{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 1em;
-  width: 100%;
-  height: 100%;
-  justify-items: center;
-  border: none;
-  background-color: var(--primary-color-transparent);
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-    0px 3px 5px 0px var(--shadow-color);
-  padding: 10px;
-}
-
-.forceStats, .vigourStats, .agilityStats, .wisdomStats{
+.playerStatsColumn{
   display: grid;
   width: 100%;
   justify-items: center;
+}
+
+.viewJobs{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    height: 100%;
+    justify-items: center;
+    align-items: center;
+    border: none;
+    background-color: var(--primary-color-transparent);
+    backdrop-filter: blur(5px);
+    box-shadow: 
+      inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+      inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+      0px 3px 5px 0px var(--shadow-color);
+    padding: 15px;
+}
+
+.viewJobsColumn{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 10px;
+    width: 100%;
 }
 /* #endregion */
 
@@ -436,7 +406,8 @@ input:focus{
 /* #endregion */
 
 /* #region -- PROGRESSBAR */
-.progressExpWrapper {
+.progressExpWrapper,
+.progressJobWrapper {
     position: relative;
     display: inline-block;
     text-align: center;
@@ -463,6 +434,25 @@ input:focus{
         inset 0em -0.2em 0.1em 0 var(--down-border-shadow),
         inset -0.2em 0em 0.1em 0 #00000000;
     height: 30px;
+    width: 0%;
+}
+
+.progressBar {
+    box-shadow: 
+        inset 0em 0.2em 0.1em 0 var(--up-border-shadow), 
+        inset 0.2em 0em 0.1em 0 var(--up-border-shadow), 
+        inset 0em -0.2em 0.1em 0 var(--down-border-shadow),
+        inset -0.2em 0em 0.1em 0 #00000000;
+    height: 30px;
+}
+
+.woodcutting{
+    background-color: #9c674e; 
+    width: 0%;
+}
+
+.mining{
+    background-color: #888787; 
     width: 0%;
 }
 
