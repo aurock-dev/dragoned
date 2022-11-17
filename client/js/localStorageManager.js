@@ -12,9 +12,10 @@ function firstConnection(){
             setLSGame(game);
             dialogChangeName.close();
             window.location.reload();
+            toaster('Name Validated!');
         }
         else{
-            document.querySelector('#errorMessage').classList.remove('hidden');
+            toaster('Name can contains 3 to 12 letters only!', 'alert');
         }
     })
 }

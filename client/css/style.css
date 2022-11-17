@@ -88,6 +88,8 @@ select {
     --secondary-accent-color: #F45B69;
     --disabled-color: #686868;
 
+    --alert-color: #ff4949;
+
     --text-color: #ffffff;
     --text-color-reverse: #000000;
 
@@ -193,7 +195,7 @@ input:focus{
 /* #region -- NAVBAR */
 .navbar{
     display: grid;
-    grid-template-columns: 1fr max-content;
+    grid-template-columns: max-content 1fr;
     column-gap: 0.4em;
     padding: 0em 0.5em;
     height: 3em;
@@ -203,9 +205,14 @@ input:focus{
     box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 75%);
 }
 
-.navbarTitle button{
-    width: max-content;
+.toaster{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+    font-size: 1.2em;
 }
+
 /* #endregion */
 
 /* #region -- OPTIONS */
@@ -466,6 +473,17 @@ input:focus{
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+}
+/* #endregion */
+
+/* #region -- TOASTER */
+.toasterAlert{
+    color: var(--alert-color);
+    text-shadow: 
+        -1px -1px 0 var(--text-color-reverse), 
+        1px -1px 0 var(--text-color-reverse),
+        -1px 1px 0 var(--text-color-reverse), 
+        1px 1px 0 var(--text-color-reverse);
 }
 /* #endregion */
 

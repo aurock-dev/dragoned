@@ -1,16 +1,27 @@
 //#region -- DIALOG CHANGE NAME
 $(document).on('click', '#validateChangeName', function(){
     let playerName = document.querySelector('#inputChangeName').value;
-    if (checkInput(playerName)){        
-        player.name = playerName;
-        setLSPlayer(player);
-        socket.emit('updateClientName', player.name);
-        document.querySelector('#inputChangeName').value = player.name;
-        document.querySelector('#currentPlayerName').textContent = player.name;
+    if (checkInput(playerName)){
+        if (playerName !== player.name){
+            player.name = playerName;
+            setLSPlayer(player);
+            socket.emit('updateClientName', player.name);
+            document.querySelector('#inputChangeName').value = player.name;
+            document.querySelector('#currentPlayerName').textContent = player.name;
+            document.querySelector('#validateChangeName').disabled = true;
+            toaster('Name changed!');
+        }
+        else{
+            toaster('Name must be different!', 'alert');
+        }
     }
     else{
-        document.querySelector('#optionErrorMessage').classList.remove('hidden');
+        toaster('Name can contains 3 to 12 letters only!', 'alert');
     }
+})
+
+$(document).on('input', '#inputChangeName', function(){
+    document.querySelector('#validateChangeName').disabled = false;
 })
 //#endregion
 
@@ -34,6 +45,7 @@ $(document).on('click', '#showViewOptions', function(){
 $(document).on('click', '#resetLocalStorage', function(){
     resetLocalStorage();
     window.location.reload();
+    toaster('Local storage has been reset!', 'alert');
 })
 
 $(document).on('click', '#switchFightRequests', () => {
@@ -43,6 +55,7 @@ $(document).on('click', '#switchFightRequests', () => {
             button.disabled = true;
         })
         socket.emit('disableFight');
+        toaster('Fights has been disallow!');
     }
     else{
         game.stateFightRequests = 'Yes';
@@ -50,6 +63,7 @@ $(document).on('click', '#switchFightRequests', () => {
             button.disabled = false;
         })
         socket.emit('enableFight');
+        toaster('Fights has been allow!');
     }
     updateGameInformations();
 })
