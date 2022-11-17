@@ -1,16 +1,27 @@
 //#region -- DIALOG CHANGE NAME
 $(document).on('click', '#validateChangeName', function(){
     let playerName = document.querySelector('#inputChangeName').value;
-    if (checkInput(playerName)){        
-        player.name = playerName;
-        setLSPlayer(player);
-        socket.emit('updateClientName', player.name);
-        document.querySelector('#inputChangeName').value = player.name;
-        document.querySelector('#currentPlayerName').textContent = player.name;
+    if (checkInput(playerName)){
+        if (playerName !== player.name){
+            player.name = playerName;
+            setLSPlayer(player);
+            socket.emit('updateClientName', player.name);
+            document.querySelector('#inputChangeName').value = player.name;
+            document.querySelector('#currentPlayerName').textContent = player.name;
+            document.querySelector('#validateChangeName').disabled = true;
+            toaster('Name changed!');
+        }
+        else{
+            toaster('Name must be different!', 'alert');
+        }
     }
     else{
-        document.querySelector('#optionErrorMessage').classList.remove('hidden');
+        toaster('Name can contains 3 to 12 letters only!', 'alert');
     }
+})
+
+$(document).on('input', '#inputChangeName', function(){
+    document.querySelector('#validateChangeName').disabled = false;
 })
 //#endregion
 
@@ -34,6 +45,7 @@ $(document).on('click', '#showViewOptions', function(){
 $(document).on('click', '#resetLocalStorage', function(){
     resetLocalStorage();
     window.location.reload();
+    toaster('Local storage has been reset!', 'alert');
 })
 
 $(document).on('click', '#switchFightRequests', () => {
@@ -43,6 +55,7 @@ $(document).on('click', '#switchFightRequests', () => {
             button.disabled = true;
         })
         socket.emit('disableFight');
+        toaster('Fights has been disallow!');
     }
     else{
         game.stateFightRequests = 'Yes';
@@ -50,6 +63,7 @@ $(document).on('click', '#switchFightRequests', () => {
             button.disabled = false;
         })
         socket.emit('enableFight');
+        toaster('Fights has been allow!');
     }
     updateGameInformations();
 })
@@ -60,19 +74,16 @@ $(document).on('click', '#trainForce', () => {
     if (game.currentExpForce >= game.neededExpForce){
         game.currentExpForce = 0;
         calcExpNeededForce();
-        updateGameInformations();
 
         player.force++;
         calcForceStats();
         calcPlayerIlvl();
         
         setLSPlayer(player);
-        setLSGame(game);
         updatePlayerInformations();
-        updateGameInformations();
     }
-    document.querySelector('#currentExpForce').textContent =  game.currentExpForce;
-    $('.progressExpForce').width(calcPercentage(game.currentExpForce, game.neededExpForce)+'%');
+    updateGameInformations();
+    setLSGame(game);
 })
 
 $(document).on('click', '#trainVigour', () => {
@@ -80,19 +91,16 @@ $(document).on('click', '#trainVigour', () => {
     if (game.currentExpVigour >= game.neededExpVigour){
         game.currentExpVigour = 0;
         calcExpNeededVigour();
-        updateGameInformations();
 
         player.vigour++;
         calcVigourStats();
         calcPlayerIlvl();
 
         setLSPlayer(player);
-        setLSGame(game);
         updatePlayerInformations();
-        updateGameInformations();
     }
-    document.querySelector('#currentExpVigour').textContent =  game.currentExpVigour;
-    $('.progressExpVigour').width(calcPercentage(game.currentExpVigour, game.neededExpVigour)+'%');
+    updateGameInformations();
+    setLSGame(game);
 })
 
 $(document).on('click', '#trainAgility', () => {
@@ -100,19 +108,16 @@ $(document).on('click', '#trainAgility', () => {
     if (game.currentExpAgility >= game.neededExpAgility){
         game.currentExpAgility = 0;
         calcExpNeededAgility();
-        updateGameInformations();
 
         player.agility++;
         calcAgilityStats();
         calcPlayerIlvl();
 
         setLSPlayer(player);
-        setLSGame(game);
         updatePlayerInformations();
-        updateGameInformations();
     }
-    document.querySelector('#currentExpAgility').textContent =  game.currentExpAgility;
-    $('.progressExpAgility').width(calcPercentage(game.currentExpAgility, game.neededExpAgility)+'%');
+    updateGameInformations();
+    setLSGame(game);
 })
 
 $(document).on('click', '#trainWisdom', () => {
@@ -120,19 +125,16 @@ $(document).on('click', '#trainWisdom', () => {
     if (game.currentExpWisdom >= game.neededExpWisdom){
         game.currentExpWisdom = 0;
         calcExpNeededWisdom();
-        updateGameInformations();
 
         player.wisdom++;
         calcWisdomStats();
         calcPlayerIlvl();
 
         setLSPlayer(player);
-        setLSGame(game);
         updatePlayerInformations();
-        updateGameInformations();
     }
-    document.querySelector('#currentExpWisdom').textContent =  game.currentExpWisdom;
-    $('.progressExpWisdom').width(calcPercentage(game.currentExpWisdom, game.neededExpWisdom)+'%');
+    updateGameInformations();
+    setLSGame(game);
 })
 
 function resetDialogWindow(){
