@@ -43,13 +43,17 @@ function updateGameInformations(){
 }
 
 function updateJobsInformations(){
-    document.querySelector('#neededJobWoodcutting').textContent = jobs.neededJobWoodcutting;
-    document.querySelector('#currentJobWoodcutting').textContent =  jobs.currentJobWoodcutting.toFixed(1);
-    $('.woodcutting').width(calcPercentage(jobs.currentJobWoodcutting, jobs.neededJobWoodcutting)+'%');
+    document.querySelector('#neededExpWoodcutting').textContent = jobs.woodcutting.neededExp;
+    document.querySelector('#currentExpWoodcutting').textContent =  jobs.woodcutting.currentExp.toFixed(1);
+    $('.woodcutting').width(calcPercentage(jobs.woodcutting.currentExp, jobs.woodcutting.neededExp)+'%');
+    document.querySelector('#woodcuttingLvl').textContent = jobs.woodcutting.lvl;
+    document.querySelector('#woodcuttingLootChanceAmout').textContent = jobs.woodcutting.lootChance + '%';
 
-    document.querySelector('#neededJobMining').textContent = jobs.neededJobMining;
-    document.querySelector('#currentJobMining').textContent =  jobs.currentJobMining.toFixed(1);
-    $('.mining').width(calcPercentage(jobs.currentJobMining, jobs.neededJobMining)+'%');
+    document.querySelector('#neededExpMining').textContent = jobs.mining.neededExp;
+    document.querySelector('#currentExpMining').textContent =  jobs.mining.currentExp.toFixed(1);
+    $('.mining').width(calcPercentage(jobs.mining.currentExp, jobs.mining.neededExp)+'%');
+    document.querySelector('#miningLvl').textContent = jobs.mining.lvl;
+    document.querySelector('#miningLootChanceAmout').textContent = jobs.mining.lootChance + '%';
 }
 
 function updateAllStats(){
@@ -104,6 +108,6 @@ function calcPlayerIlvl(){
     socket.emit('playerUpdate', player);
 }
 
-function calcWoodcuttingLoot(){
+// function calcWoodcuttingLoot(){
     
-}
+// }

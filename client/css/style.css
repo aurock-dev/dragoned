@@ -272,6 +272,7 @@ input:focus{
 
     /* #region -- LEFTPANEL */
     .leftPanel{
+        z-index: 1;
         display: grid;
         grid-template-rows: max-content max-content;
         row-gap: 10px;
@@ -311,7 +312,6 @@ input:focus{
 
     /* #region -- RIGHTPANEL */
     .viewGame{
-        z-index: -1;
         display: grid;
         grid-template-rows: repeat(var(--viewgame-rows), max-content);
         row-gap: 10px;
@@ -332,7 +332,7 @@ input:focus{
         row-gap: 10px;
         width: 100%;
     }
-    
+
     .defaultStats{
         display: grid;
         width: 100%;
@@ -397,7 +397,6 @@ input:focus{
 
     /* Position the tooltip */
     position: absolute;
-    z-index: 2;
     top: 0px;
     left: 100%;
 }

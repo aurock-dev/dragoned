@@ -33,10 +33,18 @@ var game = {
 }
 
 var jobs = {
-    currentJobWoodcutting: 0,
-    currentJobMining: 0,
-    neededJobWoodcutting: 100,
-    neededJobMining: 100,
+    woodcutting: {
+        lvl: 0,
+        currentExp: 0,
+        neededExp: 100,
+        lootChance: 50,
+    },
+    mining: {
+        lvl: 0,
+        currentExp: 0,
+        neededExp: 100,
+        lootChance: 50,
+    }
 }
 
 var ressources = {}

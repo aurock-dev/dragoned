@@ -138,18 +138,19 @@ $(document).on('click', '#trainWisdom', () => {
 })
 
 $(document).on('click', '#woodcutting', () => {
-    jobs.currentJobWoodcutting += 1;
-    if (jobs.currentJobWoodcutting >= jobs.neededJobWoodcutting){
-        jobs.currentJobWoodcutting = 0;
+    jobs.woodcutting.currentExp += 1;
+    if (jobs.woodcutting.currentExp >= jobs.woodcutting.neededExp){
+        jobs.woodcutting.currentExp = 0;
+        jobs.woodcutting.lvl++;
     }
     updateJobsInformations();
-    calcWoodcuttingLoot();
 })
 
 $(document).on('click', '#mining', () => {
-    jobs.currentJobMining += 1;
-    if (jobs.currentJobMining >= jobs.neededJobMining){
-        jobs.currentJobMining = 0;
+    jobs.mining.currentExp += 1;
+    if (jobs.mining.currentExp >= jobs.mining.neededExp){
+        jobs.mining.currentExp = 0;
+        jobs.mining.lvl++;
     }
     updateJobsInformations();
 })
