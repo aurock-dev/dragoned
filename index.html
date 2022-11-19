@@ -44,13 +44,13 @@
             <div class="leftPanel">
                 <div class="viewPlayerDragon">
                     <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
-                    <div class="playerDragonInfos">
+                    <div class="playerDragonInfos glass">
                         <div><span id="currentPlayerName"></span></div>
                         <div>iLvl: <span id="playerIlvl">0</span></div>
                         <div>Jobs Lvl: <span id="playerJobsLvl">0</span></div>
                     </div>
                 </div>
-                <div class="viewServer" id="viewServer">
+                <div class="viewServer glass" id="viewServer">
                     <div><span id="numberOfPlayer"></span> Connected players</div>
                     <hr>
                     <div id="connectedPlayerList" class="connectedPlayerList">
@@ -59,8 +59,8 @@
                 </div>
             </div>
             <div class="viewGame" id="viewGame">
-                <div class="viewPlayer">
-                    <div class="viewPlayerColumn">
+                <div class="actionZone fourColumn glass">
+                    <div class="actionColumn">
                         <button id="trainForce">Train FORCE</button>
                         <div class="progressExpWrapper" id="expForce">
                             <div class="progressText"><span id="currentExpForce">0</span> / <span id="neededExpForce">0</span></div>
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="viewPlayerColumn">
+                    <div class="actionColumn">
                         <button id="trainVigour">Train VIGOUR</button>
                         <div class="progressExpWrapper" id="expVigour">
                             <div class="progressText"><span id="currentExpVigour">0</span> / <span id="neededExpVigour">0</span></div>
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="viewPlayerColumn">
+                    <div class="actionColumn">
                         <button id="trainAgility">Train AGILITY</button>
                         <div class="progressExpWrapper" id="expAgility">
                             <div class="progressText"><span id="currentExpAgility">0</span> / <span id="neededExpAgility">0</span></div>
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="viewPlayerColumn">
+                    <div class="actionColumn">
                         <button id="trainWisdom">Train WISDOM</button>
                         <div class="progressExpWrapper" id="expWisdom">
                             <div class="progressText"><span id="currentExpWisdom">0</span> / <span id="neededExpWisdom">0</span></div>
@@ -93,12 +93,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="fightStats">
+                <div class="fightStats glass">
                     <div class="HPMPStats">
                         <div>HP: <span id="hpAmount">0</span>/<span id="hpMaxAmount">0</span></div>
                         <div>MP: <span id="mpAmount">0</span>/<span id="mpMaxAmount">0</span></div>
                     </div>
-                    <div class="otherStats">
+                    <div class="defaultStats fourColumn">
                         <div class="statsColumn">
                             <div>FORCE: <span id="forceAmount">0</span></div>
                             <div>Attack: <span id="attackAmount">0</span></div>
@@ -121,8 +121,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="viewJobs">
-                    <div class="viewJobsColumn">
+                <div class="actionZone twoColumn glass">
+                    <div class="actionColumn">
                         <button id="woodcutting">WOODCUTTING</button>
                         <div class="progressJobWrapper" id="expWoodcutting">
                             <div class="progressText"><span id="currentJobWoodcutting">0</span> / <span id="neededJobWoodcutting">0</span></div>
@@ -130,7 +130,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="viewJobsColumn">
+                    <div class="actionColumn">
                         <button id="mining">MINING</button>
                         <div class="progressJobWrapper" id="expMining">
                             <div class="progressText"><span id="currentJobMining">0</span> / <span id="neededJobMining">0</span></div>
@@ -139,12 +139,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="statsList jobs">
-                    <div class="playerStatsColumn">
+                <div class="defaultStats twoColumn glass">
+                    <div class="statsColumn">
                         <div>WOODCUTTING Lvl: <span id="woodcuttingLvl">0</span></div>
                         <div>Loot Chance: <span id="woodcuttingLootChanceAmout">0</span></div>
                     </div>
-                    <div class="playerStatsColumn">
+                    <div class="statsColumn">
                         <div>MINING Lvl: <span id="miningLvl">0</span></div>
                         <div>Loot Chance: <span id="miningLootChanceAmout">0</span></div>
                     </div>
