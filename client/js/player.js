@@ -38,3 +38,5 @@ var jobs = {
     neededJobWoodcutting: 100,
     neededJobMining: 100,
 }
+
+var ressources = {}

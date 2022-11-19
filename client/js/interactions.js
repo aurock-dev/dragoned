@@ -143,6 +143,7 @@ $(document).on('click', '#woodcutting', () => {
         jobs.currentJobWoodcutting = 0;
     }
     updateJobsInformations();
+    calcWoodcuttingLoot();
 })
 
 $(document).on('click', '#mining', () => {

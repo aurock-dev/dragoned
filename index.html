@@ -41,13 +41,25 @@
         </dialog>
 
         <div class="viewGameAndServer">
+            <div class="leftPanel">
+                <div class="viewPlayerDragon">
+                    <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
+                    <div class="playerDragonInfos">
+                        <div><span id="currentPlayerName"></span></div>
+                        <div>iLvl: <span id="playerIlvl">0</span></div>
+                        <div>Jobs Lvl: <span id="playerJobsLvl">0</span></div>
+                    </div>
+                </div>
+                <div class="viewServer" id="viewServer">
+                    <div><span id="numberOfPlayer"></span> Connected players</div>
+                    <hr>
+                    <div id="connectedPlayerList" class="connectedPlayerList">
+                        <div class="noButton" id="playerButton"></div>
+                    </div>
+                </div>
+            </div>
             <div class="viewGame" id="viewGame">
                 <div class="viewPlayer">
-                    <div class="viewPlayerDragon">
-                        <div><span id="currentPlayerName"></span></div>
-                        <div>iLvl : <span id="playerIlvl">0</span></div>
-                        <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
-                    </div>
                     <div class="viewPlayerColumn">
                         <button id="trainForce">Train FORCE</button>
                         <div class="progressExpWrapper" id="expForce">
@@ -127,12 +139,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="viewServer" id="viewServer">
-                <div><span id="numberOfPlayer"></span> Connected players</div>
-                <hr>
-                <div id="connectedPlayerList" class="connectedPlayerList">
-                    <div class="noButton" id="playerButton"></div>
+                <div class="statsList jobs">
+                    <div class="playerStatsColumn">
+                        <div>WOODCUTTING Lvl: <span id="woodcuttingLvl">0</span></div>
+                        <div>Loot Chance: <span id="woodcuttingLootChanceAmout">0</span></div>
+                    </div>
+                    <div class="playerStatsColumn">
+                        <div>MINING Lvl: <span id="miningLvl">0</span></div>
+                        <div>Loot Chance: <span id="miningLootChanceAmout">0</span></div>
+                    </div>
                 </div>
             </div>
         </div>

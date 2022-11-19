@@ -96,6 +96,8 @@ select {
     --up-border-shadow: rgba(255, 255, 255, 0.4);
     --down-border-shadow: rgba(0, 0, 0, 0.4);
     --shadow-color: #00000077;
+
+    --viewgame-rows: 4;
 }
 /* #endregion */
 
@@ -250,128 +252,146 @@ input:focus{
 }
 /* #endregion */
 
-/* #region -- SERVER */
-.viewServer{
-    display: grid;
-    grid-auto-rows: max-content;
-    width: 100%;
-    height: max-content;
-    padding: 10px;
-    border: none;
-    color: var(--text-color-reverse);
-    background-color: var(--primary-color-transparent);
-    backdrop-filter: blur(5px);
-    box-shadow: 
-      inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-      inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-      0px 3px 5px 0px var(--shadow-color);
-}
-
-.connectedPlayerList{
-  display: grid;
-  grid-auto-rows: max-content;
-  row-gap: 5px;
-}
-/* #endregion */
-
 /* #region -- GAME */
 .viewGameAndServer{
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 250px 1fr;
     column-gap: 10px;
     padding: 10px;
 }
 
-.viewGame{
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    row-gap: 10px;
-    /* height: 300px; */
-}
+    /* #region -- LEFTPANEL */
+    .leftPanel{
+        display: grid;
+        grid-template-rows: max-content max-content;
+        row-gap: 10px;
+    }
 
-.viewPlayer{
-    display: grid;
-    grid-template-columns: 150px repeat(4, 1fr);
-    column-gap: 10px;
-    height: 100%;
-    justify-items: center;
-    align-items: center;
-    border: none;
-    background-color: var(--primary-color-transparent);
-    backdrop-filter: blur(5px);
-    box-shadow: 
-      inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-      inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-      0px 3px 5px 0px var(--shadow-color);
-    padding: 15px;
-}
+    .viewPlayerDragon{
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        column-gap: 10px;
+    }
+    
+    .playerDragonImg{
+        width: 80px;
+        height: 80px;
+    }
 
-.viewPlayerDragon{
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    width: 150px;
-    height: 100%;
-}
-  
-.playerDragonImg{
-    width: 75px;
-    height: 65px;
-}
+    .playerDragonInfos{
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        border: none;
+        background-color: var(--primary-color-transparent);
+        backdrop-filter: blur(5px);
+        box-shadow: 
+            inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+            inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+            0px 3px 5px 0px var(--shadow-color);
+    }
 
-.viewPlayerColumn{
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    row-gap: 10px;
-    width: 100%;
-}
+    .viewServer{
+        display: grid;
+        grid-auto-rows: max-content;
+        width: 100%;
+        height: max-content;
+        padding: 10px;
+        border: none;
+        background-color: var(--primary-color-transparent);
+        backdrop-filter: blur(5px);
+        box-shadow: 
+        inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+        inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+        0px 3px 5px 0px var(--shadow-color);
+    }
 
-.statsList{
-  display: grid;
-  grid-template-columns: 150px repeat(4, 1fr);
-  column-gap: 10px;
-  height: 100%;
-  justify-items: center;
-  align-items: center;
-  border: none;
-  background-color: var(--primary-color-transparent);
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-    0px 3px 5px 0px var(--shadow-color);
-  padding: 15px;
-}
+    .connectedPlayerList{
+        display: grid;
+        grid-auto-rows: max-content;
+        row-gap: 5px;
+    }
+    /* #endregion */
 
-.playerStatsColumn{
-  display: grid;
-  width: 100%;
-  justify-items: center;
-}
+    /* #region -- RIGHTPANEL */
+    .viewGame{
+        z-index: -1;
+        display: grid;
+        grid-template-rows: repeat(var(--viewgame-rows), max-content);
+        row-gap: 10px;
+    }
 
-.viewJobs{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 10px;
-    height: 100%;
-    justify-items: center;
-    align-items: center;
-    border: none;
-    background-color: var(--primary-color-transparent);
-    backdrop-filter: blur(5px);
-    box-shadow: 
-      inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-      inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-      0px 3px 5px 0px var(--shadow-color);
-    padding: 15px;
-}
+    .viewPlayer{
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        column-gap: 10px;
+        height: 100%;
+        justify-items: center;
+        align-items: center;
+        border: none;
+        background-color: var(--primary-color-transparent);
+        backdrop-filter: blur(5px);
+        box-shadow: 
+        inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+        inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+        0px 3px 5px 0px var(--shadow-color);
+        padding: 15px;
+    }
 
-.viewJobsColumn{
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    row-gap: 10px;
-    width: 100%;
-}
+    .viewPlayerColumn{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 10px;
+        width: 100%;
+    }
+
+    .statsList{
+        display: grid;
+        grid-template-columns: 150px repeat(4, 1fr);
+        column-gap: 10px;
+        height: 100%;
+        justify-items: center;
+        align-items: center;
+        border: none;
+        background-color: var(--primary-color-transparent);
+        backdrop-filter: blur(5px);
+        box-shadow: 
+            inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+            inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+            0px 3px 5px 0px var(--shadow-color);
+        padding: 15px;
+    }
+
+    .playerStatsColumn{
+        display: grid;
+        width: 100%;
+        justify-items: center;
+    }
+
+    .viewJobs{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 10px;
+        height: 100%;
+        justify-items: center;
+        align-items: center;
+        border: none;
+        background-color: var(--primary-color-transparent);
+        backdrop-filter: blur(5px);
+        box-shadow: 
+        inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+        inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+        0px 3px 5px 0px var(--shadow-color);
+        padding: 15px;
+    }
+
+    .viewJobsColumn{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 10px;
+        width: 100%;
+    }
+    /* #endregion */
 /* #endregion */
 
 /* #region -- TOOLTIPS */
@@ -395,9 +415,9 @@ input:focus{
 
     /* Position the tooltip */
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     top: 0px;
-    right: 100%;
+    left: 100%;
 }
   
 .tooltip:hover .tooltipMemberInfos {
@@ -489,7 +509,7 @@ input:focus{
     }
 
     .viewGameAndServer{
-        grid-template-columns: 1fr 220px;
+        grid-template-columns: 220px 1fr;
     }
 
 }

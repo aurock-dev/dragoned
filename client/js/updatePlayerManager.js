@@ -103,3 +103,7 @@ function calcPlayerIlvl(){
     player.ilvl = player.force + player.vigour + player.agility + player.wisdom;
     socket.emit('playerUpdate', player);
 }
+
+function calcWoodcuttingLoot(){
+    
+}
