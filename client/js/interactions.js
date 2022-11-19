@@ -143,6 +143,7 @@ $(document).on('click', '#woodcutting', () => {
         jobs.woodcutting.currentExp = 0;
         jobs.woodcutting.lvl++;
     }
+    setLSJobs(jobs);
     updateJobsInformations();
 })
 
@@ -152,6 +153,7 @@ $(document).on('click', '#mining', () => {
         jobs.mining.currentExp = 0;
         jobs.mining.lvl++;
     }
+    setLSJobs(jobs);
     updateJobsInformations();
 })
 

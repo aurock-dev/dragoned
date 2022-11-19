@@ -57,9 +57,33 @@ function getLSGame(){
 }
 
 /**
+ * Store jobs object in local storage
+ *
+ * @param {*} jobs object
+ */
+function setLSJobs(jobs){
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+}
+
+/**
+ * Return jobs object from local storage
+ *
+ * 
+ */
+function getLSJobs(){
+    return JSON.parse(localStorage.getItem('jobs'));
+}
+
+/**
  * Clear local storage in needed
  *
  */
 function resetLocalStorage(){
     localStorage.clear();
+}
+
+function setAll(){
+    player = getLSPlayer();
+    game = getLSGame();
+    jobs = getLSJobs();
 }

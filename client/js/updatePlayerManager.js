@@ -63,6 +63,12 @@ function updateAllStats(){
     calcWisdomStats();
 }
 
+function updateAllInformations(){
+    updatePlayerInformations();
+    updateGameInformations();
+    updateJobsInformations();
+}
+
 function calcForceStats(){
     player.attack = 150 + (player.force*15);
     player.criticalDamage = 2 + (player.force/10);
@@ -108,6 +114,6 @@ function calcPlayerIlvl(){
     socket.emit('playerUpdate', player);
 }
 
-// function calcWoodcuttingLoot(){
+function calcWoodcuttingLoot(){
     
-// }
+}

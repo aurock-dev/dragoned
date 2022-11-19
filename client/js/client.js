@@ -5,12 +5,9 @@ socket.on('connect', () => {
         firstConnection();
     }
     else{
-        player = getLSPlayer();
-        game = getLSGame();
+        setAll();
+        updateAllInformations();
         socket.emit('playerConnection', player);
-        updatePlayerInformations();
-        updateGameInformations();
-        updateJobsInformations();
     }
 })
 
