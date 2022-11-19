@@ -345,10 +345,10 @@ input:focus{
         width: 100%;
     }
 
-    .statsList{
+    .fightStats{
         display: grid;
-        grid-template-columns: 150px repeat(4, 1fr);
-        column-gap: 10px;
+        grid-template-rows: repeat(2, auto);
+        row-gap: 10px;
         height: 100%;
         justify-items: center;
         align-items: center;
@@ -362,9 +362,23 @@ input:focus{
         padding: 15px;
     }
 
-    .playerStatsColumn{
+    .HPMPStats{
         display: grid;
+        grid-template-columns: repeat(2, auto);
+        justify-content: space-evenly;
         width: 100%;
+        justify-items: center;
+    }
+
+    .otherStats{
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        width: 100%;
+        justify-items: center;
+    }
+
+    .statsColumn{
+        display: grid;
         justify-items: center;
     }
 
