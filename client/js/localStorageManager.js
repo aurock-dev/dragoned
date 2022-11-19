@@ -82,7 +82,7 @@ function resetLocalStorage(){
     localStorage.clear();
 }
 
-function setAll(){
+function getAllObject(){
     player = getLSPlayer();
     game = getLSGame();
     jobs = getLSJobs();

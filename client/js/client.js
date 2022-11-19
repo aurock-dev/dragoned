@@ -5,7 +5,7 @@ socket.on('connect', () => {
         firstConnection();
     }
     else{
-        setAll();
+        getAllObject();
         updateAllInformations();
         socket.emit('playerConnection', player);
     }
