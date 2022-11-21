@@ -10,6 +10,7 @@ function firstConnection(){
             player.name = playerName;
             setLSPlayer(player);
             setLSGame(game);
+            setLSJobs(jobs);
             dialogChangeName.close();
             window.location.reload();
             toaster('Name Validated!');
