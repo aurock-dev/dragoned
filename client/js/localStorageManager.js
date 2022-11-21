@@ -7,11 +7,11 @@ function firstConnection(){
     $(document).on('click', '#validateFirstName', function(){
         let playerName = document.querySelector('#inputFirstName').value;
         if (checkInput(playerName)){
-            player.name = playerName;
-            setAllObject(player, game, jobs)
+            player.general.name = playerName;
+            setLSPlayer(player);
             dialogChangeName.close();
-            window.location.reload();
             toaster('Name Validated!');
+            window.location.reload();
         }
         else{
             toaster('Name can contains 3 to 12 letters only!', 'alert');
@@ -38,57 +38,9 @@ function getLSPlayer(){
 }
 
 /**
- * Store game object in local storage
- *
- * @param {*} game object
- */
-function setLSGame(game){
-    localStorage.setItem('game', JSON.stringify(game));
-}
-
-/**
- * Return game object from local storage
- *
- * 
- */
-function getLSGame(){
-    return JSON.parse(localStorage.getItem('game'));
-}
-
-/**
- * Store jobs object in local storage
- *
- * @param {*} jobs object
- */
-function setLSJobs(jobs){
-    localStorage.setItem('jobs', JSON.stringify(jobs));
-}
-
-/**
- * Return jobs object from local storage
- *
- * 
- */
-function getLSJobs(){
-    return JSON.parse(localStorage.getItem('jobs'));
-}
-
-/**
  * Clear local storage in needed
  *
  */
 function resetLocalStorage(){
     localStorage.clear();
-}
-
-function getAllObject(){
-    player = getLSPlayer();
-    game = getLSGame();
-    jobs = getLSJobs();
-}
-
-function setAllObject(player, game, jobs){
-    setLSPlayer(player);
-    setLSGame(game);
-    setLSJobs(jobs);
 }

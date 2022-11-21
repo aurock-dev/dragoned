@@ -3,19 +3,20 @@ const socket = io();
 socket.on('connect', () => {
     if(!getLSPlayer()){
         firstConnection();
+
     }
     else{
-        getAllObject();
-        updateAllInformations();
+        getLSPlayer();
         socket.emit('playerConnection', player);
     }
+    updateAllInformations();
 })
 
 socket.on('updateConnectedPlayerListForClients', playerList => {
     document.querySelector('#numberOfPlayer').textContent = Object.keys(playerList).length;
 
     let playerDiv = document.querySelector('#playerButton');
-    playerDiv.textContent = 'You | iLvl : ' + playerList[socket.id].ilvl;
+    playerDiv.textContent = 'You | iLvl : ' + playerList[socket.id].general.ilvl;
 
     document.querySelectorAll('#connectedPlayerList button').forEach((button) => {
         button.remove();
@@ -25,13 +26,13 @@ socket.on('updateConnectedPlayerListForClients', playerList => {
         if (socket.id !== key){
             let memberButton = document.querySelector('#memberButton').cloneNode(true);
             memberButton.setAttribute('playerId', key);
-            memberButton.querySelector('#memberInfosShort').textContent = member.name + ' | iLvl : ' + member.ilvl;
-            memberButton.querySelector('[name="memberHP"]').textContent = 'HP: ' + member.hpMax;
-            memberButton.querySelector('[name="memberMP"]').textContent = 'MP: ' + member.mpMax;
-            memberButton.querySelector('[name="memberForce"]').textContent = 'Force: ' + member.force;
-            memberButton.querySelector('[name="memberVigour"]').textContent = 'Vigour: ' + member.vigour;
-            memberButton.querySelector('[name="memberAgility"]').textContent = 'Agility: ' + member.agility;
-            memberButton.querySelector('[name="memberWisdom"]').textContent = 'Wisdom: ' + member.wisdom;
+            memberButton.querySelector('#memberInfosShort').textContent = member.general.name + ' | iLvl : ' + member.general.ilvl;
+            memberButton.querySelector('[name="memberHP"]').textContent = 'HP: ' + member.fight.hpMax;
+            memberButton.querySelector('[name="memberMP"]').textContent = 'MP: ' + member.fight.mpMax;
+            memberButton.querySelector('[name="memberForce"]').textContent = 'Force: ' + member.fight.force;
+            memberButton.querySelector('[name="memberVigour"]').textContent = 'Vigour: ' + member.fight.vigour;
+            memberButton.querySelector('[name="memberAgility"]').textContent = 'Agility: ' + member.fight.agility;
+            memberButton.querySelector('[name="memberWisdom"]').textContent = 'Wisdom: ' + member.fight.wisdom;
             document.querySelector('#connectedPlayerList').appendChild(memberButton);
         }
     }
@@ -47,22 +48,22 @@ socket.on('updateConnectionState', state => {
 })
 
 socket.on('fightRequest', caller => {
-    if (game.stateFightRequests === 'Yes'){
+    if (player.general.stateFightRequests === 'Yes'){
         let dialogFight = document.querySelector('#dialogFight');  
     
-        dialogFight.querySelector('#callerPlayerName').textContent = caller.player.name;
+        dialogFight.querySelector('#callerPlayerName').textContent = caller.callerObject.general.name;
         dialogFight.show();
 
         socket.emit('disableFight');
     
         $(document).on('click', '#acceptFight', function() {
-            socket.emit('fightResponseTrue', caller.playerId);
+            socket.emit('fightResponseTrue', caller.callerId);
             resetDialogWindow();
             socket.emit('enableFight');
         })
     
         $(document).on('click', '#declineFight', function() {
-            socket.emit('fightResponseFalse', caller.playerId);
+            socket.emit('fightResponseFalse', caller.callerId);
             resetDialogWindow();
             socket.emit('enableFight');
         })

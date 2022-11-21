@@ -2,12 +2,12 @@
 $(document).on('click', '#validateChangeName', function(){
     let playerName = document.querySelector('#inputChangeName').value;
     if (checkInput(playerName)){
-        if (playerName !== player.name){
-            player.name = playerName;
+        if (playerName !== player.general.name){
+            player.general.name = playerName;
             setLSPlayer(player);
-            socket.emit('updateClientName', player.name);
-            document.querySelector('#inputChangeName').value = player.name;
-            document.querySelector('#currentPlayerName').textContent = player.name;
+            socket.emit('updateClientName', player.general.name);
+            document.querySelector('#inputChangeName').value = player.general.name;
+            document.querySelector('#currentPlayerName').textContent = player.general.name;
             document.querySelector('#validateChangeName').disabled = true;
             toaster('Name changed!');
         }
@@ -27,7 +27,7 @@ $(document).on('input', '#inputChangeName', function(){
 
 //#region -- MEMBERS LIST
 $(document).on('click', '[name="targetPlayer"]', function() {
-    if (game.stateFightRequests === 'Yes'){
+    if (player.general.stateFightRequests === 'Yes'){
         let targetId = this.getAttribute('playerId');
         socket.emit('callTarget', targetId);
     }
@@ -49,8 +49,8 @@ $(document).on('click', '#resetLocalStorage', function(){
 })
 
 $(document).on('click', '#switchFightRequests', () => {
-    if  (game.stateFightRequests === 'Yes'){
-        game.stateFightRequests = 'No';
+    if  (player.general.stateFightRequests === 'Yes'){
+        player.general.stateFightRequests = 'No';
         document.querySelectorAll('#connectedPlayerList button').forEach( (button) => {
             button.disabled = true;
         })
@@ -58,103 +58,91 @@ $(document).on('click', '#switchFightRequests', () => {
         toaster('Fights has been disallow!');
     }
     else{
-        game.stateFightRequests = 'Yes';
+        player.general.stateFightRequests = 'Yes';
         document.querySelectorAll('#connectedPlayerList button').forEach( (button) => {
             button.disabled = false;
         })
         socket.emit('enableFight');
         toaster('Fights has been allow!');
     }
-    updateGameInformations();
+    updatePlayerGeneralInfos();
 })
 //#endregion
 
 $(document).on('click', '#trainForce', () => {
-    game.currentExpForce += (1+player.expBonus);
-    if (game.currentExpForce >= game.neededExpForce){
-        game.currentExpForce = 0;
+    player.fightExp.force.current += (1+player.fight.expBonus);
+    if (player.fightExp.force.current >= player.fightExp.force.needed){
+        player.fightExp.force.current = 0;
         calcExpNeededForce();
 
-        player.force++;
+        player.fight.force++;
         calcForceStats();
         calcPlayerIlvl();
-        
-        setLSPlayer(player);
-        updatePlayerInformations();
     }
-    updateGameInformations();
-    setLSGame(game);
+    setLSPlayer(player);
+    updateAllInformations();
 })
 
 $(document).on('click', '#trainVigour', () => {
-    game.currentExpVigour += (1+player.expBonus);
-    if (game.currentExpVigour >= game.neededExpVigour){
-        game.currentExpVigour = 0;
+    player.fightExp.vigour.current += (1+player.fight.expBonus);
+    if (player.fightExp.vigour.current >= player.fightExp.vigour.needed){
+        player.fightExp.vigour.current = 0;
         calcExpNeededVigour();
 
-        player.vigour++;
+        player.fight.vigour++;
         calcVigourStats();
         calcPlayerIlvl();
-
-        setLSPlayer(player);
-        updatePlayerInformations();
     }
-    updateGameInformations();
-    setLSGame(game);
+    setLSPlayer(player);
+    updateAllInformations();
 })
 
 $(document).on('click', '#trainAgility', () => {
-    game.currentExpAgility += (1+player.expBonus);
-    if (game.currentExpAgility >= game.neededExpAgility){
-        game.currentExpAgility = 0;
+    player.fightExp.agility.current += (1+player.fight.expBonus);
+    if (player.fightExp.agility.current >= player.fightExp.agility.needed){
+        player.fightExp.agility.current = 0;
         calcExpNeededAgility();
 
-        player.agility++;
+        player.fight.agility++;
         calcAgilityStats();
         calcPlayerIlvl();
-
-        setLSPlayer(player);
-        updatePlayerInformations();
     }
-    updateGameInformations();
-    setLSGame(game);
+    setLSPlayer(player);
+    updateAllInformations();
 })
 
 $(document).on('click', '#trainWisdom', () => {
-    game.currentExpWisdom += (1+player.expBonus);
-    if (game.currentExpWisdom >= game.neededExpWisdom){
-        game.currentExpWisdom = 0;
+    player.fightExp.wisdom.current += (1+player.fight.expBonus);
+    if (player.fightExp.wisdom.current >= player.fightExp.wisdom.needed){
+        player.fightExp.wisdom.current = 0;
         calcExpNeededWisdom();
 
-        player.wisdom++;
+        player.fight.wisdom++;
         calcWisdomStats();
         calcPlayerIlvl();
-
-        setLSPlayer(player);
-        updatePlayerInformations();
     }
-    updateGameInformations();
-    setLSGame(game);
+    setLSPlayer(player);
+    updateAllInformations();
 })
 
 $(document).on('click', '#woodcutting', () => {
-    jobs.woodcutting.currentExp += 1;
-    if (jobs.woodcutting.currentExp >= jobs.woodcutting.neededExp){
-        jobs.woodcutting.currentExp = 0;
-        jobs.woodcutting.lvl++;
+    player.jobExp.woodcutting.current += 1;
+    if (player.jobExp.woodcutting.current >= player.jobExp.woodcutting.needed){
+        player.jobExp.woodcutting.current = 0;
+        player.job.woodcutting.lvl++;
     }
-    setLSJobs(jobs);
-    updateJobsInformations();
+    setLSPlayer(player);
+    updateAllInformations();
 })
 
 $(document).on('click', '#mining', () => {
-    jobs.mining.currentExp += 1;
-    if (jobs.mining.currentExp >= jobs.mining.neededExp){
-        jobs.mining.currentExp = 0;
-        jobs.mining.lvl++;
+    player.jobExp.mining.current += 1;
+    if (player.jobExp.mining.current >= player.jobExp.mining.needed){
+        player.jobExp.mining.current = 0;
+        player.job.mining.lvl++;
     }
-    setLSJobs(jobs);
-    updateJobsInformations();
+    setLSPlayer(player);
+    updateAllInformations();
 })
 
 function resetDialogWindow(){

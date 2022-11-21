@@ -20,7 +20,7 @@ var connectedPlayerList = {};
 
 io.on("connection", (socket) => {
     socket.on("playerConnection", (player) => {
-        if (typeof player.name === "string" && typeof player.ilvl === "number") {
+        if (typeof player.general.name === "string") {
             if (!connectedPlayerList.hasOwnProperty(socket.id)) {
                 connectedPlayerList[socket.id] = player;
             }
@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("updateClientName", (playerName) => {
-        connectedPlayerList[socket.id].playerName = playerName;
+        connectedPlayerList[socket.id].general.playerName = playerName;
         io.emit("updateConnectedPlayerListForClients", connectedPlayerList);
     });
 
@@ -53,8 +53,8 @@ io.on("connection", (socket) => {
 
     socket.on("callTarget", (targetId) => {
         socket.to(targetId).emit("fightRequest", {
-            player: connectedPlayerList[socket.id],
-            playerId: socket.id,
+            callerObject: connectedPlayerList[socket.id],
+            callerId: socket.id,
         });
     });
 
@@ -83,10 +83,10 @@ function launchFight(caller, target) {
     let copyCaller = { ...caller };
     let copyTarget = { ...target };
 
-    console.log(copyCaller.name + " VS " + copyTarget.name);
+    console.log(copyCaller.general.name + " VS " + copyTarget.general.name);
 
-    let first = copyCaller.initiative >= copyTarget.initiative ? copyCaller : copyTarget;
-    console.log('first:', first.name)
+    let first = copyCaller.fight.initiative >= copyTarget.fight.initiative ? copyCaller : copyTarget;
+    console.log('first:', first.general.name)
 
     if (first === copyCaller){
         // return fightWithCallerFirst(copyCaller, copyTarget);
