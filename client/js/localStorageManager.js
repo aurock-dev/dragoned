@@ -8,9 +8,7 @@ function firstConnection(){
         let playerName = document.querySelector('#inputFirstName').value;
         if (checkInput(playerName)){
             player.name = playerName;
-            setLSPlayer(player);
-            setLSGame(game);
-            setLSJobs(jobs);
+            setAllObject(player, game, jobs)
             dialogChangeName.close();
             window.location.reload();
             toaster('Name Validated!');
@@ -87,4 +85,10 @@ function getAllObject(){
     player = getLSPlayer();
     game = getLSGame();
     jobs = getLSJobs();
+}
+
+function setAllObject(player, game, jobs){
+    setLSPlayer(player);
+    setLSGame(game);
+    setLSJobs(jobs);
 }
