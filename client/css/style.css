@@ -408,7 +408,7 @@ input:focus{
     /* Position the tooltip */
     position: absolute;
     top: 0px;
-    left: 100%;
+    left: 105%;
 }
   
 .tooltip:hover .tooltipMemberInfos {
