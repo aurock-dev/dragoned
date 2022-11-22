@@ -30,6 +30,8 @@ socket.on('updateConnectedPlayerListForClients', playerList => {
             memberButton.querySelector('[name="memberVigour"]').textContent = 'Vigour: ' + member.fight.vigour;
             memberButton.querySelector('[name="memberAgility"]').textContent = 'Agility: ' + member.fight.agility;
             memberButton.querySelector('[name="memberWisdom"]').textContent = 'Wisdom: ' + member.fight.wisdom;
+            memberButton.querySelector('[name="memberWoodcutting"]').textContent = 'Woodcutting: ' + member.job.woodcutting.lvl;
+            memberButton.querySelector('[name="memberMining"]').textContent = 'Mining: ' + member.job.mining.lvl;
             document.querySelector('#connectedPlayerList').appendChild(memberButton);
         }
     }
