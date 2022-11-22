@@ -3,10 +3,9 @@ const socket = io();
 socket.on('connect', () => {
     if(!getLSPlayer()){
         firstConnection();
-
     }
     else{
-        getLSPlayer();
+        player = getLSPlayer();
         socket.emit('playerConnection', player);
     }
     updateAllInformations();

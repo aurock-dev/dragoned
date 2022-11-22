@@ -8,9 +8,9 @@ function firstConnection(){
         let playerName = document.querySelector('#inputFirstName').value;
         if (checkInput(playerName)){
             player.general.name = playerName;
-            setLSPlayer(player);
             dialogChangeName.close();
             toaster('Name Validated!');
+            setLSPlayer(player);
             window.location.reload();
         }
         else{
