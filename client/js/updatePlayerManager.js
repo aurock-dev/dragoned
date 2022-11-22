@@ -46,9 +46,11 @@ function updatePlayerFightExpInfos(){
 function updatePlayerJobInfos(){
     document.querySelector('#woodcuttingLvl').textContent = player.job.woodcutting.lvl;
     document.querySelector('#woodcuttingLootChanceAmout').textContent = player.job.woodcutting.lootChance + '%';
+    document.querySelector('#woodAmount').textContent = player.ressources.wood;
 
     document.querySelector('#miningLvl').textContent = player.job.mining.lvl;
     document.querySelector('#miningLootChanceAmout').textContent = player.job.mining.lootChance + '%';
+    document.querySelector('#ironAmount').textContent = player.ressources.iron;
 }
 
 function updatePlayerJobExpInfos(){
@@ -112,6 +114,16 @@ function calcExpNeededWisdom(){
 function calcPlayerIlvl(){
     player.general.ilvl = player.fight.force + player.fight.vigour + player.fight.agility + player.fight.wisdom;
     socket.emit('playerUpdate', player);
+}
+
+function randHundred(){
+    return Math.floor(Math.random() * 100);
+}
+
+function calcWoodcuttingLoot(){
+    if (randHundred() <= player.job.woodcutting.lootChance){
+        player.ressources.wood++;
+    }
 }
 
 function calcPlayerJobsLvl(){

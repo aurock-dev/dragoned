@@ -60,5 +60,9 @@ var player = {
             current: 0,
             needed: 100,
         }
+    },
+    ressources: {
+        wood: 0,
+        iron: 0,
     }
 }

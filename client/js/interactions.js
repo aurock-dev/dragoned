@@ -131,6 +131,7 @@ $(document).on('click', '#woodcutting', () => {
         player.jobExp.woodcutting.current = 0;
         player.job.woodcutting.lvl++;
         calcPlayerJobsLvl();
+        calcWoodcuttingLoot();
     }
     setLSPlayer(player);
     updateAllInformations();
