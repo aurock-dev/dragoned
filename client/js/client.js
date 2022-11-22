@@ -13,10 +13,7 @@ socket.on('connect', () => {
 
 socket.on('updateConnectedPlayerListForClients', playerList => {
     document.querySelector('#numberOfPlayer').textContent = Object.keys(playerList).length;
-
-    let playerDiv = document.querySelector('#playerButton');
-    playerDiv.textContent = 'You | iLvl : ' + playerList[socket.id].general.ilvl;
-
+    
     document.querySelectorAll('#connectedPlayerList button').forEach((button) => {
         button.remove();
     });
@@ -25,7 +22,8 @@ socket.on('updateConnectedPlayerListForClients', playerList => {
         if (socket.id !== key){
             let memberButton = document.querySelector('#memberButton').cloneNode(true);
             memberButton.setAttribute('playerId', key);
-            memberButton.querySelector('#memberInfosShort').textContent = member.general.name + ' | iLvl : ' + member.general.ilvl;
+            memberButton.querySelector('#memberName').textContent = member.general.name;
+            memberButton.querySelector('#memberLvls').textContent = 'iLvl: ' + member.general.ilvl + ' | Jobs: ' + member.general.joblvl;
             memberButton.querySelector('[name="memberHP"]').textContent = 'HP: ' + member.fight.hpMax;
             memberButton.querySelector('[name="memberMP"]').textContent = 'MP: ' + member.fight.mpMax;
             memberButton.querySelector('[name="memberForce"]').textContent = 'Force: ' + member.fight.force;
