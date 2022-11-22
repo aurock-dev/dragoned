@@ -102,35 +102,35 @@ function fight(playerA, playerB){
         // console.log('==========================')
 
         // console.log(playerA.name + ' attacks!')
-        if (randHundred() <= playerA.criticalChance){
-            playerB.hp = playerB.hp - ((playerA.attack *  playerA.criticalDamage) - playerB.defense)
+        if (randHundred() <= playerA.fight.criticalChance){
+            playerB.fight.hp = playerB.fight.hp - ((playerA.fight.attack *  playerA.fight.criticalDamage) - playerB.fight.defense)
             // console.log(playerA.name + ' critics!!')
             // console.log(playerA.name + ' does ' + ((playerA.attack *  playerA.criticalDamage) - playerB.defense) + ' damages')
         }
         else{
-            playerB.hp = playerB.hp - (playerA.attack - playerB.defense);
+            playerB.fight.hp = playerB.fight.hp - (playerA.fight.attack - playerB.fight.defense);
             // console.log(playerA.name + ' does ' + (playerA.attack - playerB.defense) + ' damages')
         }
         // console.log(playerB.name + ' HP left: ' + playerB.hp)
-        if (playerB.hp <= 0) { 
-            return playerA.name;
+        if (playerB.fight.hp <= 0) { 
+            return playerA.general.name;
         }
 
         // console.log('-----------')
 
         // console.log(playerB.name + ' attacks!')
-        if (randHundred() <= playerB.criticalChance){
+        if (randHundred() <= playerB.fight.criticalChance){
             // console.log(playerB.name + ' critics!!')
             // console.log(playerB.name + ' does ' + ((playerB.attack *  playerB.criticalDamage) - playerA.defense) + ' damages')
-            playerA.hp = playerA.hp - ((playerB.attack *  playerB.criticalDamage) - playerA.defense)
+            playerA.fight.hp = playerA.fight.hp - ((playerB.fight.attack *  playerB.fight.criticalDamage) - playerA.fight.defense)
         }
         else{
-            playerA.hp = playerA.hp - (playerB.attack - playerA.defense);
+            playerA.fight.hp = playerA.fight.hp - (playerB.fight.attack - playerA.fight.defense);
             // console.log(playerB.name + ' does ' + (playerB.attack - playerA.defense) + ' damages')
         }
         // console.log(playerA.name + ' HP left: ' + playerA.hp)
-        if (playerA.hp <= 0) { 
-            return playerB.name;
+        if (playerA.fight.hp <= 0) { 
+            return playerB.general.name;
         }
     }
 }
