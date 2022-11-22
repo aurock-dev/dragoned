@@ -2,6 +2,7 @@ function updatePlayerGeneralInfos(){
     document.querySelector('#inputChangeName').value = player.general.name;
     document.querySelector('#currentPlayerName').textContent = player.general.name;
     document.querySelector('#playerIlvl').textContent = player.general.ilvl;
+    document.querySelector('#playerJobsLvl').textContent = player.general.joblvl;
     document.querySelector('#stateFightRequests').textContent = player.general.stateFightRequests;
 }
 
