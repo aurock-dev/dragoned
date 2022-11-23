@@ -19,7 +19,9 @@
             <div class="toaster">
                 <span id="toasterText"></span>
             </div>
-            <button id="zonebuttonAll" state="hide">Hide all zones</button>
+            <div class="zone-button"><button id="zonebuttonTraining">Training zone</button></div>
+            <div class="zone-button"><button id="zonebuttonJobs">Jobs zone</button></div>
+            <div class="zone-button"><button id="zonebuttonRessources">Ressources zone</button></div>
         </div>
 
         <dialog id="dialogChangeName">  
@@ -60,7 +62,6 @@
                 </div>
             </div>
             <div class="viewGame" id="viewGame">
-                <div class="zone-button"><button id="zonebuttonTraining">Training zone</button></div>
                 <div class="actionZone fourColumn glass" zonetype="training">
                     <div class="actionColumn">
                         <button id="trainForce">Train FORCE</button>
@@ -123,8 +124,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="zone-button"><button id="zonebuttonJobs">Jobs zone</button></div>
-                <div class="actionZone twoColumn glass" zonetype="jobs">
+                <div class="actionZone twoColumn glass none" zonetype="jobs">
                     <div class="actionColumn">
                         <button id="">WOODCUTTING</button>
                         <div class="progressJobWrapper" id="">
@@ -142,7 +142,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="actionZone twoColumn glass" zonetype="jobs">
+                <div class="actionZone twoColumn glass none" zonetype="jobs">
                     <div class="actionColumn">
                         <button id="woodcutting">Train WOODCUTTING</button>
                         <div class="progressJobWrapper" id="expWoodcutting">
@@ -160,7 +160,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="defaultStats twoColumn glass" zonetype="jobs">
+                <div class="defaultStats twoColumn glass none" zonetype="jobs">
                     <div class="statsColumn">
                         <div>WOODCUTTING Lvl: <span id="woodcuttingLvl">0</span></div>
                         <div>Time to complete: <span id="woodcuttingTimeAmount">0</span></div>
@@ -172,8 +172,7 @@
                         <div>Loot Chance: <span id="miningLootChanceAmount">0</span></div>
                     </div>
                 </div>
-                <div class="zone-button"><button id="zonebuttonRessources">Ressources zone</button></div>
-                <div class="defaultStats twoColumn glass" zonetype="ressources">
+                <div class="defaultStats twoColumn glass none" zonetype="ressources">
                     <div class="statsColumn">
                         <div>Wood: <span id="woodAmount">0</span></div>
                     </div>

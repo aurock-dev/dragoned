@@ -126,6 +126,10 @@ function randHundred(){
     return Math.floor(Math.random() * 100);
 }
 
+function calcWoodcuttingStats(){
+    
+}
+
 function calcWoodcuttingLoot(){
     if (randHundred() <= player.job.woodcutting.lootChance){
         player.ressources.wood++;

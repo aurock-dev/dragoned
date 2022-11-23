@@ -216,7 +216,7 @@ body .none{
 /* #region -- NAVBAR */
 .navbar{
     display: grid;
-    grid-template-columns: max-content 1fr 15em;
+    grid-template-columns: max-content 1fr max-content max-content max-content;
     column-gap: 0.4em;
     padding: 0em 0.5em;
     height: 3em;

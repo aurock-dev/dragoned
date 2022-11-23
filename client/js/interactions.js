@@ -130,6 +130,7 @@ $(document).on('click', '#woodcutting', () => {
     if (player.jobExp.woodcutting.current >= player.jobExp.woodcutting.needed){
         player.jobExp.woodcutting.current = 0;
         player.job.woodcutting.lvl++;
+        calcWoodcuttingStats();
         calcPlayerJobsLvl();
         calcWoodcuttingLoot();
     }
@@ -173,16 +174,39 @@ $(document).mouseup(function(e)
 function calcPercentage(remainValue, maxValue){
     return (remainValue*100)/maxValue;
 }
-
-$(document).on('click', '#zonebuttonJobs', () => {
+$(document).on('click', '#zonebuttonTraining', () => {
+    document.querySelectorAll('[zonetype="training"]').forEach((zone) => {
+        zone.classList.remove('none');
+    })
     document.querySelectorAll('[zonetype="jobs"]').forEach((zone) => {
-        zone.classList.contains('none') ? zone.classList.remove('none') : zone.classList.add('none');
+        zone.classList.add('none');
+    })
+    document.querySelectorAll('[zonetype="ressources"]').forEach((zone) => {
+        zone.classList.add('none');
     })
 })
 
-$(document).on('click', '#zonebuttonTraining', () => {
+$(document).on('click', '#zonebuttonJobs', () => {
+    document.querySelectorAll('[zonetype="jobs"]').forEach((zone) => {
+        zone.classList.remove('none');
+    })
     document.querySelectorAll('[zonetype="training"]').forEach((zone) => {
-        zone.classList.contains('none') ? zone.classList.remove('none') : zone.classList.add('none');
+        zone.classList.add('none');
+    })
+    document.querySelectorAll('[zonetype="ressources"]').forEach((zone) => {
+        zone.classList.add('none');
+    })
+})
+
+$(document).on('click', '#zonebuttonRessources', () => {
+    document.querySelectorAll('[zonetype="ressources"]').forEach((zone) => {
+        zone.classList.remove('none');
+    })
+    document.querySelectorAll('[zonetype="jobs"]').forEach((zone) => {
+        zone.classList.add('none');
+    })
+    document.querySelectorAll('[zonetype="training"]').forEach((zone) => {
+        zone.classList.add('none');
     })
 })
 
