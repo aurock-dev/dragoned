@@ -44,11 +44,13 @@ var player = {
     job: {
         woodcutting: {
             lvl: 0,
-            lootChance: 50,
+            time: 6000,
+            lootChance: 10,
         },
         mining: {
             lvl: 0,
-            lootChance: 50,
+            time: 6000,
+            lootChance: 10,
         }
     },
     jobExp: {
@@ -63,6 +65,6 @@ var player = {
     },
     ressources: {
         wood: 0,
-        iron: 0,
+        stone: 0,
     }
 }

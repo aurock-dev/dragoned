@@ -143,6 +143,7 @@ $(document).on('click', '#mining', () => {
         player.jobExp.mining.current = 0;
         player.job.mining.lvl++;
         calcPlayerJobsLvl();
+        calcMiningLoot();
     }
     setLSPlayer(player);
     updateAllInformations();

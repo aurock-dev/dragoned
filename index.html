@@ -126,7 +126,25 @@
                 <div class="zone-button"><button id="zonebuttonJobs">Jobs zone</button></div>
                 <div class="actionZone twoColumn glass" zonetype="jobs">
                     <div class="actionColumn">
-                        <button id="woodcutting">WOODCUTTING</button>
+                        <button id="">WOODCUTTING</button>
+                        <div class="progressJobWrapper" id="">
+                            <div class="progressText"><span id="">0</span> / <span id="">0</span></div>
+                            <div class="progressBar ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actionColumn">
+                        <button id="">MINING</button>
+                        <div class="progressJobWrapper" id="">
+                            <div class="progressText"><span id="">0</span> / <span id="">0</span></div>
+                            <div class="progressBar ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actionZone twoColumn glass" zonetype="jobs">
+                    <div class="actionColumn">
+                        <button id="woodcutting">Train WOODCUTTING</button>
                         <div class="progressJobWrapper" id="expWoodcutting">
                             <div class="progressText"><span id="currentExpWoodcutting">0</span> / <span id="neededExpWoodcutting">0</span></div>
                             <div class="progressBar woodcutting">
@@ -134,7 +152,7 @@
                         </div>
                     </div>
                     <div class="actionColumn">
-                        <button id="mining">MINING</button>
+                        <button id="mining">Train MINING</button>
                         <div class="progressJobWrapper" id="expMining">
                             <div class="progressText"><span id="currentExpMining">0</span> / <span id="neededExpMining">0</span></div>
                             <div class="progressBar mining">
@@ -145,13 +163,22 @@
                 <div class="defaultStats twoColumn glass" zonetype="jobs">
                     <div class="statsColumn">
                         <div>WOODCUTTING Lvl: <span id="woodcuttingLvl">0</span></div>
-                        <div>Loot Chance: <span id="woodcuttingLootChanceAmout">0</span></div>
-                        <div>Wood: <span id="woodAmount">0</span></div>
+                        <div>Time to complete: <span id="woodcuttingTimeAmount">0</span></div>
+                        <div>Loot Chance: <span id="woodcuttingLootChanceAmount">0</span></div>
                     </div>
                     <div class="statsColumn">
                         <div>MINING Lvl: <span id="miningLvl">0</span></div>
-                        <div>Loot Chance: <span id="miningLootChanceAmout">0</span></div>
-                        <div>Iron: <span id="ironAmount">0</span></div>
+                        <div>Time to complete: <span id="miningTimeAmount">0</span></div>
+                        <div>Loot Chance: <span id="miningLootChanceAmount">0</span></div>
+                    </div>
+                </div>
+                <div class="zone-button"><button id="zonebuttonRessources">Ressources zone</button></div>
+                <div class="defaultStats twoColumn glass" zonetype="ressources">
+                    <div class="statsColumn">
+                        <div>Wood: <span id="woodAmount">0</span></div>
+                    </div>
+                    <div class="statsColumn">
+                        <div>Stone: <span id="stoneAmount">0</span></div>
                     </div>
                 </div>
             </div>

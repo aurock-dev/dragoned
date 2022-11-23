@@ -45,12 +45,12 @@ function updatePlayerFightExpInfos(){
 
 function updatePlayerJobInfos(){
     document.querySelector('#woodcuttingLvl').textContent = player.job.woodcutting.lvl;
-    document.querySelector('#woodcuttingLootChanceAmout').textContent = player.job.woodcutting.lootChance + '%';
-    document.querySelector('#woodAmount').textContent = player.ressources.wood;
+    document.querySelector('#woodcuttingTimeAmount').textContent = player.job.woodcutting.time/100 + ' sec';
+    document.querySelector('#woodcuttingLootChanceAmount').textContent = player.job.woodcutting.lootChance + '%';
 
     document.querySelector('#miningLvl').textContent = player.job.mining.lvl;
-    document.querySelector('#miningLootChanceAmout').textContent = player.job.mining.lootChance + '%';
-    document.querySelector('#ironAmount').textContent = player.ressources.iron;
+    document.querySelector('#miningTimeAmount').textContent = player.job.mining.time/100 + ' sec';
+    document.querySelector('#miningLootChanceAmount').textContent = player.job.mining.lootChance + '%';
 }
 
 function updatePlayerJobExpInfos(){
@@ -63,12 +63,18 @@ function updatePlayerJobExpInfos(){
     $('.mining').width(calcPercentage(player.jobExp.mining.current, player.jobExp.mining.needed)+'%');
 }
 
+function updatePlayerRessourcesInfos(){
+    document.querySelector('#woodAmount').textContent = player.ressources.wood;
+    document.querySelector('#stoneAmount').textContent = player.ressources.stone;
+}
+
 function updateAllInformations(){
     updatePlayerGeneralInfos();
     updatePlayerFightInfos();
     updatePlayerFightExpInfos();
     updatePlayerJobInfos();
     updatePlayerJobExpInfos();
+    updatePlayerRessourcesInfos();
 }
 
 function calcForceStats(){
@@ -123,6 +129,12 @@ function randHundred(){
 function calcWoodcuttingLoot(){
     if (randHundred() <= player.job.woodcutting.lootChance){
         player.ressources.wood++;
+    }
+}
+
+function calcMiningLoot(){
+    if (randHundred() <= player.job.mining.lootChance){
+        player.ressources.stone++;
     }
 }
 
