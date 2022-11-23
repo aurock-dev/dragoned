@@ -172,3 +172,33 @@ $(document).mouseup(function(e)
 function calcPercentage(remainValue, maxValue){
     return (remainValue*100)/maxValue;
 }
+
+$(document).on('click', '#zonebuttonJobs', () => {
+    document.querySelectorAll('[zonetype="jobs"]').forEach((zone) => {
+        zone.classList.contains('none') ? zone.classList.remove('none') : zone.classList.add('none');
+    })
+})
+
+$(document).on('click', '#zonebuttonTraining', () => {
+    document.querySelectorAll('[zonetype="training"]').forEach((zone) => {
+        zone.classList.contains('none') ? zone.classList.remove('none') : zone.classList.add('none');
+    })
+})
+
+$(document).on('click', '#zonebuttonAll', function() {
+    if (this.getAttribute('state') === 'hide'){
+        document.querySelectorAll('[zonetype]').forEach((zone) => {
+            zone.classList.add('none');
+        });
+        this.setAttribute('state', 'show');
+        console.log(this)
+        this.textContent = 'Show all zones';
+    }
+    else{
+        document.querySelectorAll('[zonetype]').forEach((zone) => {
+            zone.classList.remove('none');
+        });
+        this.setAttribute('state', 'hide');
+        this.textContent = 'Hide all zones';
+    }
+})

@@ -19,6 +19,7 @@
             <div class="toaster">
                 <span id="toasterText"></span>
             </div>
+            <button id="zonebuttonAll" state="hide">Hide all zones</button>
         </div>
 
         <dialog id="dialogChangeName">  
@@ -59,7 +60,8 @@
                 </div>
             </div>
             <div class="viewGame" id="viewGame">
-                <div class="actionZone fourColumn glass">
+                <div class="zone-button"><button id="zonebuttonTraining">Training zone</button></div>
+                <div class="actionZone fourColumn glass" zonetype="training">
                     <div class="actionColumn">
                         <button id="trainForce">Train FORCE</button>
                         <div class="progressExpWrapper" id="expForce">
@@ -93,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="fightStats glass">
+                <div class="fightStats glass" zonetype="training">
                     <div class="HPMPStats">
                         <div>HP: <span id="hpAmount">0</span>/<span id="hpMaxAmount">0</span></div>
                         <div>MP: <span id="mpAmount">0</span>/<span id="mpMaxAmount">0</span></div>
@@ -121,7 +123,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="actionZone twoColumn glass">
+                <div class="zone-button"><button id="zonebuttonJobs">Jobs zone</button></div>
+                <div class="actionZone twoColumn glass" zonetype="jobs">
                     <div class="actionColumn">
                         <button id="woodcutting">WOODCUTTING</button>
                         <div class="progressJobWrapper" id="expWoodcutting">
@@ -139,7 +142,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="defaultStats twoColumn glass">
+                <div class="defaultStats twoColumn glass" zonetype="jobs">
                     <div class="statsColumn">
                         <div>WOODCUTTING Lvl: <span id="woodcuttingLvl">0</span></div>
                         <div>Loot Chance: <span id="woodcuttingLootChanceAmout">0</span></div>
