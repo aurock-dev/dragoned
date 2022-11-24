@@ -5,6 +5,9 @@ var player = {
         joblvl: 0,
         stateFightRequests: 'Yes',
     },
+    states: {
+        woodcuttingJob: null
+    },
     fight: {
         force: 0,
         vigour: 0,
@@ -44,12 +47,12 @@ var player = {
     job: {
         woodcutting: {
             lvl: 0,
-            time: 6000,
+            time: 30000,
             lootChance: 10,
         },
         mining: {
             lvl: 0,
-            time: 6000,
+            time: 30000,
             lootChance: 10,
         }
     },

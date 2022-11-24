@@ -45,11 +45,11 @@ function updatePlayerFightExpInfos(){
 
 function updatePlayerJobInfos(){
     document.querySelector('#woodcuttingLvl').textContent = player.job.woodcutting.lvl;
-    document.querySelector('#woodcuttingTimeAmount').textContent = player.job.woodcutting.time/100 + ' sec';
+    document.querySelector('#woodcuttingTimeAmount').textContent = player.job.woodcutting.time/1000 + ' sec';
     document.querySelector('#woodcuttingLootChanceAmount').textContent = player.job.woodcutting.lootChance + '%';
 
     document.querySelector('#miningLvl').textContent = player.job.mining.lvl;
-    document.querySelector('#miningTimeAmount').textContent = player.job.mining.time/100 + ' sec';
+    document.querySelector('#miningTimeAmount').textContent = player.job.mining.time/1000 + ' sec';
     document.querySelector('#miningLootChanceAmount').textContent = player.job.mining.lootChance + '%';
 }
 
@@ -128,7 +128,7 @@ function calcExpNeededWisdom(){
 }
 
 function calcWoodcuttingStats(){
-    player.job.woodcutting.time = 6000 - (player.job.woodcutting.lvl * 50); 
+    player.job.woodcutting.time = 30000 - (player.job.woodcutting.lvl * 250); 
     player.job.woodcutting.lootChance = 10 + (player.job.woodcutting.lvl/2); 
 }
 
@@ -143,7 +143,7 @@ function calcWoodcuttingLoot(){
 }
 
 function calcMiningStats(){
-    player.job.mining.time = 6000 - (player.job.mining.lvl * 50); 
+    player.job.mining.time = 30000 - (player.job.mining.lvl * 250); 
     player.job.mining.lootChance = 10 + (player.job.mining.lvl/2); 
 }
 

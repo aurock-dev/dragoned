@@ -125,7 +125,7 @@ $(document).on('click', '#trainWisdom', () => {
     updateAllInformations();
 })
 
-$(document).on('click', '#woodcutting', () => {
+$(document).on('click', '#trainWoodcutting', () => {
     player.jobExp.woodcutting.current += 1;
     if (player.jobExp.woodcutting.current >= player.jobExp.woodcutting.needed){
         player.jobExp.woodcutting.current = 0;
@@ -133,13 +133,12 @@ $(document).on('click', '#woodcutting', () => {
         calcExpNeededWoodcutting();
         calcWoodcuttingStats();
         calcPlayerJobsLvl();
-        calcWoodcuttingLoot();
     }
     setLSPlayer(player);
     updateAllInformations();
 })
 
-$(document).on('click', '#mining', () => {
+$(document).on('click', '#trainMining', () => {
     player.jobExp.mining.current += 1;
     if (player.jobExp.mining.current >= player.jobExp.mining.needed){
         player.jobExp.mining.current = 0;
@@ -147,7 +146,6 @@ $(document).on('click', '#mining', () => {
         calcExpNeededMining();
         calcMiningStats();
         calcPlayerJobsLvl();
-        calcMiningLoot();
     }
     setLSPlayer(player);
     updateAllInformations();
