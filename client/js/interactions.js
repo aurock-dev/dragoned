@@ -130,6 +130,7 @@ $(document).on('click', '#woodcutting', () => {
     if (player.jobExp.woodcutting.current >= player.jobExp.woodcutting.needed){
         player.jobExp.woodcutting.current = 0;
         player.job.woodcutting.lvl++;
+        calcExpNeededWoodcutting();
         calcWoodcuttingStats();
         calcPlayerJobsLvl();
         calcWoodcuttingLoot();
@@ -143,6 +144,8 @@ $(document).on('click', '#mining', () => {
     if (player.jobExp.mining.current >= player.jobExp.mining.needed){
         player.jobExp.mining.current = 0;
         player.job.mining.lvl++;
+        calcExpNeededMining();
+        calcMiningStats();
         calcPlayerJobsLvl();
         calcMiningLoot();
     }

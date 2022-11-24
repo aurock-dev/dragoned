@@ -77,6 +77,16 @@ function updateAllInformations(){
     updatePlayerRessourcesInfos();
 }
 
+function calcPlayerIlvl(){
+    player.general.ilvl = player.fight.force + player.fight.vigour + player.fight.agility + player.fight.wisdom;
+    socket.emit('playerUpdate', player);
+}
+
+function calcPlayerJobsLvl(){
+    player.general.joblvl = player.job.woodcutting.lvl + player.job.mining.lvl;
+    socket.emit('playerUpdate', player);
+}
+
 function calcForceStats(){
     player.fight.attack = 150 + (player.fight.force*15);
     player.fight.criticalDamage = 2 + (player.fight.force/10);
@@ -117,17 +127,13 @@ function calcExpNeededWisdom(){
     player.fightExp.wisdom.needed = player.fightExp.wisdom.needed + ((player.fight.wisdom+1)*33);
 }
 
-function calcPlayerIlvl(){
-    player.general.ilvl = player.fight.force + player.fight.vigour + player.fight.agility + player.fight.wisdom;
-    socket.emit('playerUpdate', player);
-}
-
-function randHundred(){
-    return Math.floor(Math.random() * 100);
-}
-
 function calcWoodcuttingStats(){
-    
+    player.job.woodcutting.time = 6000 - (player.job.woodcutting.lvl * 50); 
+    player.job.woodcutting.lootChance = 10 + (player.job.woodcutting.lvl/2); 
+}
+
+function calcExpNeededWoodcutting(){
+    player.jobExp.woodcutting.needed = player.jobExp.woodcutting.needed + ((player.job.woodcutting.lvl+1)*33);
 }
 
 function calcWoodcuttingLoot(){
@@ -136,13 +142,17 @@ function calcWoodcuttingLoot(){
     }
 }
 
+function calcMiningStats(){
+    player.job.mining.time = 6000 - (player.job.mining.lvl * 50); 
+    player.job.mining.lootChance = 10 + (player.job.mining.lvl/2); 
+}
+
+function calcExpNeededMining(){
+    player.jobExp.mining.needed = player.jobExp.mining.needed + ((player.job.mining.lvl+1)*33);
+}
+
 function calcMiningLoot(){
     if (randHundred() <= player.job.mining.lootChance){
         player.ressources.stone++;
     }
-}
-
-function calcPlayerJobsLvl(){
-    player.general.joblvl = player.job.woodcutting.lvl + player.job.mining.lvl;
-    socket.emit('playerUpdate', player);
 }
