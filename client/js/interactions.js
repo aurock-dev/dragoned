@@ -172,9 +172,6 @@ $(document).mouseup(function(e)
     }
 });
 
-function calcPercentage(remainValue, maxValue){
-    return (remainValue*100)/maxValue;
-}
 $(document).on('click', '#zonebuttonTraining', () => {
     document.querySelectorAll('[zonetype="training"]').forEach((zone) => {
         zone.classList.remove('none');

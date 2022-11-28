@@ -471,12 +471,12 @@ body .none{
     width: 0%;
 }
 
-.woodcutting{
+.woodcutting, .woodcuttingTime{
     background-color: #96624b; 
     width: 0%;
 }
 
-.mining{
+.mining, .miningTime{
     background-color: #5a5861; 
     width: 0%;
 }

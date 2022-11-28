@@ -9,6 +9,7 @@ socket.on('connect', () => {
         socket.emit('playerConnection', player);
     }
     updateAllInformations();
+    player.states.jobbing = null;
 })
 
 socket.on('updateConnectedPlayerListForClients', playerList => {
