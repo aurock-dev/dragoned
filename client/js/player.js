@@ -47,8 +47,8 @@ var player = {
     job: {
         woodcutting: {
             lvl: 0,
-            time: 3000,
-            lootChance: 100,
+            time: 30000,
+            lootChance: 10,
         },
         mining: {
             lvl: 0,
