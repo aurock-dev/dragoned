@@ -138,7 +138,14 @@ function calcExpNeededWoodcutting(){
 
 function addExpWoodcutting(){
     player.jobExp.woodcutting.current += player.jobExp.woodcutting.needed * (5/100);
-    updatePlayerJobExpInfos();
+    if (player.jobExp.woodcutting.current >= player.jobExp.woodcutting.needed){
+        player.jobExp.woodcutting.current = 0;
+        player.job.woodcutting.lvl++;
+        calcExpNeededWoodcutting();
+        calcWoodcuttingStats();
+        calcPlayerJobsLvl();
+    }
+    updateAllInformations();
 }
 
 function calcWoodcuttingLoot(){
@@ -160,7 +167,14 @@ function calcExpNeededMining(){
 
 function addExpMining(){
     player.jobExp.mining.current += player.jobExp.mining.needed * (5/100);
-    updatePlayerJobExpInfos();
+    if (player.jobExp.mining.current >= player.jobExp.mining.needed){
+        player.jobExp.mining.current = 0;
+        player.job.mining.lvl++;
+        calcExpNeededMining();
+        calcMiningStats();
+        calcPlayerJobsLvl();
+    }
+    updateAllInformations();
 }
 
 function calcMiningLoot(){
