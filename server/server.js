@@ -89,11 +89,9 @@ function launchFight(caller, target) {
     console.log('first:', first.general.name)
 
     if (first === copyCaller){
-        // return fightWithCallerFirst(copyCaller, copyTarget);
         return fight(copyCaller, copyTarget);
     }
     else{
-        // return fightWithTargetFirst(copyTarget, copyCaller);
         return fight(copyTarget, copyCaller);
     }
 }

@@ -145,6 +145,7 @@ function addExpWoodcutting(){
         calcWoodcuttingStats();
         calcPlayerJobsLvl();
     }
+    setLSPlayer(player);
     updateAllInformations();
 }
 
@@ -174,6 +175,7 @@ function addExpMining(){
         calcMiningStats();
         calcPlayerJobsLvl();
     }
+    setLSPlayer(player);
     updateAllInformations();
 }
 
