@@ -139,6 +139,7 @@ function calcExpNeededWoodcutting(){
 function calcWoodcuttingLoot(){
     if (randHundred() <= player.job.woodcutting.lootChance){
         player.ressources.wood++;
+        toaster('Wood looted!')
     }
 }
 
@@ -154,5 +155,6 @@ function calcExpNeededMining(){
 function calcMiningLoot(){
     if (randHundred() <= player.job.mining.lootChance){
         player.ressources.stone++;
+        toaster('Stone looted!')
     }
 }
