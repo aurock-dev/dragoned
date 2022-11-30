@@ -57,6 +57,7 @@ socket.on('fightRequest', caller => {
         socket.emit('disableFight');
     
         $(document).on('click', '#acceptFight', function() {
+            stopJobs();
             socket.emit('fightResponseTrue', caller.callerId);
             resetDialogWindow();
             socket.emit('enableFight');

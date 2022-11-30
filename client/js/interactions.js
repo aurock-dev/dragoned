@@ -29,6 +29,7 @@ $(document).on('input', '#inputChangeName', function(){
 $(document).on('click', '[name="targetPlayer"]', function() {
     if (player.general.stateFightRequests === 'Yes'){
         let targetId = this.getAttribute('playerId');
+        stopJobs();
         socket.emit('callTarget', targetId);
     }
 })
