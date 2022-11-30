@@ -7,7 +7,6 @@ $(document).on('click', '#woodcutting', () => {
             document.querySelector('#currentTimeWoodcutting').textContent = ((player.job.woodcutting.time - percent)/1000).toFixed(0) +' sec'
             if (percent >= player.job.woodcutting.time){
                 calcWoodcuttingLoot();
-                setLSPlayer(player);
                 updatePlayerRessourcesInfos();
                 percent = 0
             }
@@ -27,7 +26,6 @@ $(document).on('click', '#mining', () => {
             document.querySelector('#currentTimeMining').textContent = ((player.job.mining.time - percent)/1000).toFixed(0) +' sec'
             if (percent >= player.job.mining.time){
                 calcMiningLoot();
-                setLSPlayer(player);
                 updatePlayerRessourcesInfos();
                 percent = 0
             }

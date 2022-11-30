@@ -140,6 +140,7 @@ function calcWoodcuttingLoot(){
     if (randHundred() <= player.job.woodcutting.lootChance){
         player.ressources.wood++;
         toaster('Wood looted!')
+        setLSPlayer(player);
     }
 }
 
@@ -156,5 +157,6 @@ function calcMiningLoot(){
     if (randHundred() <= player.job.mining.lootChance){
         player.ressources.stone++;
         toaster('Stone looted!')
+        setLSPlayer(player);
     }
 }
