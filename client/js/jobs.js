@@ -14,12 +14,7 @@ $(document).on('click', '#woodcutting', () => {
         }, 50);
     }
     else{
-        clearInterval(player.states.jobbing);
-        player.states.jobbing = null;
-        $('.woodcuttingTime').width('0%');
-        document.querySelector('#currentTimeWoodcutting').textContent = ''
-        $('.miningTime').width('0%');
-        document.querySelector('#currentTimeMining').textContent = ''
+        stopJobs();
     }
 })
 
@@ -39,11 +34,15 @@ $(document).on('click', '#mining', () => {
         }, 50);
     }
     else{
-        clearInterval(player.states.jobbing);
-        player.states.jobbing = null;
-        $('.woodcuttingTime').width('0%');
-        document.querySelector('#currentTimeWoodcutting').textContent = ''
-        $('.miningTime').width('0%');
-        document.querySelector('#currentTimeMining').textContent = ''
+        stopJobs();
     }
 })
+
+function stopJobs(){
+    clearInterval(player.states.jobbing);
+    player.states.jobbing = null;
+    $('.woodcuttingTime').width('0%');
+    document.querySelector('#currentTimeWoodcutting').textContent = ''
+    $('.miningTime').width('0%');
+    document.querySelector('#currentTimeMining').textContent = ''
+}

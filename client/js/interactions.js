@@ -70,6 +70,7 @@ $(document).on('click', '#switchFightRequests', () => {
 //#endregion
 
 $(document).on('click', '#trainForce', () => {
+    stopJobs();
     player.fightExp.force.current += (1+player.fight.expBonus);
     if (player.fightExp.force.current >= player.fightExp.force.needed){
         player.fightExp.force.current = 0;
@@ -84,6 +85,7 @@ $(document).on('click', '#trainForce', () => {
 })
 
 $(document).on('click', '#trainVigour', () => {
+    stopJobs();
     player.fightExp.vigour.current += (1+player.fight.expBonus);
     if (player.fightExp.vigour.current >= player.fightExp.vigour.needed){
         player.fightExp.vigour.current = 0;
@@ -98,6 +100,7 @@ $(document).on('click', '#trainVigour', () => {
 })
 
 $(document).on('click', '#trainAgility', () => {
+    stopJobs();
     player.fightExp.agility.current += (1+player.fight.expBonus);
     if (player.fightExp.agility.current >= player.fightExp.agility.needed){
         player.fightExp.agility.current = 0;
@@ -112,6 +115,7 @@ $(document).on('click', '#trainAgility', () => {
 })
 
 $(document).on('click', '#trainWisdom', () => {
+    stopJobs();
     player.fightExp.wisdom.current += (1+player.fight.expBonus);
     if (player.fightExp.wisdom.current >= player.fightExp.wisdom.needed){
         player.fightExp.wisdom.current = 0;
@@ -126,6 +130,7 @@ $(document).on('click', '#trainWisdom', () => {
 })
 
 $(document).on('click', '#trainWoodcutting', () => {
+    stopJobs();
     player.jobExp.woodcutting.current += 1;
     if (player.jobExp.woodcutting.current >= player.jobExp.woodcutting.needed){
         player.jobExp.woodcutting.current = 0;
@@ -139,6 +144,7 @@ $(document).on('click', '#trainWoodcutting', () => {
 })
 
 $(document).on('click', '#trainMining', () => {
+    stopJobs();
     player.jobExp.mining.current += 1;
     if (player.jobExp.mining.current >= player.jobExp.mining.needed){
         player.jobExp.mining.current = 0;
