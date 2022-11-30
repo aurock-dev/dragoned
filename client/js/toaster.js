@@ -22,5 +22,5 @@ function toaster(text, type='default'){
         document.querySelector('#toasterText').textContent = '';
         document.querySelector('#toasterText').classList = '';
         document.title = 'Dragoned';
-    }, 3000)
+    }, 5000)
 }
