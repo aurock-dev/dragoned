@@ -9,6 +9,7 @@ $(document).on('click', '#woodcutting', () => {
                 calcWoodcuttingLoot();
                 updatePlayerRessourcesInfos();
                 percent = 0
+                addExpWoodcutting();
             }
         }, 50);
     }
@@ -28,6 +29,7 @@ $(document).on('click', '#mining', () => {
                 calcMiningLoot();
                 updatePlayerRessourcesInfos();
                 percent = 0
+                addExpMining();
             }
         }, 50);
     }
