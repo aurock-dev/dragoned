@@ -81,14 +81,21 @@ socket.on('sendFightResponseFalse', targetName => {
     })
 })
 
-socket.on('sendFightResponseTrue', winner => {
-    document.querySelector('#winnerName').textContent = winner;
+socket.on('sendFightResponseTrue', combatresult => {
+    document.querySelector('#winnerName').textContent = combatresult.winner;
     document.querySelector('#winner').classList.remove('hidden');
+
+    combatresult.combatlog.forEach((row) => {
+        span = document.createElement('span')
+        span.textContent = row
+        document.querySelector('#combatlog').appendChild(span)
+    })
 
     document.querySelector('#dialogFightResponses').show();
     $('#ok').off().on('click', function() {
         document.querySelector('#dialogFightResponses').close();
         document.querySelector('#winner').classList.add('hidden');
+        document.querySelector('#combatlog').innerHTML = ''
     })
 })
 

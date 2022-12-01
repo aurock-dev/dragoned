@@ -392,6 +392,12 @@ body .none{
         padding-right: 15px;
     }
 
+    .combatlog{
+        display: grid;
+        max-height: 400px;
+        overflow: auto;
+    }
+
     /* #endregion */
 /* #endregion */
 
