@@ -17,10 +17,11 @@ const server = app.listen(PORT, () => {
 
 const io = socketio(server);
 var connectedPlayerList = {};
+var combatlog = []
 
 io.on("connection", (socket) => {
     socket.on("playerConnection", (player) => {
-        if (typeof player.name === "string" && typeof player.ilvl === "number") {
+        if (typeof player.general.name === "string") {
             if (!connectedPlayerList.hasOwnProperty(socket.id)) {
                 connectedPlayerList[socket.id] = player;
             }
@@ -42,7 +43,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("updateClientName", (playerName) => {
-        connectedPlayerList[socket.id].playerName = playerName;
+        connectedPlayerList[socket.id].general.name = playerName;
         io.emit("updateConnectedPlayerListForClients", connectedPlayerList);
     });
 
@@ -53,17 +54,25 @@ io.on("connection", (socket) => {
 
     socket.on("callTarget", (targetId) => {
         socket.to(targetId).emit("fightRequest", {
-            player: connectedPlayerList[socket.id],
-            playerId: socket.id,
+            callerObject: connectedPlayerList[socket.id],
+            callerId: socket.id,
         });
     });
 
     socket.on("fightResponseTrue", (caller) => {
+        combatlog.lenght = 0;
         let winner = launchFight(connectedPlayerList[caller], connectedPlayerList[socket.id]);
-        console.log("Winner is " + winner);
+        combatlog.push("Winner is " + winner);
+        // console.log(combatlog)
 
-        socket.emit("sendFightResponseTrue", winner);
-        socket.to(caller).emit("sendFightResponseTrue", winner);
+        socket.emit("sendFightResponseTrue", {
+            winner: winner,
+            combatlog: combatlog
+        });
+        socket.to(caller).emit("sendFightResponseTrue", {
+            winner: winner,
+            combatlog: combatlog
+        });
     });
 
     socket.on("fightResponseFalse", (caller) => {
@@ -83,54 +92,53 @@ function launchFight(caller, target) {
     let copyCaller = { ...caller };
     let copyTarget = { ...target };
 
-    console.log(copyCaller.name + " VS " + copyTarget.name);
+    combatlog.push(copyCaller.general.name + " VS " + copyTarget.general.name);
 
-    let first = copyCaller.initiative >= copyTarget.initiative ? copyCaller : copyTarget;
-    console.log('first:', first.name)
+    let first = copyCaller.fight.initiative >= copyTarget.fight.initiative ? copyCaller : copyTarget;
+    combatlog.push('first: '+first.general.name)
 
     if (first === copyCaller){
-        // return fightWithCallerFirst(copyCaller, copyTarget);
         return fight(copyCaller, copyTarget);
     }
     else{
-        // return fightWithTargetFirst(copyTarget, copyCaller);
         return fight(copyTarget, copyCaller);
     }
 }
+
 function fight(playerA, playerB){
     while (true){
-        // console.log('==========================')
+        combatlog.push('==========================')
 
-        // console.log(playerA.name + ' attacks!')
-        if (randHundred() <= playerA.criticalChance){
-            playerB.hp = playerB.hp - ((playerA.attack *  playerA.criticalDamage) - playerB.defense)
-            // console.log(playerA.name + ' critics!!')
-            // console.log(playerA.name + ' does ' + ((playerA.attack *  playerA.criticalDamage) - playerB.defense) + ' damages')
+        combatlog.push(playerA.general.name + ' attacks!')
+        if (randHundred() <= playerA.fight.criticalChance){
+            playerB.fight.hp = playerB.fight.hp - ((playerA.fight.attack *  playerA.fight.criticalDamage) - playerB.fight.defense)
+            combatlog.push(playerA.general.name + ' critics!!')
+            combatlog.push(playerA.general.name + ' does ' + ((playerA.fight.attack *  playerA.fight.criticalDamage) - playerB.fight.defense) + ' damages')
         }
         else{
-            playerB.hp = playerB.hp - (playerA.attack - playerB.defense);
-            // console.log(playerA.name + ' does ' + (playerA.attack - playerB.defense) + ' damages')
+            playerB.fight.hp = playerB.fight.hp - (playerA.fight.attack - playerB.fight.defense);
+            combatlog.push(playerA.general.name + ' does ' + (playerA.fight.attack - playerB.fight.defense) + ' damages')
         }
-        // console.log(playerB.name + ' HP left: ' + playerB.hp)
-        if (playerB.hp <= 0) { 
-            return playerA.name;
+        combatlog.push(playerB.general.name + ' HP left: ' + playerB.fight.hp)
+        if (playerB.fight.hp <= 0) { 
+            return playerA.general.name;
         }
 
-        // console.log('-----------')
+        combatlog.push('-----------')
 
-        // console.log(playerB.name + ' attacks!')
-        if (randHundred() <= playerB.criticalChance){
-            // console.log(playerB.name + ' critics!!')
-            // console.log(playerB.name + ' does ' + ((playerB.attack *  playerB.criticalDamage) - playerA.defense) + ' damages')
-            playerA.hp = playerA.hp - ((playerB.attack *  playerB.criticalDamage) - playerA.defense)
+        combatlog.push(playerB.general.name + ' attacks!')
+        if (randHundred() <= playerB.fight.criticalChance){
+            combatlog.push(playerB.general.name + ' critics!!')
+            combatlog.push(playerB.general.name + ' does ' + ((playerB.fight.attack *  playerB.fight.criticalDamage) - playerA.fight.defense) + ' damages')
+            playerA.fight.hp = playerA.fight.hp - ((playerB.fight.attack *  playerB.fight.criticalDamage) - playerA.fight.defense)
         }
         else{
-            playerA.hp = playerA.hp - (playerB.attack - playerA.defense);
-            // console.log(playerB.name + ' does ' + (playerB.attack - playerA.defense) + ' damages')
+            playerA.fight.hp = playerA.fight.hp - (playerB.fight.attack - playerA.fight.defense);
+            combatlog.push(playerB.general.name + ' does ' + (playerB.fight.attack - playerA.fight.defense) + ' damages')
         }
-        // console.log(playerA.name + ' HP left: ' + playerA.hp)
-        if (playerA.hp <= 0) { 
-            return playerB.name;
+        combatlog.push(playerA.general.name + ' HP left: ' + playerA.fight.hp)
+        if (playerA.fight.hp <= 0) { 
+            return playerB.general.name;
         }
     }
 }

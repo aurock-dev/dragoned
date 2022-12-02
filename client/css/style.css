@@ -89,6 +89,7 @@ select {
     --disabled-color: #686868;
 
     --alert-color: #ff4949;
+    --alert-color-hover: #db4040;
 
     --text-color: #ffffff;
     --text-color-reverse: #000000;
@@ -96,6 +97,8 @@ select {
     --up-border-shadow: rgba(255, 255, 255, 0.4);
     --down-border-shadow: rgba(0, 0, 0, 0.4);
     --shadow-color: #00000077;
+
+    --viewgame-rows: 4;
 }
 /* #endregion */
 
@@ -172,7 +175,7 @@ input:focus{
     visibility: hidden;
 }
 
-.none{
+body .none{
     display: none;
 }
 
@@ -190,12 +193,30 @@ input:focus{
     inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow),
     1px 1px 3px 1px var(--shadow-color);
 }
+
+.alertButton:enabled{
+    background-color: var(--alert-color);
+}
+
+.alertButton:hover:enabled{
+    background-color: var(--alert-color-hover);
+}
+
+.glass{
+    border: none;
+    background-color: var(--primary-color-transparent);
+    backdrop-filter: blur(5px);
+    box-shadow: 
+        inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
+        inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
+        0px 3px 5px 0px var(--shadow-color);
+}
 /* #endregion */
 
 /* #region -- NAVBAR */
 .navbar{
     display: grid;
-    grid-template-columns: max-content 1fr;
+    grid-template-columns: max-content 1fr max-content max-content max-content;
     column-gap: 0.4em;
     padding: 0em 0.5em;
     height: 3em;
@@ -217,6 +238,7 @@ input:focus{
 
 /* #region -- OPTIONS */
 .viewOptions{
+    z-index: 2;
     position: absolute;
     top: 3.5em;
     left: 0.5em;
@@ -250,158 +272,133 @@ input:focus{
 }
 /* #endregion */
 
-/* #region -- SERVER */
-.viewServer{
-    display: grid;
-    grid-auto-rows: max-content;
-    width: 100%;
-    height: max-content;
-    padding: 10px;
-    border: none;
-    color: var(--text-color-reverse);
-    background-color: var(--primary-color-transparent);
-    backdrop-filter: blur(5px);
-    box-shadow: 
-      inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-      inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-      0px 3px 5px 0px var(--shadow-color);
-}
-
-.connectedPlayerList{
-  display: grid;
-  grid-auto-rows: max-content;
-  row-gap: 5px;
-}
-/* #endregion */
-
 /* #region -- GAME */
 .viewGameAndServer{
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 250px 1fr;
     column-gap: 10px;
     padding: 10px;
 }
 
-.viewGame{
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    row-gap: 10px;
-    height: 300px;
-}
+    /* #region -- LEFTPANEL */
+    .leftPanel{
+        z-index: 1;
+        display: grid;
+        grid-template-rows: max-content max-content;
+        row-gap: 10px;
+    }
 
-.viewGameHeader{
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  column-gap: 10px;
-  height: 100%;
-  justify-items: center;
-  align-items: center;
-}
+    .viewPlayerDragon{
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        column-gap: 10px;
+    }
+    
+    .playerDragonImg{
+        width: 80px;
+        height: 80px;
+    }
 
-.playerDragon{
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  width: 150px;
-  height: 100%;
-  background-color: var(--primary-color-transparent);
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-    0px 3px 5px 0px var(--shadow-color);
-  padding: 3px;
-}
+    .playerDragonInfos{
+        display: grid;
+        align-items: center;
+        justify-items: center;
+    }
 
-.playerDragonImg{
-  width: 75px;
-  height: 65px;
-}
+    .viewServer{
+        display: grid;
+        grid-auto-rows: max-content;
+        width: 100%;
+        height: max-content;
+        padding: 10px;
+    }
 
-.viewTraining{
-  display: grid;
-  grid-template-rows: max-content max-content;
-  row-gap: 0.5em;
-  width: 100%;
-  height: 100%;
-  justify-items: center;
-  align-content: center;
-  padding: 10px;
-  background-color: var(--primary-color-transparent);
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-    0px 3px 5px 0px var(--shadow-color);
-}
+    .connectedPlayerList{
+        display: grid;
+        grid-auto-rows: max-content;
+        row-gap: 5px;
+    }
+    /* #endregion */
 
-.trainingButtons{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 1em;
-  width: 100%;
-  justify-items: center;
-}
+    /* #region -- RIGHTPANEL */
+    .viewGame{
+        display: grid;
+        grid-template-rows: repeat(var(--viewgame-rows), max-content);
+        row-gap: 10px;
+    }
 
-.trainingExp{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  width: 100%;
-  column-gap: 1em;
-  justify-items: center;
-}
+    .zone-button{
+        display: grid;
+        justify-items: end;
+    }
 
-.trainingExp div{
-  color: var(--text-color-reverse);
-}
+    .zone-button button{
+        width: 15em;
+    }
 
-.statsList{
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  column-gap: 10px;
-  height: 100%;
-  justify-items: center;
-  align-items: center;
-}
+    .actionZone{
+        display: grid;
+        column-gap: 10px;
+        height: 100%;
+        justify-items: center;
+        align-items: center;
+        padding: 15px;
+    }
 
-.generalStats{
-  display: grid;
-  width: 150px;
-  height: 100%;
-  justify-items: center;
-  align-items: center;
-  border: none;
-  background-color: var(--primary-color-transparent);
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-    0px 3px 5px 0px var(--shadow-color);
-  padding: 10px;
-}
+    .actionColumn{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 10px;
+        width: 100%;
+    }
 
-.otherStats{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 1em;
-  width: 100%;
-  height: 100%;
-  justify-items: center;
-  border: none;
-  background-color: var(--primary-color-transparent);
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    inset 0.2em 0.2em 0.1em 0 var(--up-border-shadow), 
-    inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow), 
-    0px 3px 5px 0px var(--shadow-color);
-  padding: 10px;
-}
+    .defaultStats{
+        display: grid;
+        width: 100%;
+        justify-items: center;
+        padding: 15px;
+    }
 
-.forceStats, .vigourStats, .agilityStats, .wisdomStats{
-  display: grid;
-  width: 100%;
-  justify-items: center;
-}
+    .statsColumn{
+        display: grid;
+        justify-items: center;
+    }
+
+    .twoColumn{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .fourColumn{
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .fightStats{
+        display: grid;
+        grid-template-rows: repeat(2, max-content);
+        height: 100%;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .HPMPStats{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-evenly;
+        justify-items: center;
+        width: 100%;
+        height: 100%;
+        padding-top: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .combatlog{
+        display: grid;
+        max-height: 400px;
+        overflow: auto;
+    }
+
+    /* #endregion */
 /* #endregion */
 
 /* #region -- TOOLTIPS */
@@ -425,9 +422,8 @@ input:focus{
 
     /* Position the tooltip */
     position: absolute;
-    z-index: 1;
     top: 0px;
-    right: 100%;
+    left: 105%;
 }
   
 .tooltip:hover .tooltipMemberInfos {
@@ -436,7 +432,8 @@ input:focus{
 /* #endregion */
 
 /* #region -- PROGRESSBAR */
-.progressExpWrapper {
+.progressExpWrapper,
+.progressJobWrapper {
     position: relative;
     display: inline-block;
     text-align: center;
@@ -450,19 +447,43 @@ input:focus{
       inset -0.2em -0.2em 0.1em 0 var(--down-border-shadow),
       1px 1px 3px 1px var(--shadow-color);
 }
-  
-.progressExpForce,
-.progressExpVigour,
-.progressExpAgility,
-.progressExpWisdom
- {
-    background-color: #f85273; 
+
+.progressBar {
     box-shadow: 
         inset 0em 0.2em 0.1em 0 var(--up-border-shadow), 
         inset 0.2em 0em 0.1em 0 var(--up-border-shadow), 
         inset 0em -0.2em 0.1em 0 var(--down-border-shadow),
         inset -0.2em 0em 0.1em 0 #00000000;
     height: 30px;
+}
+
+.force {
+    background-color: #f75e5e; 
+    width: 0%;
+}
+
+.vigour {
+    background-color: #e6cd5f; 
+    width: 0%;
+}
+
+.agility {
+    background-color: #83ce66; 
+    width: 0%;
+}
+
+.wisdom {
+    background-color: #7c90d1; 
+    width: 0%;
+}
+
+.woodcutting, .woodcuttingTime{
+    background-color: #96624b; 
+    width: 0%;
+}
+
+.mining, .miningTime{
+    background-color: #5a5861; 
     width: 0%;
 }
 
@@ -494,7 +515,7 @@ input:focus{
     }
 
     .viewGameAndServer{
-        grid-template-columns: 1fr 220px;
+        grid-template-columns: 220px 1fr;
     }
 
 }
