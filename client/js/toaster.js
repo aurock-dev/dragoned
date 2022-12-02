@@ -1,4 +1,4 @@
-function toaster(text, type='default'){
+function toaster(text, type='default', time=5000){
     document.querySelector('#toasterText').textContent = '';
     document.querySelector('#toasterText').textContent = text;
     document.title = '';
@@ -22,5 +22,5 @@ function toaster(text, type='default'){
         document.querySelector('#toasterText').textContent = '';
         document.querySelector('#toasterText').classList = '';
         document.title = 'Dragoned';
-    }, 5000)
+    }, time)
 }

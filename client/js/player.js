@@ -6,6 +6,7 @@ var player = {
         stateFightRequests: 'Yes',
     },
     states: {
+        resetAlert: 0,
         jobbing: null
     },
     fight: {

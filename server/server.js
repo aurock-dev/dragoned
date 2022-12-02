@@ -60,6 +60,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("fightResponseTrue", (caller) => {
+        combatlog.lenght = 0;
         let winner = launchFight(connectedPlayerList[caller], connectedPlayerList[socket.id]);
         combatlog.push("Winner is " + winner);
         // console.log(combatlog)
