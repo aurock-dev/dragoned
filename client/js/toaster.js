@@ -1,6 +1,8 @@
-function toaster(text, type='default'){
+function toaster(text, type='default', time=5000){
     document.querySelector('#toasterText').textContent = '';
     document.querySelector('#toasterText').textContent = text;
+    document.title = '';
+    document.title = text;
 
     switch (type) {
         case 'default':
@@ -19,5 +21,6 @@ function toaster(text, type='default'){
     setTimeout(() => {
         document.querySelector('#toasterText').textContent = '';
         document.querySelector('#toasterText').classList = '';
-    }, 3000)
+        document.title = 'Dragoned';
+    }, time)
 }

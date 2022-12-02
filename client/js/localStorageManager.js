@@ -7,12 +7,11 @@ function firstConnection(){
     $(document).on('click', '#validateFirstName', function(){
         let playerName = document.querySelector('#inputFirstName').value;
         if (checkInput(playerName)){
-            player.name = playerName;
-            setLSPlayer(player);
-            setLSGame(game);
+            player.general.name = playerName;
             dialogChangeName.close();
-            window.location.reload();
             toaster('Name Validated!');
+            setLSPlayer(player);
+            window.location.reload();
         }
         else{
             toaster('Name can contains 3 to 12 letters only!', 'alert');
@@ -36,24 +35,6 @@ function setLSPlayer(player){
  */
 function getLSPlayer(){
     return JSON.parse(localStorage.getItem('player'));
-}
-
-/**
- * Store game object in local storage
- *
- * @param {*} game object
- */
-function setLSGame(game){
-    localStorage.setItem('game', JSON.stringify(game));
-}
-
-/**
- * Return game object from local storage
- *
- * 
- */
-function getLSGame(){
-    return JSON.parse(localStorage.getItem('game'));
 }
 
 /**
