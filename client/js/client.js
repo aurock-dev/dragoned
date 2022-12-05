@@ -10,11 +10,11 @@ socket.on('connect', () => {
     }
     updateAllInformations();
     player.states.jobbing = null;
-    if (!player.hasOwnProperty('resetAlert') || player.states.resetAlert === 0){
-        toaster('PLAYER OBJECT HAS CHANGED! PLEASE RESET LOCALSTORAGE!', 'alert', 20000)
-        player.states.resetAlert = 1;
-        setLSPlayer(player);
-    }
+    // if (!player.hasOwnProperty('resetAlert') || player.states.resetAlert === 0){
+    //     toaster('PLAYER OBJECT HAS CHANGED! PLEASE RESET LOCALSTORAGE!', 'alert', 20000)
+    //     player.states.resetAlert = 1;
+    //     setLSPlayer(player);
+    // }
 })
 
 socket.on('updateConnectedPlayerListForClients', playerList => {
