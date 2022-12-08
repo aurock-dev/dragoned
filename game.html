@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dragoned</title>
+        <link rel="icon" type="image/png" href="assets/img/uglydragon.png" />
+        <script
+            src="https://code.jquery.com/jquery-3.6.1.js"
+            integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+            crossorigin="anonymous">
+        </script>
+        <script src="https://kit.fontawesome.com/d4a44c73dc.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="client/css/style.css">
+    </head>
+    <body>       
+        <div class="navbar">
+            <button id="showViewOptions"><i class="fas fa-gear"></i> DRAGON'ED</button>
+            <div class="toaster">
+                <span id="toasterText"></span>
+            </div>
+            <div class="zone-button"><button id="zonebuttonTraining">Training zone</button></div>
+            <div class="zone-button"><button id="zonebuttonJobs">Jobs zone</button></div>
+            <div class="zone-button"><button id="zonebuttonRessources">Ressources zone</button></div>
+        </div>
+
+        <dialog id="dialogChangeName">  
+            <div>Choose a name.</div>
+            <input type="text" id="inputFirstName">
+            <button id="validateFirstName">Validate name</button>
+            <div id="errorMessage" class="hidden">Input can contains 3 to 12 letters only!</div>
+        </dialog>
+
+        <dialog id="dialogFight">  
+            <div><span id="callerPlayerName"></span> wants to fight!</div>
+            <button id="acceptFight">Accept fight</button>
+            <button id="declineFight">Decline fight</button>
+        </dialog>
+
+        <dialog id="dialogFightResponses">  
+            <div id="winner" class="hidden"><span id="winnerName"></span> wins the fight!</div>
+            <div id="refuse" class="hidden"><span id="fightTarget"></span> refuses to fight...</div>
+            <div>Combat logs:</div>
+            <div id="combatlog" class="combatlog">
+
+            </div>
+            <button id="ok">OK</button>
+        </dialog>
+
+        <div class="viewGameAndServer">
+            <div class="leftPanel">
+                <div class="viewPlayerDragon">
+                    <img class="playerDragonImg" src="/assets/img/uglydragon.png" alt="uglydragon">
+                    <div class="playerDragonInfos glass">
+                        <div><span id="currentPlayerName"></span></div>
+                        <div>iLvl: <span id="playerIlvl">0</span></div>
+                        <div>Jobs Lvl: <span id="playerJobsLvl">0</span></div>
+                    </div>
+                </div>
+                <div class="viewServer glass" id="viewServer">
+                    <div><span id="numberOfPlayer"></span> Connected players</div>
+                    <hr>
+                    <div id="connectedPlayerList" class="connectedPlayerList">
+                        <div class="noButton" id="playerButton">You</div>
+                    </div>
+                </div>
+            </div>
+            <div class="viewGame" id="viewGame">
+                <div class="actionZone fourColumn glass" zonetype="training">
+                    <div class="actionColumn">
+                        <button id="trainForce">Train FORCE</button>
+                        <div class="progressExpWrapper" id="expForce">
+                            <div class="progressText"><span id="currentExpForce">0</span> / <span id="neededExpForce">0</span></div>
+                            <div class="progressBar force">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actionColumn">
+                        <button id="trainVigour">Train VIGOUR</button>
+                        <div class="progressExpWrapper" id="expVigour">
+                            <div class="progressText"><span id="currentExpVigour">0</span> / <span id="neededExpVigour">0</span></div>
+                            <div class="progressBar vigour">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actionColumn">
+                        <button id="trainAgility">Train AGILITY</button>
+                        <div class="progressExpWrapper" id="expAgility">
+                            <div class="progressText"><span id="currentExpAgility">0</span> / <span id="neededExpAgility">0</span></div>
+                            <div class="progressBar agility">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actionColumn">
+                        <button id="trainWisdom">Train WISDOM</button>
+                        <div class="progressExpWrapper" id="expWisdom">
+                            <div class="progressText"><span id="currentExpWisdom">0</span> / <span id="neededExpWisdom">0</span></div>
+                            <div class="progressBar wisdom">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fightStats glass" zonetype="training">
+                    <div class="HPMPStats">
+                        <div>HP: <span id="hpAmount">0</span>/<span id="hpMaxAmount">0</span></div>
+                        <div>MP: <span id="mpAmount">0</span>/<span id="mpMaxAmount">0</span></div>
+                    </div>
+                    <div class="defaultStats fourColumn">
+                        <div class="statsColumn">
+                            <div>FORCE: <span id="forceAmount">0</span></div>
+                            <div>Attack: <span id="attackAmount">0</span></div>
+                            <div>Critical Damages: <span id="criticalDamagesAmount">0</span></div>
+                        </div>
+                        <div class="statsColumn">
+                            <div>VIGOUR: <span id="vigourAmount">0</span></div>
+                            <div>Defense: <span id="defenseAmount">0</span></div>
+                            <div>HP Bonus: <span id="hpBonusAmount">0</span></div>
+                        </div>
+                        <div class="statsColumn">
+                            <div>AGILITY: <span id="agilityAmount">0</span></div>
+                            <div>Initiative: <span id="initiativeAmount">0</span></div>
+                            <div>Critical Chances: <span id="criticalChancesAmount">0</span></div>
+                        </div>
+                        <div class="statsColumn">
+                            <div>WISDOM: <span id="wisdomAmount">0</span></div>
+                            <div>Exp Bonus: <span id="expBonusAmount">0</span></div>
+                            <div>MP Bonus: <span id="mpBonusAmount">0</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actionZone twoColumn glass none" zonetype="jobs">
+                    <div class="actionColumn">
+                        <button id="woodcutting">Go WOODCUTTING</button>
+                        <div class="progressJobWrapper" id="timeWoodcutting">
+                            <div class="progressText"><span id="currentTimeWoodcutting"></span></span></div>
+                            <div class="progressBar woodcuttingTime">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actionColumn">
+                        <button id="mining">Go MINING</button>
+                        <div class="progressJobWrapper" id="timeMining">
+                            <div class="progressText"><span id="currentTimeMining"></span></div>
+                            <div class="progressBar miningTime">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actionZone twoColumn glass none" zonetype="jobs">
+                    <div class="actionColumn">
+                        <button id="trainWoodcutting">Train WOODCUTTING</button>
+                        <div class="progressJobWrapper" id="expWoodcutting">
+                            <div class="progressText"><span id="currentExpWoodcutting">0</span> / <span id="neededExpWoodcutting">0</span></div>
+                            <div class="progressBar woodcutting">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actionColumn">
+                        <button id="trainMining">Train MINING</button>
+                        <div class="progressJobWrapper" id="expMining">
+                            <div class="progressText"><span id="currentExpMining">0</span> / <span id="neededExpMining">0</span></div>
+                            <div class="progressBar mining">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="defaultStats twoColumn glass none" zonetype="jobs">
+                    <div class="statsColumn">
+                        <div>WOODCUTTING Lvl: <span id="woodcuttingLvl">0</span></div>
+                        <div>Time to complete: <span id="woodcuttingTimeAmount">0</span></div>
+                        <div>Loot Chance: <span id="woodcuttingLootChanceAmount">0</span></div>
+                    </div>
+                    <div class="statsColumn">
+                        <div>MINING Lvl: <span id="miningLvl">0</span></div>
+                        <div>Time to complete: <span id="miningTimeAmount">0</span></div>
+                        <div>Loot Chance: <span id="miningLootChanceAmount">0</span></div>
+                    </div>
+                </div>
+                <div class="defaultStats twoColumn glass none" zonetype="ressources">
+                    <div class="statsColumn">
+                        <div>Wood: <span id="woodAmount">0</span></div>
+                    </div>
+                    <div class="statsColumn">
+                        <div>Stone: <span id="stoneAmount">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="viewOptions hidden" id="viewOptions">      
+            <div>
+                Server Statut: <span id="connectionState">Not Connected</span>
+            </div>
+            <div>
+                <button id="switchFightRequests">Allow Fights: <span id="stateFightRequests"> Yes</span></button>
+            </div>
+            <hr>
+            <div class="optionName">
+                <div>Change name</div>
+                <input type="text" id="inputChangeName">
+                <button id="validateChangeName" disabled>Change</button>
+            </div>
+            <hr>
+            <div>
+                <button class="alertButton" id="resetLocalStorage">Reset LocalStorage</button>
+            </div>
+            <hr>
+            <div class="optionInfos">
+                <div>Game Version: <span name="gameVersion">v0.0</span> => <a href="https://www.notion.so/aurockfr/Patch-Note-1015707621ff4cd9aced68f212545061" target="_blank">PatchNote</a></div>
+                <div><a href="https://www.notion.so/aurockfr/Wiki-8890f5ca9dfc4f17a346c7109d75b782" target="_blank">Wiki and Dev follow-up</a> </div>
+                <div>If you encounter a wild bug: <a href="https://gitlab.com/aurock/dragoned/-/issues" target="_blank">Git</a></div>
+                <div>Made with a ton of 🐛 by <a href="https://aurock.me/" target="_blank">Aurock</a> </div>
+            </div>
+        </div>
+
+
+
+        <div class="none" id="templates">
+            <button id="memberButton" class="tooltip" playerid="" name="targetPlayer">
+                <div id="memberName"></div>
+                <div id="memberLvls"></div>
+                <div class="tooltipMemberInfos">
+                    <span>Fight Stats:</span>
+                    <span name="memberHP"></span>
+                    <span name="memberMP"></span>
+                    <span name="memberForce"></span>
+                    <span name="memberVigour"></span>
+                    <span name="memberAgility"></span>
+                    <span name="memberWisdom"></span>
+                    <hr>
+                    <span>Jobs Stats:</span>
+                    <span name="memberWoodcutting"></span>
+                    <span name="memberMining"></span>
+                </div>
+            </button>
+        </div>
+        
+        <script src="node_modules/hacktimer/HackTimer.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/server/version.js"></script>
+        <script src="/client/js/player.js"></script>
+        <script src="/client/js/localStorageManager.js"></script>
+        <script src="/client/js/inputsManager.js"></script>
+        <script src="/client/js/client.js"></script>
+        <script src="/client/js/interactions.js"></script>
+        <script src="/client/js/updatePlayerManager.js"></script>
+        <script src="/client/js/toaster.js"></script>
+        <script src="/client/js/math.js"></script>
+        <script src="/client/js/jobs.js"></script>
+    </body>
+</html>

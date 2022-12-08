@@ -1,5 +1,7 @@
 const express = require("express");
 const socketio = require("socket.io");
+const mysql = require('mysql');
+const fs = require('fs');
 
 const app = express();
 
@@ -19,18 +21,52 @@ const io = socketio(server);
 var connectedPlayerList = {};
 var combatlog = []
 
-io.on("connection", (socket) => {
-    socket.on("playerConnection", (player) => {
-        if (typeof player.general.name === "string") {
-            if (!connectedPlayerList.hasOwnProperty(socket.id)) {
-                connectedPlayerList[socket.id] = player;
-            }
+var sqlconnection = mysql.createConnection({
+    host: 'f80b6byii2vwv8cx.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+    user: 'es4wkj9woohmy51n',
+    password: 'fk4ftqm2tsbgcyqy',
+    database: 'bfy77mrejqyakpum'
+});
 
-            io.emit("updateConnectedPlayerListForClients", connectedPlayerList);
-            io.emit("updateConnectionState", true);
-        } else {
-            io.emit("updateConnectionState", false);
-        }
+sqlconnection.connect(function(err){
+    if(err){
+        console.error('Impossible de se connecter ', err);
+    }
+});
+
+io.on("connection", (socket) => {
+    // socket.on("playerConnection", (player) => {
+    //     if (typeof player.general.name === "string") {
+    //         if (!connectedPlayerList.hasOwnProperty(socket.id)) {
+    //             connectedPlayerList[socket.id] = player;
+    //         }
+
+    //         io.emit("updateConnectedPlayerListForClients", connectedPlayerList);
+    //         io.emit("updateConnectionState", true);
+    //     } else {
+    //         io.emit("updateConnectionState", false);
+    //     }
+    // });
+    socket.on("login", (credentials) => {
+        sqlconnection.query('SELECT * FROM account WHERE username = ? AND password = ?', [credentials.username, credentials.password], function(err, result, fields){
+            if (err) throw err;
+            if (result.length !== 0){
+                var destination = '/game.html';
+                socket.emit('redirect', destination);
+            }
+        })
+    });
+
+    socket.on("signin", (credentials) => {
+        sqlconnection.query('SELECT * FROM account WHERE username = ?', [credentials.username], function(err, result, fields){
+            if (err) throw err;
+            if (result.length !== 0){
+                socket.emit('signinResponse', 'Username already taken.');
+            }
+            else{
+                sqlconnection.query('')
+            }
+        })
     });
 
     socket.on("disconnect", () => {
